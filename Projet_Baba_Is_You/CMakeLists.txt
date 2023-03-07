@@ -3,4 +3,4 @@ project(Projet_Baba_Is_You)
 
 set(CMAKE_CXX_STANDARD 20)
 
-add_executable(Projet_Baba_Is_You main.cpp)
+add_executable(Projet_Baba_Is_You sourceFile/controller/main.cpp headerFile/model/position.h headerFile/model/direction.h enum_to_class_to_enum.pro)
