@@ -11,16 +11,20 @@ class Materials:public Element{
 private:
     Icon icon;
 public:
-    Materials(Icon icon) :icon(icon) {}
+
+    ~Materials() override;
+
+    explicit Materials(Icon newIcon);
+
+    Icon getIcon()const;
+    void setIcon(Icon newIcon);
 
 
-    Icon getIcon() const {
-        return icon;
-    }
-
-    void setIcon(Icon icon) {
-        Materials::icon = icon;
-    }
 
 };
+
+
+
+
+
 #endif //PROJET_BABA_IS_YOU_MATERIALS_H

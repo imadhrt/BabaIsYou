@@ -12,6 +12,8 @@ private:
     std::vector<std::vector<Tiles>> board;
 public:
     Board(int height, int width);
+
+
     std::vector<std::vector<Tiles>> getBoard();
     bool contains(dev4::Position position);
     void dropTile(dev4::Position position);
@@ -19,6 +21,9 @@ public:
     Tiles getTiles(dev4::Position position);
 
 };
+
+
+
 
 #endif //PROJET_BABA_IS_YOU_BOARD_H
 

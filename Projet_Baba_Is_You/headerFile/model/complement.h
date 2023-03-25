@@ -9,25 +9,18 @@
 #include "words.h"
 
 class Complement : public Words{
+private:
+    ComplementEnum complementEnum;
 public:
-    Complement(Words *words, ComplementEnum complementEnum);
+    explicit Complement( ComplementEnum newComplementEnum);
 
     ComplementEnum getComplementEnum() const;
 
-    void setComplementEnum(ComplementEnum complementEnum);
+    void setComplementEnum(ComplementEnum newComplementEnum);
 
-private:
-     ComplementEnum complementEnum;
+
 };
 
-Complement::Complement(Words *words, ComplementEnum complementEnum) : Words(words), complementEnum(complementEnum) {}
 
-ComplementEnum Complement::getComplementEnum() const {
-    return complementEnum;
-}
-
-void Complement::setComplementEnum(ComplementEnum complementEnum) {
-    Complement::complementEnum = complementEnum;
-}
 
 #endif //PROJET_BABA_IS_YOU_COMPLEMENT_H

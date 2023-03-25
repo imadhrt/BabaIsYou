@@ -10,25 +10,16 @@
 
 class Operator: public Words{
 public:
-    explicit Operator(OperatorEnum operatorEnum);
+    explicit Operator(OperatorEnum newOperatorEnum);
 
     OperatorEnum getOperatorEnum() const;
 
-    void setOperatorEnum(OperatorEnum operatorEnum);
+    void setOperatorEnum(OperatorEnum newOperatorEnum);
 
 private :
     OperatorEnum operatorEnum;
 
 };
 
-Operator::Operator(OperatorEnum operatorEnum) : operatorEnum(operatorEnum) {}
-
-OperatorEnum Operator::getOperatorEnum() const {
-    return operatorEnum;
-}
-
-void Operator::setOperatorEnum(OperatorEnum operatorEnum) {
-    Operator::operatorEnum = operatorEnum;
-}
 
 #endif //PROJET_BABA_IS_YOU_OPERATOR_H

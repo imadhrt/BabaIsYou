@@ -9,26 +9,18 @@
 #include "words.h"
 
 class Subject:public Words{
+private:
+    SubjectEnum subjectEnum;
 public:
-    explicit Subject(SubjectEnum subjectEnum);
+    explicit Subject(SubjectEnum newSubjectEnum);
 
     SubjectEnum getSubjectEnum() const;
 
-    void setSubjectEnum(SubjectEnum subjectEnum);
+    void setSubjectEnum(SubjectEnum newSubjectEnum);
 
-private:
-    SubjectEnum subjectEnum;
+
 
 };
 
-Subject::Subject(SubjectEnum subjectEnum) : subjectEnum(subjectEnum) {}
-
-SubjectEnum Subject::getSubjectEnum() const {
-    return subjectEnum;
-}
-
-void Subject::setSubjectEnum(SubjectEnum subjectEnum) {
-    Subject::subjectEnum = subjectEnum;
-}
 
 #endif //PROJET_BABA_IS_YOU_SUBJECT_H

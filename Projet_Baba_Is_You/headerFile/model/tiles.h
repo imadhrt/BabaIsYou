@@ -11,19 +11,22 @@
 * Classe représentant une collection de tuiles, chacune étant constituée d'un ensemble d'éléments.
 */
 class Tiles {
+
+private:
+    std::vector<Element> listElement;
 public:
     /*
     * Constructeur par défaut de la classe Tiles.
     * Initialise l'attribut listElement avec une liste vide.
     */
-    Tiles();
+    Tiles()=default;
 
     /*
     * Constructeur de la classe Tiles prenant en paramètre une liste d'éléments.
     * Initialise l'attribut listElement avec la liste passée en paramètre.
     * @param listElement Liste d'éléments.
     */
-    Tiles(const std::vector<Element>& listElement);
+    Tiles(const std::vector<Element>& liste);
 
     /*
     * Destructeur de la classe Tiles.
@@ -35,9 +38,12 @@ public:
     * Getter pour l'attribut listElement de la classe Tiles.
     * @return Liste d'éléments.
     */
-    const std::vector<Element>& getListElement() const;
+     const std::vector<Element>& getListElement() const;
 
-private:
-    std::vector<Element> listElement;
 };
+
+
+
+
+
 #endif //PROJET_BABA_IS_YOU_TILES_H

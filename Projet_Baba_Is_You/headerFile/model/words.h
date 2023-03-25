@@ -12,13 +12,13 @@ private:
 
     Words* words;
 public:
-    explicit Words(Words *words);
+    explicit Words(Words *newWords);
 
      Words();
 
-    Words *getWords() const;
+    Words getWords() const;
 
-    void setWords(Words *words);
+    void setWords(Words *newWords);
 
 
 
@@ -27,16 +27,6 @@ public:
 
 };
 
-Words::Words(Words *words) : words(words) {}
 
-Words *Words::getWords() const {
-    return words;
-}
-
-void Words::setWords(Words *words) {
-
-    Words::words = words;
-}
-Words::Words():words(nullptr) {}
 
 #endif //PROJET_BABA_IS_YOU_WORDS_H
