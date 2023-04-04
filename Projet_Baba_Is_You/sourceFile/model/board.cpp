@@ -23,7 +23,7 @@ void Board::setTile(dev4::Position newPosition, Tiles tiles) {
     if(!contains(newPosition)){
         throw std::invalid_argument("La position n' est pas dans le board");
     }
-    board[newPosition.x()][newPosition.y()]=Tiles();
+    board[newPosition.x()][newPosition.y()]=tiles;
 
 }
 
@@ -31,7 +31,7 @@ Tiles Board::getTiles(dev4::Position position) {
     if(!contains(position)){
         throw std::invalid_argument("La position n' est pas dans le board");
     }
-    return board.at(position.x()).at(position.y()).getListElement();
+    return board.at(position.x()).at(position.y());
 }
 
 bool Board::contains(dev4::Position position) {
@@ -39,6 +39,6 @@ bool Board::contains(dev4::Position position) {
 }
 
 void Board::dropTile(dev4::Position position) {
-    setTile(position,Tiles());
+    setTile(position, Tiles());
 
 }

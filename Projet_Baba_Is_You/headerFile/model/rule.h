@@ -12,7 +12,7 @@ public:
 
 
     Rule(SubjectEnum subjectEnum, OperatorEnum operatorEnum, ComplementEnum complementEnum, bool isYou, bool isKil,
-         bool isPush, bool isStop, bool isWin);é
+         bool isPush, bool isStop, bool isWin);
     void defineRule();
 
     virtual ~Rule();

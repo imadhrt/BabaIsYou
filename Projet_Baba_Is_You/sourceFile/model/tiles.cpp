@@ -9,7 +9,6 @@ Tiles::Tiles(const std::vector<Element> &liste): listElement(liste) {}
 
 Tiles::~Tiles() {
     listElement.clear();
-
 }
 
 const std::vector<Element> &Tiles::getListElement() const {

@@ -11,6 +11,10 @@ class LevelLoader{
 private:
     Board board;
 public:
+    LevelLoader(int level, Board board);
+
+public:
+
     const Board &getBoard() const;
 
     void setBoard(const Board &newBoard);
