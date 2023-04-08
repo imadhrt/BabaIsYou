@@ -6,6 +6,10 @@
 
 
 Board::Board(int height, int width) {
+    board.resize(height);
+    for (int i = 0; i < height; i++) {
+        board[i].resize(width);
+    }
     for (int i = 0; i < height ;++i) {
         for (int j = 0; j < width ; ++j) {
             board.at(i).at(j)=Tiles();
@@ -42,3 +46,5 @@ void Board::dropTile(dev4::Position position) {
     setTile(position, Tiles());
 
 }
+
+Board::Board() {}

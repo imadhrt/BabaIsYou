@@ -31,6 +31,7 @@ void LevelLoader::browseLevel(int numberLevel) {
     int i = 0;
     if (fichier.is_open()) {
         std::string ligneFichier;
+        Board bd;
         while (std::getline(fichier, ligneFichier)) {
             std::string element;
             std::vector<std::string> elementLigne;
@@ -39,40 +40,33 @@ void LevelLoader::browseLevel(int numberLevel) {
                 elementLigne.push_back(element);
             }
             if (i == 0) {
-                board=Board(stoi(elementLigne.at(0)),stoi(elementLigne.at(1)));
+                bd = Board(stoi(elementLigne.at(0)),stoi(elementLigne.at(1)));
                 i++;
             } else {
-//                if (elementLigne.size() == 3) {
-//
-//
-//                } else {
-//
-//
-//                }
    dev4::Position position=dev4::Position(stoi(elementLigne.at(1)),stoi(elementLigne.at(2)));
    std::vector<Element> listeElement;
+   Tiles tiles(listeElement);
           if(elementLigne.at(0)=="text_wall"){
-              Words word=Subject(SubjectEnum::WALL);
+              Subject subject = Subject(SubjectEnum::WALL);
+              Words word = subject;
               listeElement.push_back(word);
-              board.setTile(position, Tiles(listeElement));
+              bd.setTile(position, tiles);
           }else if(elementLigne.at(0)=="wall"){
-              Materials materials=Materials(Icon::WALL_ICON);
+              Element materials=Element(Materials(Icon::WALL_ICON));
               listeElement.push_back(materials);
-              board.setTile(position, Tiles(listeElement));
+              bd.setTile(position, tiles);
           }
 
-
-
-//                i++;
             }
             elementLigne.clear();
         }
+        setBoard(bd);
         fichier.close();
     }
 
 
 }
 
-LevelLoader::LevelLoader(int level, Board board) : board(board) {
+LevelLoader::LevelLoader(int level) {
     browseLevel(level);
 }

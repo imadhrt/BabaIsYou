@@ -12,7 +12,7 @@ private:
 
     Words* words;
 public:
-    explicit Words(Words *newWords);
+     Words(Words *newWords);
 
      Words();
 

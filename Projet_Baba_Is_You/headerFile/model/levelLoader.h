@@ -11,7 +11,7 @@ class LevelLoader{
 private:
     Board board;
 public:
-    LevelLoader(int level, Board board);
+    LevelLoader(int level);
 
 public:
 

@@ -5,7 +5,7 @@
 #ifndef PROJET_BABA_IS_YOU_ENUM_H
 #define PROJET_BABA_IS_YOU_ENUM_H
 
-#endif //PROJET_BABA_IS_YOU_ENUM_H
+
 
 enum class SubjectEnum {
     BABA,
@@ -42,3 +42,4 @@ enum class Icon {
     GOOP_ICON,
     WATER_ICON
 };
+#endif //PROJET_BABA_IS_YOU_ENUM_H

@@ -13,6 +13,8 @@ private:
 public:
     Board(int height, int width);
 
+    Board();
+
 
     std::vector<std::vector<Tiles>> getBoard();
     bool contains(dev4::Position position);
