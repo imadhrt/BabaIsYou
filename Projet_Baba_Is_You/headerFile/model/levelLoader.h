@@ -6,6 +6,7 @@
 #define PROJET_BABA_IS_YOU_LEVELLOADER_H
 
 #include <vector>
+#include <string>
 #include "position.h"
 
 class LevelLoader{

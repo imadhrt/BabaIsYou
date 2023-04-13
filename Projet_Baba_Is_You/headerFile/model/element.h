@@ -14,14 +14,16 @@
 
 class Element{
 private:
-    Materials mat;
-    Words words;
+    Materials* mat;
+    Words* words;
 public:
-    Element();
+    Element()=default;
 
-    explicit Element(Materials mat);
+    Element(Materials mat, Words words);
 
     explicit Element(Words words);
+
+    explicit Element(Materials mat);
 
     virtual ~Element();
 
