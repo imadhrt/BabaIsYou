@@ -26,7 +26,7 @@ public:
 
     const Complement &getComplement() const;
 
-    Words();
+    Words()=default;
 };
 
 

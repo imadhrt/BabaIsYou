@@ -24,7 +24,7 @@ const Complement &Words::getComplement() const {
     return complement_;
 }
 
-Words::Words() : subject_(nullptr), operator_(nullptr), complement_(nullptr) {}
+//Words::Words() : subject_(nullptr), operator_(nullptr), complement_(nullptr) {}
 
 
 
