@@ -5,10 +5,6 @@
 
 
 #include "../../headerFile/model/words.h"
-#include "../../headerFile/model/subject.h"
-#include "../../headerFile/model/operator.h"
-#include "../../headerFile/model/complement.h"
-
 
 Words::Words(Subject subject) : subject_(subject){}
 
@@ -16,7 +12,20 @@ Words::Words(Operator op) : operator_(op) {}
 
 Words::Words(Complement complement) : complement_(complement) {}
 
-Words::Words() {}
+const Subject &Words::getSubject() const {
+    return subject_;
+}
+
+const Operator &Words::getOperator() const {
+    return operator_;
+}
+
+const Complement &Words::getComplement() const {
+    return complement_;
+}
+
+Words::Words() : subject_(nullptr), operator_(nullptr), complement_(nullptr) {}
+
 
 
 

@@ -5,12 +5,11 @@
 #ifndef PROJET_BABA_IS_YOU_WORDS_H
 #define PROJET_BABA_IS_YOU_WORDS_H
 
-#include "element.h"
-#include "operator.h"
 #include "subject.h"
 #include "complement.h"
+#include "operator.h"
 
-class Words: public Element{
+class Words{
 private:
     Subject subject_;
     Operator operator_;
@@ -20,6 +19,12 @@ public:
     Words(Subject subject);
     Words(Operator op);
     Words(Complement complement);
+
+    const Subject &getSubject() const;
+
+    const Operator &getOperator() const;
+
+    const Complement &getComplement() const;
 
     Words();
 };

@@ -11,6 +11,7 @@ SubjectEnum Subject::getSubjectEnum() const {
     return subjectEnum;
 }
 
+
 void Subject::setSubjectEnum(SubjectEnum newSubjectEnum) {
     Subject::subjectEnum = newSubjectEnum;
 }

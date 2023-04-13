@@ -5,17 +5,16 @@
 #ifndef PROJET_BABA_IS_YOU_MATERIALS_H
 #define PROJET_BABA_IS_YOU_MATERIALS_H
 #include "enum.h"
-#include "element.h"
 
-class Materials:public Element{
+class Materials{
 private:
     Icon icon;
 public:
 
-    ~Materials() override;
+    ~Materials();
 
     explicit Materials(Icon newIcon);
-
+    Materials()=default;
     Icon getIcon()const;
     void setIcon(Icon newIcon);
 

@@ -5,6 +5,7 @@
 
 
 #include "../../headerFile/model/operator.h"
+#include "../../headerFile/model/words.h"
 
 Operator::Operator(OperatorEnum newOperatorEnum) : operatorEnum(newOperatorEnum) {}
 OperatorEnum Operator::getOperatorEnum() const {

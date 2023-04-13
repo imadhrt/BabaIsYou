@@ -2,10 +2,6 @@
 // Created by elhar on 25-03-23.
 //
 #include "../../headerFile/model/levelLoader.h"
-#include "../../headerFile/model/words.h"
-#include "../../headerFile/model/subject.h"
-#include "../../headerFile/model/materials.h"
-#include "../../headerFile/model/position.h"
 #include <fstream>
 #include <iostream>
 #include <sstream>
@@ -16,7 +12,7 @@ using namespace std;
 
 void LevelLoader::browseLevel(int numberLevel) {
 
-    std::ifstream fichier("../ressource/level_"  + std::to_string(numberLevel) + ".txt");
+    std::ifstream fichier("../sourceFile/level/level_"  + std::to_string(numberLevel) + ".txt") ;
 
     std::string str ;
     int dir;

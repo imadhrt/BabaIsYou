@@ -6,19 +6,16 @@
 #define PROJET_BABA_IS_YOU_COMPLEMENT_H
 
 #include "enum.h"
-#include "words.h"
 
-class Complement : public Words{
+class Complement{
 private:
     ComplementEnum complementEnum;
 public:
     explicit Complement( ComplementEnum newComplementEnum);
-    Complement()=default;
+    Complement() = default;
     ComplementEnum getComplementEnum() const;
 
     void setComplementEnum(ComplementEnum newComplementEnum);
-
-
 };
 
 

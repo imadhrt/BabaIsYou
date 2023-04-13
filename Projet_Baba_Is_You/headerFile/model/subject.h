@@ -6,14 +6,14 @@
 #define PROJET_BABA_IS_YOU_SUBJECT_H
 
 #include "enum.h"
-#include "words.h"
 
-class Subject:public Words{
+
+class Subject{
 private:
     SubjectEnum subjectEnum;
 public:
     explicit Subject(SubjectEnum newSubjectEnum);
-    Subject() = default;
+    Subject()=default;
     SubjectEnum getSubjectEnum() const;
 
     void setSubjectEnum(SubjectEnum newSubjectEnum);

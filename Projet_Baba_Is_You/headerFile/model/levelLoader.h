@@ -5,8 +5,8 @@
 #ifndef PROJET_BABA_IS_YOU_LEVELLOADER_H
 #define PROJET_BABA_IS_YOU_LEVELLOADER_H
 
-#include "board.h"
 #include <vector>
+#include "position.h"
 
 class LevelLoader{
 private:

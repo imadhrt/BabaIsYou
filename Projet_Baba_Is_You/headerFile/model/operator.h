@@ -6,9 +6,8 @@
 #define PROJET_BABA_IS_YOU_OPERATOR_H
 
 #include "enum.h"
-#include "words.h"
 
-class Operator: public Words{
+class Operator{
 public:
     explicit Operator(OperatorEnum newOperatorEnum);
     Operator()=default;

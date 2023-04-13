@@ -9,7 +9,7 @@ void RuleManager::addRule() {
 }
 
 Rule RuleManager::removeRule(Rule rule) {
-
+return rule;
 }
 
 void RuleManager::clearRule() {

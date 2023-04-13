@@ -17,8 +17,8 @@ using namespace dev4;
 int main() {
 
 
-    LevelLoader levelLoader=LevelLoader(0);
-
+    LevelLoader levelLoader(0);
+    Board board(levelLoader);
 
 
 //    int level = 0;
