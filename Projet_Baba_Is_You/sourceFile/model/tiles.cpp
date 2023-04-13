@@ -5,7 +5,6 @@
 
 #include "../../headerFile/model/tiles.h"
 
-Tiles::Tiles(const std::vector<Element> &liste): listElement(liste) {}
 
 Tiles::~Tiles() {
     listElement.clear();
@@ -14,3 +13,5 @@ Tiles::~Tiles() {
 const std::vector<Element> &Tiles::getListElement() const {
     return listElement;
 }
+
+Tiles::Tiles(const std::vector<Element> &listElement, const dev4::Position &pos) : listElement(listElement), pos(pos) {}

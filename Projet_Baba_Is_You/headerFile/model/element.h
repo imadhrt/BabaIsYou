@@ -7,23 +7,13 @@
 
 #include <ostream>
 
-class Element {
-private:
-    Element *element;
-public:
-    explicit Element(Element *newElement);
+class Element{
 
+public:
     Element();
 
     virtual ~Element();
 
-
-    void setElement(Element *newElement);
-
-    Element& operator=(const Element &other);
-
-
-    Element getElement() const;
 };
 
 

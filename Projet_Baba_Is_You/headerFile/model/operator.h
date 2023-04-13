@@ -11,7 +11,7 @@
 class Operator: public Words{
 public:
     explicit Operator(OperatorEnum newOperatorEnum);
-
+    Operator()=default;
     OperatorEnum getOperatorEnum() const;
 
     void setOperatorEnum(OperatorEnum newOperatorEnum);

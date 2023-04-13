@@ -13,7 +13,7 @@ private:
     SubjectEnum subjectEnum;
 public:
     explicit Subject(SubjectEnum newSubjectEnum);
-
+    Subject() = default;
     SubjectEnum getSubjectEnum() const;
 
     void setSubjectEnum(SubjectEnum newSubjectEnum);

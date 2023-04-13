@@ -6,27 +6,23 @@
 #define PROJET_BABA_IS_YOU_WORDS_H
 
 #include "element.h"
+#include "operator.h"
+#include "subject.h"
+#include "complement.h"
 
 class Words: public Element{
 private:
+    Subject subject_;
+    Operator operator_;
+    Complement complement_;
 
-    Words* words;
 public:
-     Words(Words *newWords);
+    Words(Subject subject);
+    Words(Operator op);
+    Words(Complement complement);
 
-     Words();
-
-    Words getWords() const;
-
-    void setWords(Words *newWords);
-
-
-
-
-
-
+    Words();
 };
-
 
 
 #endif //PROJET_BABA_IS_YOU_WORDS_H

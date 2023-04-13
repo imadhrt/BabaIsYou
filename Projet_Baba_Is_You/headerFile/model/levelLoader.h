@@ -6,21 +6,22 @@
 #define PROJET_BABA_IS_YOU_LEVELLOADER_H
 
 #include "board.h"
+#include <vector>
 
 class LevelLoader{
 private:
-    Board board;
+    int width;
+    int height;
+    std::vector<std::pair<std::string, dev4::Position>> vecPAire;
 public:
     LevelLoader(int level);
-
-public:
-
-    const Board &getBoard() const;
-
-    void setBoard(const Board &newBoard);
     void browseLevel(int numberLevel);
 
+    int getWidth() const;
 
+    int getHeight() const;
+
+    const std::vector<std::pair<std::string, dev4::Position>> &getVecPAire() const;
 };
 
 

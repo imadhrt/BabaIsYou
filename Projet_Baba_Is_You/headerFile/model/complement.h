@@ -13,7 +13,7 @@ private:
     ComplementEnum complementEnum;
 public:
     explicit Complement( ComplementEnum newComplementEnum);
-
+    Complement()=default;
     ComplementEnum getComplementEnum() const;
 
     void setComplementEnum(ComplementEnum newComplementEnum);

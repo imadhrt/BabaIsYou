@@ -14,6 +14,8 @@ enum class SubjectEnum {
     FLAG,
     WALL,
     BONE,
+    GRASS,
+    METAL,
     GOOP
 };
 
@@ -26,6 +28,8 @@ enum class ComplementEnum {
     KILL,
     PUSH,
     YOU,
+    BEST,
+    SINK,
     STOP
 };
 

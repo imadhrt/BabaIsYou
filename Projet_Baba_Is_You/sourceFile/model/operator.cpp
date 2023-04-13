@@ -7,7 +7,6 @@
 #include "../../headerFile/model/operator.h"
 
 Operator::Operator(OperatorEnum newOperatorEnum) : operatorEnum(newOperatorEnum) {}
-
 OperatorEnum Operator::getOperatorEnum() const {
     return operatorEnum;
 }

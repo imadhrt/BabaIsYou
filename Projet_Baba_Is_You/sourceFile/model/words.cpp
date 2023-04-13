@@ -5,15 +5,18 @@
 
 
 #include "../../headerFile/model/words.h"
+#include "../../headerFile/model/subject.h"
+#include "../../headerFile/model/operator.h"
+#include "../../headerFile/model/complement.h"
 
-Words::Words(Words *newWords) : words(newWords) {}
 
-Words Words::getWords() const {
-    return *this->words;
-}
+Words::Words(Subject subject) : subject_(subject){}
 
-void Words::setWords(Words *newWords) {
+Words::Words(Operator op) : operator_(op) {}
 
-    Words::words = newWords;
-}
-Words::Words():words(nullptr) {}
+Words::Words(Complement complement) : complement_(complement) {}
+
+Words::Words() {}
+
+
+

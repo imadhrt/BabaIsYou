@@ -7,6 +7,8 @@
 
 #include <vector>
 #include "element.h"
+#include "position.h"
+
 /*
 * Classe représentant une collection de tuiles, chacune étant constituée d'un ensemble d'éléments.
 */
@@ -14,6 +16,7 @@ class Tiles {
 
 private:
     std::vector<Element> listElement;
+    dev4::Position pos;
 public:
     /*
     * Constructeur par défaut de la classe Tiles.
@@ -26,7 +29,8 @@ public:
     * Initialise l'attribut listElement avec la liste passée en paramètre.
     * @param listElement Liste d'éléments.
     */
-    Tiles(const std::vector<Element>& liste);
+    Tiles(const std::vector<Element> &listElement, const dev4::Position &pos);
+
 
     /*
     * Destructeur de la classe Tiles.
