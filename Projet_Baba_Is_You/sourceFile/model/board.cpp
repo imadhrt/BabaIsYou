@@ -50,10 +50,11 @@ Element Board::convertionEnum(std::string strFile){
 Board::Board(LevelLoader file) : file(file){
 
     board.resize(file.getWidth(), std::vector<Tiles>(file.getHeight()));
-    Materials mat = Materials(Icon::EMPTY_ICON);
-    std::vector<Element> el {Element(mat)};
+
     for (int i = 0; i < board.size(); ++i) {
         for (int j = 0; j < board.at(i).size(); ++j) {
+            Materials mat = Materials(Icon::EMPTY_ICON);
+            std::vector<Element> el {Element(mat)};
             dev4::Position pos {j, i};
             Tiles emptyTiles{el,pos};
             board.at(i).at(j) = emptyTiles;
@@ -61,12 +62,13 @@ Board::Board(LevelLoader file) : file(file){
     }
 
     for (int i = 0; i < file.getVecPAire().size(); ++i) {
-        el.push_back(convertionEnum(file.getVecPAire().at(i).first));
+        Materials mat = Materials(Icon::EMPTY_ICON);
+        std::vector<Element> el { Element(mat), convertionEnum(file.getVecPAire().at(i).first)};
         dev4::Position pos {file.getVecPAire().at(i).second.x(),file.getVecPAire().at(i).second.y()};
         Tiles tile {el, pos};
-        board.at(file.getVecPAire().at(i).second.y()).at(file.getVecPAire().at(i).second.x()) = tile;
+        board.at(pos.x()).at(pos.y()) = tile;
     }
-
+//pos.x et pos.y
 }
 
 
@@ -75,11 +77,11 @@ std::vector<std::vector<Tiles>> Board::getBoard() {
     return board;
 }
 
-void Board::setTile(dev4::Position newPosition, Tiles tiles) {
+void Board::setElement(dev4::Position newPosition, Element element) {
     if(!contains(newPosition)){
         throw std::invalid_argument("La position n' est pas dans le board");
     }
-    board[newPosition.x()][newPosition.y()]=tiles;
+    board[newPosition.x()][newPosition.y()].addElement(element);
 
 }
 
@@ -94,6 +96,9 @@ bool Board::contains(dev4::Position position) {
     return position.x()>=0 && position.x()<=board.size()-1 && position.y()>=0 && position.y()<=board[0].size();
 }
 
-void Board::dropTile(dev4::Position position) {
-    setTile(position, Tiles());
+Element Board::dropElement(dev4::Position position) {
+    if(!contains(position)){
+        throw std::invalid_argument("La position n' est pas dans le board");
+    }
+    return board[position.x()][position.y()].removeLastElement();
 }

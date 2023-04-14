@@ -11,9 +11,9 @@
 
 class Words{
 private:
-    Subject subject_;
-    Operator operator_;
-    Complement complement_;
+    Subject* subject_;
+    Operator* operator_;
+    Complement* complement_;
 
 public:
     Words(Subject subject);

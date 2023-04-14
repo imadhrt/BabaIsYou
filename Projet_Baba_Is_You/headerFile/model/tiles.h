@@ -44,6 +44,10 @@ public:
     */
      const std::vector<Element>& getListElement() const;
 
+     void addElement(Element element);
+
+     Element removeLastElement();
+
 };
 
 

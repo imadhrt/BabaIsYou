@@ -6,33 +6,24 @@
 #define PROJET_BABA_IS_YOU_RULE_H
 
 #include "subject.h"
+#include "operator.h"
+#include "complement.h"
 
 class Rule{
 public:
 
 
-    Rule(SubjectEnum subjectEnum, OperatorEnum operatorEnum, ComplementEnum complementEnum, bool isYou, bool isKil,
-         bool isPush, bool isStop, bool isWin);
+    Rule(Subject subject, Operator operator_, Complement complement);
+
     void defineRule();
 
     virtual ~Rule();
 
-    bool operator==(const Rule &rhs) const;
-
-    bool operator!=(const Rule &rhs) const;
 
 private:
-    SubjectEnum subjectEnum;
-    OperatorEnum operatorEnum;
-    ComplementEnum complementEnum;
-    bool isYou;
-    bool isKil;
-    bool isPush;
-    bool isStop;
-    bool isWin;
-
-
-
+    Subject subject;
+    Operator operator_;
+    Complement complement;
 };
 
 

@@ -4,14 +4,10 @@
 
 #include "../../headerFile/model/ruleManager.h"
 
-void RuleManager::addRule() {
-
-}
-
-Rule RuleManager::removeRule(Rule rule) {
-return rule;
+void RuleManager::addRule(Rule rule) {
+    listOfRules.push_back(rule);
 }
 
 void RuleManager::clearRule() {
-listOfRules.clear();
+    listOfRules.clear();
 }

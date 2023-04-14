@@ -13,8 +13,7 @@ private:
     std::vector<Rule> listOfRules;
 
 public:
-    void addRule();
-    Rule removeRule(Rule rule);
+    void addRule(Rule rule);
     void clearRule();
 
 };

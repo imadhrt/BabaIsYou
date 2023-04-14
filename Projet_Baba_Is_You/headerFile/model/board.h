@@ -18,8 +18,8 @@ public:
 
     std::vector<std::vector<Tiles>> getBoard();
     bool contains(dev4::Position position);
-    void dropTile(dev4::Position position);
-    void setTile(dev4::Position newPosition, Tiles tiles);
+    Element dropElement(dev4::Position position);
+    void setElement(dev4::Position newPosition, Element element);
     Tiles getTiles(dev4::Position position);
 
 };

@@ -12,3 +12,5 @@ Element::Element(Materials mat, Words words) : mat(new Materials(mat)), words(ne
 Element::Element(Materials mat) : mat(new Materials(mat)),words(nullptr) {}
 
 Element::Element(Words words) : words(new Words(words)),mat(nullptr) {}
+
+

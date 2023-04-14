@@ -15,3 +15,13 @@ const std::vector<Element> &Tiles::getListElement() const {
 }
 
 Tiles::Tiles(const std::vector<Element> &listElement, const dev4::Position &pos) : listElement(listElement), pos(pos) {}
+
+void Tiles::addElement(Element element){
+    listElement.push_back(element);
+}
+
+Element Tiles::removeLastElement(){
+    Element lastElement = listElement.back();
+    listElement.pop_back();
+    return lastElement;
+}

@@ -6,25 +6,23 @@
 
 #include "../../headerFile/model/words.h"
 
-Words::Words(Subject subject) : subject_(subject){}
+Words::Words(Subject subject) : subject_(new Subject(subject)), operator_(nullptr), complement_(nullptr){}
 
-Words::Words(Operator op) : operator_(op) {}
+Words::Words(Operator op) : operator_(new Operator(op)), subject_(nullptr), complement_(nullptr) {}
 
-Words::Words(Complement complement) : complement_(complement) {}
+Words::Words(Complement complement) : complement_(new Complement(complement)), subject_(nullptr), operator_(nullptr) {}
 
 const Subject &Words::getSubject() const {
-    return subject_;
+    return *this->subject_;
 }
 
 const Operator &Words::getOperator() const {
-    return operator_;
+    return *this->operator_;
 }
 
 const Complement &Words::getComplement() const {
-    return complement_;
+    return *this->complement_;
 }
-
-//Words::Words() : subject_(nullptr), operator_(nullptr), complement_(nullptr) {}
 
 
 

@@ -9,22 +9,9 @@ Rule::~Rule() {
 
 }
 
-Rule::Rule(SubjectEnum subject, OperatorEnum operatore, ComplementEnum complement, bool you, bool kill,
-           bool push, bool stop, bool win) : subjectEnum(subject), operatorEnum(operatore),
-                                                   complementEnum(complement), isYou(you), isKil(kill),
-                                                   isPush(push), isStop(stop), isWin(win) {}
+Rule::Rule(Subject subject,Operator operator_,Complement complement) : subject(subject),operator_(operator_),complement(complement) {}
 
 void Rule::defineRule() {
 
-}
-
-bool Rule::operator==(const Rule &rhs) const {
-    return subjectEnum == rhs.subjectEnum &&
-           operatorEnum == rhs.operatorEnum &&
-           complementEnum == rhs.complementEnum ;
-}
-
-bool Rule::operator!=(const Rule &rhs) const {
-    return !(rhs == *this);
 }
 
