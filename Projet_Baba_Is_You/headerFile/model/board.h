@@ -22,6 +22,7 @@ public:
     void setElement(dev4::Position newPosition, Element element);
     Tiles getTiles(dev4::Position position);
 
+    const LevelLoader &getFile() const;
 };
 
 

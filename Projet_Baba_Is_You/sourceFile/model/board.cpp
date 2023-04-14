@@ -102,3 +102,7 @@ Element Board::dropElement(dev4::Position position) {
     }
     return board[position.x()][position.y()].removeLastElement();
 }
+
+const LevelLoader &Board::getFile() const {
+    return file;
+}
