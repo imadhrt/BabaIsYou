@@ -18,6 +18,9 @@ public:
     Icon getIcon()const;
     void setIcon(Icon newIcon);
 
+    bool operator==(const Materials &rhs) const;
+
+    bool operator!=(const Materials &rhs) const;
 
 
 };

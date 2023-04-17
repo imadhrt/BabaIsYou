@@ -16,6 +16,7 @@ Element Board::convertionEnum(std::string strFile){
             {"bone", Element(Materials(Icon::BONE_ICON))},
             {"goop", Element(Materials(Icon::GOOP_ICON))},
             {"metal", Element(Materials(Icon::METAL_ICON))},
+            {"water", Element(Materials(Icon::WATER_ICON))},
             {"text_grass", Element(Words(Subject(SubjectEnum::GRASS)))},
             {"text_wall", Element(Words(Subject(SubjectEnum::WALL)))},
             {"text_lava", Element(Words(Subject(SubjectEnum::LAVA)))},

@@ -11,14 +11,53 @@
 class Subject{
 private:
     SubjectEnum subjectEnum;
+    bool stop;
+    bool win;
+    bool push;
+    bool kill;
+    bool sink;
+    bool best;
+    bool you;
+
 public:
-    explicit Subject(SubjectEnum newSubjectEnum);
+    Subject(SubjectEnum newSubjectEnum);
     Subject()=default;
+
+    bool isStop() const;
+
+    bool isWin() const;
+
+    bool operator==(const Subject &rhs) const;
+
+    bool operator!=(const Subject &rhs) const;
+
+    bool isPush() const;
+
+    bool isKill() const;
+
+    bool isSink() const;
+
+    bool isBest() const;
+
+    bool isYou() const;
+
     SubjectEnum getSubjectEnum() const;
 
     void setSubjectEnum(SubjectEnum newSubjectEnum);
 
+    void setStop(bool stop);
 
+    void setWin(bool win);
+
+    void setPush(bool push);
+
+    void setKill(bool kill);
+
+    void setSink(bool sink);
+
+    void setBest(bool best);
+
+    void setYou(bool you);
 
 };
 

@@ -11,7 +11,3 @@ Rule::~Rule() {
 
 Rule::Rule(Subject subject,Operator operator_,Complement complement) : subject(subject),operator_(operator_),complement(complement) {}
 
-void Rule::defineRule() {
-
-}
-

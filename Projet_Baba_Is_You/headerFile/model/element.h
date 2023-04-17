@@ -23,6 +23,10 @@ public:
 
     explicit Element(Words words);
 
+    bool operator==(const Element &rhs) const;
+
+    bool operator!=(const Element &rhs) const;
+
     explicit Element(Materials mat);
 
     virtual ~Element();

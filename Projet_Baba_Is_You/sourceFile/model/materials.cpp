@@ -11,6 +11,14 @@ Materials::~Materials() {
 
 }
 
+bool Materials::operator==(const Materials &rhs) const {
+    return icon == rhs.icon;
+}
+
+bool Materials::operator!=(const Materials &rhs) const {
+    return !(rhs == *this);
+}
+
 Icon Materials::getIcon() const {
     return icon;
 }

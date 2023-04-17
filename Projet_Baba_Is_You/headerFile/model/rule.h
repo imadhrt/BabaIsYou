@@ -15,8 +15,6 @@ public:
 
     Rule(Subject subject, Operator operator_, Complement complement);
 
-    void defineRule();
-
     virtual ~Rule();
 
 

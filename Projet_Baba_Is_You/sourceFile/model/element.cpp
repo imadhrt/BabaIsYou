@@ -13,4 +13,16 @@ Element::Element(Materials mat) : mat(new Materials(mat)),words(nullptr) {}
 
 Element::Element(Words words) : words(new Words(words)),mat(nullptr) {}
 
+bool Element::operator==(const Element &rhs) const {
+    if(words == nullptr && mat != nullptr){
+        return mat->getIcon() == rhs.mat->getIcon();
+    }else if(words!= nullptr && mat == nullptr){
+        return words->getSubject().getSubjectEnum() == rhs.words->getSubject().getSubjectEnum();
+    }
+}
+
+bool Element::operator!=(const Element &rhs) const {
+    return !(rhs == *this);
+}
+
 
