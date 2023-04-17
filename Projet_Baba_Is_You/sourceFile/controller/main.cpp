@@ -3,6 +3,7 @@
 #include "../../headerFile/model/position.h"
 #include "../../headerFile/model/direction.h"
 #include "../../headerFile/model/board.h"
+#include "../../headerFile/model/babaisyou.h"
 
 
 using namespace std;
@@ -12,7 +13,7 @@ using namespace dev4;
 int main() {
 
 
-    LevelLoader levelLoader(0);
+    LevelLoader levelLoader(1);
     Board board(levelLoader);
 
     for (int i = 0; i < board.getFile().getHeight(); ++i) {
@@ -32,6 +33,11 @@ int main() {
         }
         cout << endl;
     }
+
+    BabaIsYou babaIsyou(board);
+    babaIsyou.findAndAddRules();
+    auto list = babaIsyou.getRules().getListOfRules();
+
 
     return 0;
 }

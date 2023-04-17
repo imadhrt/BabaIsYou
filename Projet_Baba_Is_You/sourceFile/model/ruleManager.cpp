@@ -11,3 +11,7 @@ void RuleManager::addRule(Rule rule) {
 void RuleManager::clearRule() {
     listOfRules.clear();
 }
+
+const std::vector<Rule> &RuleManager::getListOfRules() const {
+    return listOfRules;
+}

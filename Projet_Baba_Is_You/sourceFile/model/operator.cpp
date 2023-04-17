@@ -15,3 +15,11 @@ OperatorEnum Operator::getOperatorEnum() const {
 void Operator::setOperatorEnum(OperatorEnum newOperatorEnum) {
     Operator::operatorEnum = newOperatorEnum;
 }
+
+bool Operator::operator==(const Operator &rhs) const {
+    return operatorEnum == rhs.operatorEnum;
+}
+
+bool Operator::operator!=(const Operator &rhs) const {
+    return !(rhs == *this);
+}

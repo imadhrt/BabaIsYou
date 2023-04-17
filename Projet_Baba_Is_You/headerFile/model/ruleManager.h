@@ -16,6 +16,7 @@ public:
     void addRule(Rule rule);
     void clearRule();
 
+    const std::vector<Rule> &getListOfRules() const;
 };
 
 

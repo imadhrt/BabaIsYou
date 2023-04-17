@@ -13,6 +13,10 @@ public:
     Operator()=default;
     OperatorEnum getOperatorEnum() const;
 
+    bool operator==(const Operator &rhs) const;
+
+    bool operator!=(const Operator &rhs) const;
+
     void setOperatorEnum(OperatorEnum newOperatorEnum);
 
 private :

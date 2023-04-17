@@ -10,18 +10,21 @@
 #include "complement.h"
 
 class Rule{
-public:
-
-
-    Rule(Subject subject, Operator operator_, Complement complement);
-
-    virtual ~Rule();
-
-
 private:
     Subject subject;
     Operator operator_;
     Complement complement;
+public:
+
+    Rule(const Subject &subject, const Operator &operator_, const Complement &complement);
+
+    virtual ~Rule();
+
+    const Subject &getSubject() const;
+
+    const Operator &getOperator() const;
+
+    const Complement &getComplement() const;
 };
 
 
