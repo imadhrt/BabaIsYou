@@ -21,9 +21,13 @@ int main() {
             if (element.getMat() != nullptr && element.getWords() == nullptr) {
                 cout << toStringIcon((*element.getMat()).getIcon()) << " | ";
             }else if (element.getMat() == nullptr && element.getWords() != nullptr) {
-                cout << toStringSubject((*element.getWords()).getSubject().getSubjectEnum()) << " | ";
-
-                cout << toStringOperator((*element.getWords()).getOperator().getOperatorEnum()) << " | ";
+                if(&element.getWords()->getSubject() != nullptr && &element.getWords()->getOperator() == nullptr && &element.getWords()->getComplement()== nullptr) {
+                    cout << toStringSubject((*element.getWords()).getSubject().getSubjectEnum()) << " | ";
+                }else if(&element.getWords()->getSubject() == nullptr && &element.getWords()->getOperator() != nullptr && &element.getWords()->getComplement()== nullptr){
+                    cout << toStringOperator((*element.getWords()).getOperator().getOperatorEnum()) << " | ";
+                }else{
+                    cout << toStringComplement((*element.getWords()).getComplement().getComplementEnum()) << " | ";
+                }
             }
         }
         cout << endl;

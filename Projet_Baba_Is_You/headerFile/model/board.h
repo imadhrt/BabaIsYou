@@ -90,6 +90,7 @@ inline std::string toStringComplement(ComplementEnum complementEnum) {
             str = "  best  ";
             break;
     }
+    return str;
 }
 inline std::string toStringOperator(OperatorEnum operatorEnum) {
 
@@ -100,6 +101,7 @@ inline std::string toStringOperator(OperatorEnum operatorEnum) {
             str = "   is   ";
             break;
     }
+    return str;
 }
 inline std::string toStringIcon(Icon icon)
 {
@@ -116,7 +118,7 @@ inline std::string toStringIcon(Icon icon)
             str = "txtWall ";
             break;
         case Icon::LAVA_ICON :
-            str = "txtLava "; // <--- ici
+            str = "txtLava ";
             break;
         case Icon::BABA_ICON :
             str = "txtBaba ";
@@ -134,7 +136,7 @@ inline std::string toStringIcon(Icon icon)
             str = "txtMetal";
             break;
         case Icon::EMPTY_ICON :
-            str = "        ";
+            str = "--------";
             break;
         case Icon::WATER_ICON :
             str = "WATER";
