@@ -23,6 +23,10 @@ public:
 
     explicit Element(Words words);
 
+    Materials *getMat() const;
+
+    Words *getWords() const;
+
     bool operator==(const Element &rhs) const;
 
     bool operator!=(const Element &rhs) const;

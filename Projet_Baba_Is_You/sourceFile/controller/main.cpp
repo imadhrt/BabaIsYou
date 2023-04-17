@@ -17,11 +17,16 @@ int main() {
 
     for (int i = 0; i < board.getFile().getHeight(); ++i) {
         for (int j = 0; j <board.getFile().getWidth() ; ++j) {
-            if(board.getBoard().at(i).at(j).getListElement().at(0) == Element(Materials(Icon::EMPTY_ICON))){
-                cout << toStringIcon(Icon::EMPTY_ICON) << endl;
-                cout << "ivi";
+            auto element = board.getBoard().at(i).at(j).getListElement().at(board.getBoard().at(i).at(j).getListElement().size()-1);
+            if (element.getMat() != nullptr && element.getWords() == nullptr) {
+                cout << toStringIcon((*element.getMat()).getIcon()) << " | ";
+            }else if (element.getMat() == nullptr && element.getWords() != nullptr) {
+                cout << toStringSubject((*element.getWords()).getSubject().getSubjectEnum()) << " | ";
+
+                cout << toStringOperator((*element.getWords()).getOperator().getOperatorEnum()) << " | ";
             }
         }
+        cout << endl;
     }
 
     return 0;

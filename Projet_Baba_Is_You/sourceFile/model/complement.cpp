@@ -13,3 +13,11 @@ ComplementEnum Complement::getComplementEnum() const {
 void Complement::setComplementEnum(ComplementEnum newComplementEnum) {
     Complement::complementEnum = newComplementEnum;
 }
+
+bool Complement::operator==(const Complement &rhs) const {
+    return complementEnum == rhs.complementEnum;
+}
+
+bool Complement::operator!=(const Complement &rhs) const {
+    return !(rhs == *this);
+}

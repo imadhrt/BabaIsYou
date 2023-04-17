@@ -11,6 +11,10 @@ class Complement{
 private:
     ComplementEnum complementEnum;
 public:
+    bool operator==(const Complement &rhs) const;
+
+    bool operator!=(const Complement &rhs) const;
+
     explicit Complement( ComplementEnum newComplementEnum);
     Complement() = default;
     ComplementEnum getComplementEnum() const;
