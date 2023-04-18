@@ -12,6 +12,9 @@ class BabaIsYou{
 private:
     Board board;
     RuleManager rules;
+    std::vector<dev4::Position > playerPos;
+
+    bool contains(const std::vector<Element>& vec, Icon icon);
 public:
     const Board &getBoard() const;
 
@@ -19,11 +22,17 @@ public:
 
     void findAndAddRules();
 
+    const std::vector<dev4::Position> &getPlayerPos() const;
+
     void setEffetToSubject();
 
     void applyRule();
 
     explicit BabaIsYou(const Board &board);
+
+    std::vector<dev4::Position> getVecPosPlayer();
+
+    bool isPossibleMove(dev4::Direction dir, dev4::Position pos);
 
 };
 

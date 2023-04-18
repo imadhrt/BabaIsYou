@@ -13,7 +13,7 @@ using namespace dev4;
 int main() {
 
 
-    LevelLoader levelLoader(1);
+    LevelLoader levelLoader(0);
     Board board(levelLoader);
 
     for (int i = 0; i < board.getFile().getHeight(); ++i) {
@@ -37,7 +37,8 @@ int main() {
     BabaIsYou babaIsyou(board);
     babaIsyou.findAndAddRules();
     auto list = babaIsyou.getRules().getListOfRules();
-
+    vector<dev4::Position> vec = babaIsyou.getVecPosPlayer();
+    vector<dev4::Position> vec2 = babaIsyou.getPlayerPos();
 
     return 0;
 }

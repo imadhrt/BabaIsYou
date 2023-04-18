@@ -16,7 +16,8 @@ enum class SubjectEnum {
     BONE,
     GRASS,
     METAL,
-    GOOP
+    GOOP,
+    NONE
 };
 
 enum class OperatorEnum {
