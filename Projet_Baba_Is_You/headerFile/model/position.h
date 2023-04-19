@@ -25,6 +25,8 @@ class Position
     constexpr Position(int x, int y);
     constexpr Position(Direction e);
 
+    constexpr Position nextPos(Direction direction);
+
     constexpr int x() const;
     constexpr void x(int x);
 
@@ -77,6 +79,11 @@ constexpr int Position::y() const
 constexpr void Position::y(int y)
 {
     y_ = y;
+}
+
+constexpr Position Position::nextPos(Direction direction){
+    Position offset = dir_to_pos[static_cast<int>(direction)];
+    return Position(x_ + offset.x(), y_ + offset.y());
 }
 
 } // namespace dev4

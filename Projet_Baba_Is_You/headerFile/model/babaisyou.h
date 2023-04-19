@@ -7,6 +7,7 @@
 
 #include "board.h"
 #include "ruleManager.h"
+#include "direction.h"
 
 class BabaIsYou{
 private:
@@ -14,6 +15,7 @@ private:
     RuleManager rules;
     std::vector<dev4::Position > playerPos;
 
+    void transform(Subject firstSubject, Subject secondSubject);
     bool contains(const std::vector<Element>& vec, Icon icon);
 public:
     const Board &getBoard() const;
@@ -33,6 +35,20 @@ public:
     std::vector<dev4::Position> getVecPosPlayer();
 
     bool isPossibleMove(dev4::Direction dir, dev4::Position pos);
+
+    void move(dev4::Direction direction);
+
+    SubjectEnum iconToSubject(Icon icon);
+
+    int push(dev4::Position PlayerPos, dev4::Direction direction);
+
+    dev4::Position getPositionAfterPush(dev4::Position player, dev4::Direction dir);
+
+    void applyTransform();
+
+    Icon subjectToIcon(SubjectEnum subjectEnum);
+
+    void sink();
 
 };
 

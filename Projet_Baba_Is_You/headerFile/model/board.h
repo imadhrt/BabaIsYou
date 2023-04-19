@@ -58,6 +58,9 @@ inline std::string toStringSubject(SubjectEnum subjet)
         case SubjectEnum::METAL :
             str = " metal  ";
             break;
+        case SubjectEnum::WATER :
+            str = " water  ";
+            break;
     }
 
     return str;
@@ -139,7 +142,7 @@ inline std::string toStringIcon(Icon icon)
             str = "--------";
             break;
         case Icon::WATER_ICON :
-            str = "WATER";
+            str = "txtWater";
             break;
     }
 

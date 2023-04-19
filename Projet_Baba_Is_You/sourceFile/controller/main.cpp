@@ -13,8 +13,10 @@ using namespace dev4;
 int main() {
 
 
-    LevelLoader levelLoader(0);
+    LevelLoader levelLoader(3);
     Board board(levelLoader);
+    BabaIsYou babaIsyou(board);
+    //babaIsyou.applyTransform();
 
     for (int i = 0; i < board.getFile().getHeight(); ++i) {
         for (int j = 0; j <board.getFile().getWidth() ; ++j) {
@@ -34,11 +36,20 @@ int main() {
         cout << endl;
     }
 
-    BabaIsYou babaIsyou(board);
+
     babaIsyou.findAndAddRules();
     auto list = babaIsyou.getRules().getListOfRules();
     vector<dev4::Position> vec = babaIsyou.getVecPosPlayer();
     vector<dev4::Position> vec2 = babaIsyou.getPlayerPos();
 
+    Position pos = vec.at(4);
+    bool test;
+    test = babaIsyou.isPossibleMove(Direction::RIGHT, pos);
+
+    int c = babaIsyou.push(pos,Direction::RIGHT);
+
+    pos = babaIsyou.getPositionAfterPush(pos,dev4::Direction::RIGHT);
+
+    bool test2 = babaIsyou.isPossibleMove(Direction::RIGHT, pos);
     return 0;
 }

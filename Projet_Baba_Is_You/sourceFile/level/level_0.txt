@@ -39,7 +39,7 @@ metal 13 8
 metal 14 8
 metal 3 9
 metal 4 9
-metal 5 9
+rock 5 9
 metal 6 9
 metal 7 9
 metal 9 9

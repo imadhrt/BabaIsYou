@@ -24,6 +24,10 @@ const Complement &Words::getComplement() const {
     return *this->complement_;
 }
 
+void Words::setSubject(Subject *subject) {
+    subject_ = subject;
+}
+
 
 
 

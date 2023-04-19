@@ -25,6 +25,7 @@ Element Board::convertionEnum(std::string strFile){
             {"text_bone", Element(Words(Subject(SubjectEnum::BONE)))},
             {"text_goop", Element(Words(Subject(SubjectEnum::GOOP)))},
             {"text_metal", Element(Words(Subject(SubjectEnum::METAL)))},
+            {"text_water", Element(Words(Subject(SubjectEnum::WATER)))},
             {"win", Element(Words(Complement(ComplementEnum::WIN)))},
             {"kill", Element(Words(Complement(ComplementEnum::KILL)))},
             {"stop", Element(Words(Complement(ComplementEnum::STOP)))},

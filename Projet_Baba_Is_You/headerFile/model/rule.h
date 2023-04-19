@@ -18,6 +18,7 @@ public:
 
     Rule(const Subject &subject, const Operator &operator_, const Complement &complement);
 
+
     virtual ~Rule();
 
     const Subject &getSubject() const;

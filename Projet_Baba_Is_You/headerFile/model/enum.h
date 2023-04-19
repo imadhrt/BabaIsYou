@@ -17,6 +17,7 @@ enum class SubjectEnum {
     GRASS,
     METAL,
     GOOP,
+    WATER,
     NONE
 };
 
