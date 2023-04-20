@@ -11,7 +11,7 @@ namespace dev4
 
 enum class Direction
 {
-    UP, DOWN, RIGHT, LEFT
+    UP, DOWN, RIGHT, LEFT,NONE
 };
 
 // prototypes

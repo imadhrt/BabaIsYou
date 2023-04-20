@@ -52,7 +52,7 @@ rock 8 7 0
 rock 8 8 2
 rock 8 9 1
 baba 5 8 3
-flag 12 8 1
+flag 5 9 1
 wall 3 10
 wall 4 10
 wall 5 10

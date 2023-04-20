@@ -38,8 +38,16 @@ void LevelLoader::browseLevel(int numberLevel) {
     }
 }
 
-LevelLoader::LevelLoader(int level) {
+LevelLoader::LevelLoader(int level): level(level) {
     browseLevel(level);
+}
+
+int LevelLoader::getLevel() const {
+    return level;
+}
+
+void LevelLoader::setLevel(int level) {
+    LevelLoader::level = level;
 }
 
 int LevelLoader::getWidth() const {

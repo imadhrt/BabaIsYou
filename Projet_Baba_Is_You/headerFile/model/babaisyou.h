@@ -11,14 +11,20 @@
 
 class BabaIsYou{
 private:
-    Board board;
+    Board *board;
     RuleManager rules;
     std::vector<dev4::Position > playerPos;
+public:
+    void setBoard(Board *board);
 
+private:
     void transform(Subject firstSubject, Subject secondSubject);
     bool contains(const std::vector<Element>& vec, Icon icon);
 public:
-    const Board &getBoard() const;
+    Board *getBoard() const;
+
+    void start(int level);
+
 
     const RuleManager &getRules() const;
 
@@ -28,9 +34,7 @@ public:
 
     void setEffetToSubject();
 
-    void applyRule();
-
-    explicit BabaIsYou(const Board &board);
+    explicit BabaIsYou(Board *board);
 
     std::vector<dev4::Position> getVecPosPlayer();
 
@@ -48,7 +52,9 @@ public:
 
     Icon subjectToIcon(SubjectEnum subjectEnum);
 
-    void sink();
+    void sinkAndKill();
+
+    bool isWin();
 
 };
 

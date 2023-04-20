@@ -14,6 +14,8 @@ private:
     int width;
     int height;
     std::vector<std::pair<std::string, dev4::Position>> vecPAire;
+
+    int level;
 public:
     LevelLoader(int level);
     void browseLevel(int numberLevel);
@@ -23,6 +25,10 @@ public:
     int getHeight() const;
 
     const std::vector<std::pair<std::string, dev4::Position>> &getVecPAire() const;
+
+    int getLevel() const;
+
+    void setLevel(int level);
 };
 
 

@@ -2,28 +2,37 @@
 // Created by Mamoun benmassaoud on 17/04/2023.
 //
 #include "../../headerFile/model/babaisyou.h";
-#include <algorithm>
 
-BabaIsYou::BabaIsYou(const Board &board) : board(board) {
+BabaIsYou::BabaIsYou(Board *board) : board(board) {
     findAndAddRules();
+}
+
+
+void BabaIsYou::start(int level) {
+    if(level >=0 && level <= 4){
+        LevelLoader levelLoader(level);
+        setBoard(new Board(levelLoader));
+        findAndAddRules();
+        getVecPosPlayer();
+    }
 }
 
 void BabaIsYou::findAndAddRules() {
     rules.clearRule();
 
-    int height = board.getFile().getHeight();
-    int width = board.getFile().getWidth();
+    int height = board->getFile().getHeight();
+    int width = board->getFile().getWidth();
 
     for (int i = 0; i < height; ++i) {
         for (int j = 0; j < width; ++j) {
-            auto element = board.getBoard().at(i).at(j).getListElement();
-            auto lastElement = element.at(board.getBoard().at(i).at(j).getListElement().size() - 1);
+            auto element = board->getBoard().at(i).at(j).getListElement();
+            auto lastElement = element.at(board->getBoard().at(i).at(j).getListElement().size() - 1);
             if (lastElement.getWords() != nullptr && &lastElement.getWords()->getOperator() != nullptr) {
                 if (j > 0 && j < width - 1) {
-                    auto leftElement = board.getBoard().at(i).at(j - 1).getListElement().at(
-                            board.getBoard().at(i).at(j-1).getListElement().size() - 1);
-                    auto rightElement = board.getBoard().at(i).at(j + 1).getListElement().at(
-                            board.getBoard().at(i).at(j+1).getListElement().size() - 1);
+                    auto leftElement = board->getBoard().at(i).at(j - 1).getListElement().at(
+                            board->getBoard().at(i).at(j-1).getListElement().size() - 1);
+                    auto rightElement = board->getBoard().at(i).at(j + 1).getListElement().at(
+                            board->getBoard().at(i).at(j+1).getListElement().size() - 1);
                     if (leftElement.getWords() != nullptr && &leftElement.getWords()->getSubject() != nullptr &&
                         rightElement.getWords() != nullptr && &rightElement.getWords()->getComplement() != nullptr) {
                         rules.addRule(Rule(leftElement.getWords()->getSubject(), lastElement.getWords()->getOperator(),
@@ -32,8 +41,8 @@ void BabaIsYou::findAndAddRules() {
                 }
 
                 if (i > 0 && i < height - 1) {
-                    auto topElement = board.getBoard().at(i - 1).at(j).getListElement().at(board.getBoard().at(i-1).at(j).getListElement().size() - 1);
-                    auto bottomElement = board.getBoard().at(i + 1).at(j).getListElement().at(board.getBoard().at(i+1).at(j).getListElement().size() - 1);
+                    auto topElement = board->getBoard().at(i - 1).at(j).getListElement().at(board->getBoard().at(i-1).at(j).getListElement().size() - 1);
+                    auto bottomElement = board->getBoard().at(i + 1).at(j).getListElement().at(board->getBoard().at(i+1).at(j).getListElement().size() - 1);
                     if (topElement.getWords() != nullptr && &topElement.getWords()->getSubject() != nullptr &&
                         bottomElement.getWords() != nullptr && &bottomElement.getWords()->getComplement() != nullptr) {
                         rules.addRule(Rule(topElement.getWords()->getSubject(), lastElement.getWords()->getOperator(), bottomElement.getWords()->getComplement()));
@@ -76,23 +85,10 @@ void BabaIsYou::setEffetToSubject(){
     }
 }
 
-const Board &BabaIsYou::getBoard() const {
-    return board;
-}
+
 
 const RuleManager &BabaIsYou::getRules() const {
     return rules;
-}
-
-void BabaIsYou::applyRule(){
-    for (int i = 0; i < rules.getListOfRules().size(); ++i) {
-        const Subject& subject =  rules.getListOfRules().at(i).getSubject();
-        Subject& nonConstSubject = const_cast<Subject&>(subject);
-
-        if(subject.isStop()){
-
-        }
-    }
 }
 
 const std::vector<dev4::Position> &BabaIsYou::getPlayerPos() const {
@@ -146,9 +142,9 @@ std::vector<dev4::Position> BabaIsYou::getVecPosPlayer(){
     }
 
     playerPos.clear();
-    for (int i = 0; i < board.getFile().getHeight(); ++i) {
-        for (int j = 0; j < board.getFile().getWidth(); ++j) {
-            if (contains(board.getBoard().at(i).at(j).getListElement(),icon)) {
+    for (int i = 0; i < board->getFile().getHeight(); ++i) {
+        for (int j = 0; j < board->getFile().getWidth(); ++j) {
+            if (contains(board->getBoard().at(i).at(j).getListElement(),icon)) {
                 playerPos.push_back(dev4::Position(i,j));
             }
         }
@@ -244,11 +240,11 @@ SubjectEnum BabaIsYou::iconToSubject(Icon icon){
 }
 
 bool BabaIsYou::isPossibleMove(dev4::Direction dir, dev4::Position pos){
-    if(!board.contains(pos.nextPos(dir))){
+    if(!board->contains(pos.nextPos(dir))){
         return false;
     }
 
-    auto listElements = board.getBoard().at(pos.nextPos(dir).x()).at(pos.nextPos(dir).y()).getListElement();
+    auto listElements = board->getBoard().at(pos.nextPos(dir).x()).at(pos.nextPos(dir).y()).getListElement();
 
     SubjectEnum subjectEnum;
     for (int i = 0; i < listElements.size(); ++i) {
@@ -269,10 +265,10 @@ int BabaIsYou::push(dev4::Position posPlayer, dev4::Direction dir)
 {
     int cpt{0};
             for (int i = 0; i < rules.getListOfRules().size(); ++i) {
-                while (board.getTiles(posPlayer.nextPos(dir)).getListElement().at(board.getTiles(posPlayer.nextPos(dir)).getListElement().size() - 1).getMat() != nullptr
-                && rules.getListOfRules().at(i).getSubject().getSubjectEnum() == iconToSubject(board.getTiles(posPlayer.nextPos(dir)).getListElement().at(board.getTiles(posPlayer.nextPos(dir)).getListElement().size() - 1).getMat()->getIcon())
+                while (board->getTiles(posPlayer.nextPos(dir)).getListElement().at(board->getTiles(posPlayer.nextPos(dir)).getListElement().size() - 1).getMat() != nullptr
+                && rules.getListOfRules().at(i).getSubject().getSubjectEnum() == iconToSubject(board->getTiles(posPlayer.nextPos(dir)).getListElement().at(board->getTiles(posPlayer.nextPos(dir)).getListElement().size() - 1).getMat()->getIcon())
                 && rules.getListOfRules().at(i).getSubject().isPush()
-                ||board.getTiles(posPlayer.nextPos(dir)).getListElement().at(board.getTiles(posPlayer.nextPos(dir)).getListElement().size() - 1).getWords() != nullptr) {
+                ||board->getTiles(posPlayer.nextPos(dir)).getListElement().at(board->getTiles(posPlayer.nextPos(dir)).getListElement().size() - 1).getWords() != nullptr) {
                     ++cpt;
                     posPlayer = posPlayer.nextPos(dir);
                 }
@@ -296,19 +292,19 @@ dev4::Position BabaIsYou::getPositionAfterPush(dev4::Position player, dev4::Dire
 }
 
 void BabaIsYou::applyTransform() {
-    int height = board.getFile().getHeight();
-    int width = board.getFile().getWidth();
+    int height = board->getFile().getHeight();
+    int width = board->getFile().getWidth();
 
     for (int i = 0; i < height; ++i) {
         for (int j = 0; j < width; ++j) {
-            auto element = board.getBoard().at(i).at(j).getListElement();
-            auto lastElement = element.at(board.getBoard().at(i).at(j).getListElement().size() - 1);
+            auto element = board->getBoard().at(i).at(j).getListElement();
+            auto lastElement = element.at(board->getBoard().at(i).at(j).getListElement().size() - 1);
             if (lastElement.getWords() != nullptr && &lastElement.getWords()->getOperator() != nullptr) {
                 if (j > 0 && j < width - 1) {
-                    auto leftElement = board.getBoard().at(i).at(j - 1).getListElement().at(
-                            board.getBoard().at(i).at(j-1).getListElement().size() - 1);
-                    auto rightElement = board.getBoard().at(i).at(j + 1).getListElement().at(
-                            board.getBoard().at(i).at(j+1).getListElement().size() - 1);
+                    auto leftElement = board->getBoard().at(i).at(j - 1).getListElement().at(
+                            board->getBoard().at(i).at(j-1).getListElement().size() - 1);
+                    auto rightElement = board->getBoard().at(i).at(j + 1).getListElement().at(
+                            board->getBoard().at(i).at(j+1).getListElement().size() - 1);
                     if (leftElement.getWords() != nullptr && &leftElement.getWords()->getSubject() != nullptr &&
                         rightElement.getWords() != nullptr && &rightElement.getWords()->getSubject() != nullptr) {
                         transform(leftElement.getWords()->getSubject(),rightElement.getWords()->getSubject());
@@ -316,8 +312,8 @@ void BabaIsYou::applyTransform() {
                 }
 
                 if (i > 0 && i < height - 1) {
-                    auto topElement = board.getBoard().at(i - 1).at(j).getListElement().at(board.getBoard().at(i-1).at(j).getListElement().size() - 1);
-                    auto bottomElement = board.getBoard().at(i + 1).at(j).getListElement().at(board.getBoard().at(i+1).at(j).getListElement().size() - 1);
+                    auto topElement = board->getBoard().at(i - 1).at(j).getListElement().at(board->getBoard().at(i-1).at(j).getListElement().size() - 1);
+                    auto bottomElement = board->getBoard().at(i + 1).at(j).getListElement().at(board->getBoard().at(i+1).at(j).getListElement().size() - 1);
                     if (topElement.getWords() != nullptr && &topElement.getWords()->getSubject() != nullptr &&
                         bottomElement.getWords() != nullptr && &bottomElement.getWords()->getSubject() != nullptr) {
                         transform(topElement.getWords()->getSubject(),bottomElement.getWords()->getSubject());
@@ -328,23 +324,15 @@ void BabaIsYou::applyTransform() {
         }
 }
 
-void BabaIsYou::move(dev4::Direction direction){
-    switch (direction) {
-        case dev4::Direction::UP:
-
-            break;
-    }
-}
-
 void BabaIsYou::transform(Subject firstSubject, Subject secondSubject){
-    int height = board.getFile().getHeight();
-    int width = board.getFile().getWidth();
+    int height = board->getFile().getHeight();
+    int width = board->getFile().getWidth();
 
     for (int i = 0; i < height; ++i) {
         for (int j = 0; j < width; ++j) {
             Icon leftIcon = subjectToIcon(firstSubject.getSubjectEnum());
             Icon rightIcon = subjectToIcon(secondSubject.getSubjectEnum());
-            auto listElement = board.getBoard().at(i).at(j).getListElement();
+            auto listElement = board->getBoard().at(i).at(j).getListElement();
             for (int k = 0; k < listElement.size(); ++k) {
                 Element element = listElement.at(k);
                 if(element.getMat() != nullptr && leftIcon == element.getMat()->getIcon()){
@@ -355,14 +343,142 @@ void BabaIsYou::transform(Subject firstSubject, Subject secondSubject){
     }
 }
 
-void BabaIsYou::sink(){
-    int height = board.getFile().getHeight();
-    int width = board.getFile().getWidth();
+void BabaIsYou::sinkAndKill(){
+    int height = board->getFile().getHeight();
+    int width = board->getFile().getWidth();
+    auto rulesList = rules.getListOfRules();
 
-    for (int i = 0; i <height ; ++i) {
+    for (int i = 0; i < height; ++i) {
         for (int j = 0; j < width; ++j) {
+            dev4::Position posOfTile(i, j);
+            auto elementsList = board->getTiles(posOfTile).getListElement();
+            int size = elementsList.size();
+            if (size > 1 && elementsList.at(1).getMat() != nullptr) {
+                auto icon = elementsList.at(1).getMat()->getIcon();
+                for (auto& rule : rulesList) {
+                    if (rule.getSubject().getSubjectEnum() == iconToSubject(icon)
+                        && (rule.getSubject().isSink() || rule.getSubject().isKill())) {
+                        while (size > 2) {
+                            board->dropElement(posOfTile);
+                            size--;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
 
+void BabaIsYou::move(dev4::Direction direction) {
+    playerPos = getVecPosPlayer();
+    for (int i = 0; i < playerPos.size(); ++i) {
+        dev4::Position player = playerPos.at(i);
+        if (isPossibleMove(direction, getPositionAfterPush(player, direction))) {
+            for (int i = 0; i < rules.getListOfRules().size(); ++i) {
+                if (board->getTiles(player.nextPos(direction)).getListElement().at(
+                        board->getTiles(player.nextPos(direction)).getListElement().size() - 1).getMat() != nullptr
+                    && (board->getTiles(player.nextPos(direction)).getListElement().at(
+                        board->getTiles(player.nextPos(direction)).getListElement().size() - 1).getMat()->getIcon() == Icon::METAL_ICON
+                        || rules.getListOfRules().at(i).getSubject().getSubjectEnum() == iconToSubject(board->getTiles(player.nextPos(direction)).getListElement().at(
+                        board->getTiles(player.nextPos(direction)).getListElement().size() - 1).getMat()->getIcon()))
+                    && !rules.getListOfRules().at(i).getSubject().isPush()
+                    && board->getTiles(player.nextPos(direction)).getListElement().at(
+                        board->getTiles(player.nextPos(direction)).getListElement().size() - 1).getWords() == nullptr){
+                    board->setElement(player.nextPos(direction),board->getTiles(player).getListElement().at(board->getTiles(player).getListElement().size()-1));
+                    board->dropElement(player);
+                    break;
+                }else if (board->getTiles(player.nextPos(direction).nextPos(direction)).getListElement().at(
+                            board->getTiles(player.nextPos(direction).nextPos(direction)).getListElement().size() - 1).getMat() != nullptr
+                            && (board->getTiles(player.nextPos(direction).nextPos(direction)).getListElement().at(
+                            board->getTiles(player.nextPos(direction).nextPos(direction)).getListElement().size() - 1).getMat()->getIcon() == Icon::METAL_ICON
+                                || rules.getListOfRules().at(i).getSubject().getSubjectEnum() == iconToSubject(board->getTiles(player.nextPos(direction).nextPos(direction)).getListElement().at(
+                            board->getTiles(player.nextPos(direction).nextPos(direction)).getListElement().size() - 1).getMat()->getIcon()))
+                            && (!rules.getListOfRules().at(i).getSubject().isPush() && !rules.getListOfRules().at(i).getSubject().isStop())
+                            && board->getTiles(player.nextPos(direction)).getListElement().at(
+                            board->getTiles(player.nextPos(direction)).getListElement().size() - 1).getWords() == nullptr){
+
+                    board->setElement(player.nextPos(direction).nextPos(direction),board->getTiles(player.nextPos(direction)).getListElement().at(board->getTiles(player.nextPos(direction)).getListElement().size()-1));
+                    board->dropElement(player.nextPos(direction));
+                    board->setElement(player.nextPos(direction),board->getTiles(player).getListElement().at(board->getTiles(player).getListElement().size()-1));
+                    board->dropElement(player);
+                    break;
+                }else {
+                    int cpt {push(player, direction)};
+
+                    switch (direction) {
+                        case dev4::Direction::UP:
+                            while (cpt > 0){
+                                dev4::Position rock = dev4::Position(player.x()-cpt,player.y());
+                                board->setElement(rock.nextPos(direction), board->getTiles(rock).getListElement().at(board->getTiles(rock).getListElement().size()-1));
+                                board->dropElement(rock);
+                                --cpt;
+                            }
+
+                            break;
+                        case dev4::Direction::DOWN:
+                            while (cpt > 0){
+                                dev4::Position rock = dev4::Position(player.x()+cpt,player.y());
+                                board->setElement(rock.nextPos(direction), board->getTiles(rock).getListElement().at(board->getTiles(rock).getListElement().size()-1));
+                                board->dropElement(rock);
+                                --cpt;
+                            }
+                            break;
+                        case dev4::Direction::RIGHT:
+                            while (cpt > 0) {
+                                dev4::Position rock = dev4::Position(player.x(),player.y()+cpt);
+                                board->setElement(rock.nextPos(direction), board->getTiles(rock).getListElement().at(
+                                        board->getTiles(rock).getListElement().size() - 1));
+                                board->dropElement(rock);
+                                --cpt;
+                            }
+                            break;
+                        case dev4::Direction::LEFT:
+                            while (cpt > 0){
+                                dev4::Position rock = dev4::Position(player.x(),player.y()-cpt);
+                                board->setElement(rock.nextPos(direction), board->getTiles(rock).getListElement().at(board->getTiles(rock).getListElement().size()-1));
+                                board->dropElement(rock);
+                                --cpt;
+                            }
+                            break;
+                    }
+
+                    board->setElement(player.nextPos(direction), board->getTiles(player).getListElement().at(board->getTiles(player).getListElement().size()-1));
+                    board->dropElement(player);
+                    break;
+                }
+            }
         }
     }
 
+    sinkAndKill();
+    findAndAddRules();
+    applyTransform();
+    getVecPosPlayer();
+}
+
+bool BabaIsYou::isWin() {
+    for (const dev4::Position player : playerPos) {
+        Tiles tile = board->getTiles(player);
+        for (const Element& element : tile.getListElement()) {
+             Materials* materials = element.getMat();
+            if (materials != nullptr) {
+                auto icon = materials->getIcon();
+                for (auto& rule : rules.getListOfRules()) {
+                    if (rule.getSubject().getSubjectEnum() == iconToSubject(icon)
+                        && (rule.getSubject().isWin())){
+                        return true;
+                    }
+                }
+            }
+        }
+    }
+    return false;
+}
+
+Board *BabaIsYou::getBoard() const {
+    return board;
+}
+
+void BabaIsYou::setBoard(Board *board) {
+    BabaIsYou::board = board;
 }

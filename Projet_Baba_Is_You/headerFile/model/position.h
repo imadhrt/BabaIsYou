@@ -43,7 +43,7 @@ constexpr Position::Position(int x, int y) :
 // définition / déclaration
 
 constexpr Position dir_to_pos [] =
-{ /* UP */ Position { -1, 0 }, /* DOWN */ Position { +1, 0 },/* RIGHT */ Position { 0, +1 },/* LEFT */ Position { 0, -1 } };
+{ /* UP */ Position { -1, 0 }, /* DOWN */ Position { +1, 0 },/* RIGHT */ Position { 0, +1 },/* LEFT */ Position { 0, -1 },/* NONE */ Position { 0, 0 } };
 
 /*
  * dir_to_pos est implicitement static => une variable différente créée

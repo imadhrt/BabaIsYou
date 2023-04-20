@@ -108,3 +108,7 @@ Element Board::dropElement(dev4::Position position) {
 const LevelLoader &Board::getFile() const {
     return file;
 }
+
+Board::~Board() {
+
+}

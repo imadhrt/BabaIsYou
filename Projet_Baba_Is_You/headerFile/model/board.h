@@ -16,6 +16,8 @@ private:
 public:
     Board(LevelLoader file);
 
+    virtual ~Board();
+
     std::vector<std::vector<Tiles>> getBoard();
     bool contains(dev4::Position position);
     Element dropElement(dev4::Position position);
@@ -61,6 +63,8 @@ inline std::string toStringSubject(SubjectEnum subjet)
         case SubjectEnum::WATER :
             str = " water  ";
             break;
+        default:
+            str="";
     }
 
     return str;
@@ -124,7 +128,7 @@ inline std::string toStringIcon(Icon icon)
             str = "txtLava ";
             break;
         case Icon::BABA_ICON :
-            str = "txtBaba ";
+            str = "\033[31m txtBaba\033[0m";
             break;
         case Icon::ROCK_ICON :
             str = "txtRock ";
