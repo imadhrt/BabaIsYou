@@ -4,7 +4,11 @@
 
 #include <map>
 #include "../../headerFile/model/board.h"
-
+/**
+ * Methode permet de convertir un une chaines de caractère en un objec t Element
+ * @param strFile est le texte du fichier
+ * @return un element correspondant à la chaine .
+ */
 Element Board::convertionEnum(std::string strFile){
     static std::map<std::string, Element> elemMap{
 
@@ -48,7 +52,11 @@ Element Board::convertionEnum(std::string strFile){
         return Element(Materials(Icon::EMPTY_ICON));
     }
 }
+/**
+Constructeur pour la classe "Board".
 
+@param file un objet "LevelLoader" utilisé pour initialiser le tableau "board"
+*/
 Board::Board(LevelLoader file) : file(file){
 
     board.resize(file.getWidth(), std::vector<Tiles>(file.getHeight()));
@@ -70,15 +78,23 @@ Board::Board(LevelLoader file) : file(file){
         Tiles tile {el, pos};
         board.at(pos.x()).at(pos.y()) = tile;
     }
-//pos.x et pos.y
+
 }
 
 
-
+/**
+Getter pour le tableau "board".
+@return le tableau "board" de la classe "Board".
+*/
 std::vector<std::vector<Tiles>> Board::getBoard() {
     return board;
 }
+/**
 
+Définit un nouvel élément à la position donnée en paramètre.
+@param newPosition une nouvelle position.
+@param element un nouvel élément.
+*/
 void Board::setElement(dev4::Position newPosition, Element element) {
     if(!contains(newPosition)){
         throw std::invalid_argument("La position n' est pas dans le board");
@@ -86,29 +102,48 @@ void Board::setElement(dev4::Position newPosition, Element element) {
     board[newPosition.x()][newPosition.y()].addElement(element);
 
 }
-
+/**
+Getter pour l'objet "Tiles" se trouvant à la position donnée en paramètre.
+@param position une position.
+@return l'objet "Tiles" se trouvant à la position donnée en paramètre.
+*/
 Tiles Board::getTiles(dev4::Position position) {
     if(!contains(position)){
         throw std::invalid_argument("La position n' est pas dans le board");
     }
     return board.at(position.x()).at(position.y());
 }
-
+/**
+Vérifie si la position donnée en paramètre est contenue dans le tableau "board".
+@param position une position à vérifier.
+@return true si la position donnée en paramètre est contenue dans le tableau "board", false sinon.
+*/
 bool Board::contains(dev4::Position position) {
     return position.x()>=0 && position.x()<=board.size()-1 && position.y()>=0 && position.y()<=board[0].size();
 }
-
+/**
+Supprime l'élément se trouvant à la position donnée en paramètre et le retourne.
+@param position une position à supprimer.
+@return l'élément se trouvant à la position donnée en paramètre.
+*/
 Element Board::dropElement(dev4::Position position) {
     if(!contains(position)){
         throw std::invalid_argument("La position n' est pas dans le board");
     }
     return board[position.x()][position.y()].removeLastElement();
 }
+/**
 
+Getter pour l'objet "LevelLoader" utilisé pour initialiser le tableau "board" de la classe "Board".
+@return une référence constante à l'objet "LevelLoader".
+*/
 const LevelLoader &Board::getFile() const {
     return file;
 }
-
+/**
+Destructeur pour la classe "Board".
+Libère la mémoire occupée par l'objet "Board".
+*/
 Board::~Board() {
 
 }

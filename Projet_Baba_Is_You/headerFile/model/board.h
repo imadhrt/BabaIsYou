@@ -15,9 +15,7 @@ private:
     Element convertionEnum(std::string strFile);
 public:
     Board(LevelLoader file);
-
     virtual ~Board();
-
     std::vector<std::vector<Tiles>> getBoard();
     bool contains(dev4::Position position);
     Element dropElement(dev4::Position position);

@@ -3,11 +3,19 @@
 //
 
 #include "../../headerFile/controller/controller.h"
+/**
 
+Constructeur du contrôleur.
+@param babaIsYou Le modèle Baba Is You.
+@param view La vue du jeu Baba Is You.
+*/
 BabaIsYouController::BabaIsYouController(BabaIsYou *babaIsYou, BabaIsYouView *view) : babaIsYou(babaIsYou), view(view) {
     babaIsYou->registerObserver(this);
 }
-
+/**
+Méthode pour traiter l'entrée de l'utilisateur.
+@return La direction choisie par l'utilisateur.
+*/
 dev4::Direction BabaIsYouController::processInput() {
     char input;
     dev4::Direction direction;
@@ -58,7 +66,10 @@ dev4::Direction BabaIsYouController::processInput() {
     return direction;
 }
 
+/**
 
+Méthode pour commencer le jeu.
+*/
 void BabaIsYouController::start() {
     view->displayWelcomeMessage();
 babaIsYou->notifyObservers();
@@ -93,7 +104,10 @@ babaIsYou->notifyObservers();
 
     BabaIsYouView::thanks();
 }
+/**
 
+Destructeur du contrôleur.
+*/
 BabaIsYouController::~BabaIsYouController() {
     babaIsYou->unregisterObserver();
 }

@@ -3,7 +3,9 @@
 //
 
 #include "../../headerFile/view/view.h"
-
+/**
+ * Affichage du board.
+ */
 void BabaIsYouView::displayBoard() {
 
     for (int i = 0; i < babaIsYou.getBoard()->getFile().getHeight(); ++i) {
@@ -28,31 +30,42 @@ void BabaIsYouView::displayBoard() {
         std::cout << std::endl;
     }
 }
-
+/**
+ * Afficher un message de bienvenue.
+ */
 void BabaIsYouView::displayWelcomeMessage() {
     std::cout << "Welcome to Baba Is You!" << std::endl;
 }
-
+/**
+ * Afficher un message d'input.
+ */
 void BabaIsYouView::displayInputMessage() {
     std::cout << "Enter the direction to move (U: up, L: left, D: down, R: right, Q: quit): ";
 }
-
+/**
+ * Afficher un message de victoire  de niveau.
+ */
  void BabaIsYouView::displayWinMessage() {
     std::cout << "Congratulations! You've completed the level and moved on to the next one." << std::endl;
 }
 
-
+/**
+ * Afficher un message d'aide.
+ */
  void BabaIsYouView::displayHelp() {
     std::cout << "Commandes du jeu :" << std::endl;
     std::cout << "  U, D, L, R : Déplacer le joueur" << std::endl;
     std::cout << "  Q : Quitter le jeu" << std::endl;
     std::cout << "  H : Afficher l'aide" << std::endl;
+     std::cout << " A : recommencer le jeu" << std::endl;
 }
 
  void BabaIsYouView::displayGoodBye(){
     std::cout << "Vous Avez quitté la partie !" << std::endl;
 }
-
+/**
+ * Afficher un message invalide.
+ */
  void BabaIsYouView::displayInvalidMessage(){
     std::cout << " Vous avez entré une direction inexistante !" << std::endl;
     displayHelp();
@@ -68,6 +81,9 @@ BabaIsYouView::BabaIsYouView(Board &board, const BabaIsYou &babaIsYou) : board(b
 void BabaIsYouView::setBabaIsYou(const BabaIsYou &babaIsYou) {
     BabaIsYouView::babaIsYou = babaIsYou;
 }
+/**
+ * Afficher un message de remerciement.
+ */
 void BabaIsYouView::thanks() {
     std::cout << "Merci d'avoir joué à Baba Is You!" << std::endl;
 }

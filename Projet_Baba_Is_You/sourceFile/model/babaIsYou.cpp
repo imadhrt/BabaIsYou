@@ -1,11 +1,21 @@
 
 #include "../../headerFile/model/babaisyou.h"
+/**
 
+Constructeur de la classe BabaIsYou.
+@param board le plateau de jeu
+*/
 BabaIsYou::BabaIsYou(Board *board) : board(board) {
     findAndAddRules();
 }
 
+/**
 
+Démarre une partie avec le niveau spécifié.
+Si le niveau est entre 0 et 4 inclusivement, charge le plateau de jeu correspondant
+et met à jour les règles du jeu. Trouve également la position initiale du joueur.
+@param level le niveau de jeu choisi
+*/
 void BabaIsYou::start(int level) {
     if(level >=0 && level <= 4){
         LevelLoader levelLoader(level);
@@ -14,6 +24,9 @@ void BabaIsYou::start(int level) {
         getVecPosPlayer();
     }
 }
+/**
+ * Met à jour les règles du jeu en fonction des éléments présents sur le plateau de jeu.
+ */
 
 void BabaIsYou::findAndAddRules() {
     rules.clearRule();
@@ -51,7 +64,10 @@ void BabaIsYou::findAndAddRules() {
     }
         setEffetToSubject();
 }
+/**
 
+Applique les effets des compléments aux sujets correspondants.
+*/
 void BabaIsYou::setEffetToSubject(){
     for (int i = 0; i < rules.getListOfRules().size(); ++i) {
         ComplementEnum complementEnum = rules.getListOfRules().at(i).getComplement().getComplementEnum();
@@ -82,17 +98,25 @@ void BabaIsYou::setEffetToSubject(){
         }
     }
 }
-
-
+/**
+ * Accesseur récupère la liste de règle.
+ * @return la liste
+ */
 
 const RuleManager &BabaIsYou::getRules() const {
     return rules;
 }
-
+/**
+ * Accesseur récupères toutes les positions du player.
+ * @return les/la position(s) du players
+ */
 const std::vector<dev4::Position> &BabaIsYou::getPlayerPos() const {
     return playerPos;
 }
-
+/**
+ * Chercher toutes les positions du player.
+ * @return toutes les positions où le player se trouve
+ */
 std::vector<dev4::Position> BabaIsYou::getVecPosPlayer(){
 
     SubjectEnum playerSubject = SubjectEnum::NONE;
@@ -151,7 +175,13 @@ std::vector<dev4::Position> BabaIsYou::getVecPosPlayer(){
     return playerPos;
 }
 
+/**
 
+Vérifie si un vecteur d'éléments contient une icône donnée.
+@param vec le vecteur d'éléments à vérifier
+@param icon l'icône à chercher
+@return true si le vecteur d'éléments contient l'icône donnée, false sinon
+*/
 bool BabaIsYou::contains(const std::vector<Element>& vec, Icon icon) {
     for (int i = 0; i < vec.size(); ++i) {
         if(vec.at(i).getMat() != nullptr && vec.at(i).getMat()->getIcon() == icon){
@@ -161,6 +191,11 @@ bool BabaIsYou::contains(const std::vector<Element>& vec, Icon icon) {
     return false;
 }
 
+/**
+ * Converti une enum subject en enum complement
+ * @param subjectEnum est un subject enum
+ * @return l'icon du sujet
+ */
 Icon BabaIsYou::subjectToIcon(SubjectEnum subjectEnum){
     Icon icon = Icon::EMPTY_ICON;
     switch (subjectEnum) {
@@ -197,7 +232,11 @@ Icon BabaIsYou::subjectToIcon(SubjectEnum subjectEnum){
     }
     return icon;
 }
-
+/**
+ * Convertit un Icon en SubjectEnum.
+ * @param icon L'Icon à convertir.
+ * @return Le SubjectEnum correspondant à l'Icon.
+ */
 SubjectEnum BabaIsYou::iconToSubject(Icon icon){
     SubjectEnum subject = SubjectEnum::NONE;
     switch (icon) {
@@ -236,7 +275,12 @@ SubjectEnum BabaIsYou::iconToSubject(Icon icon){
     }
     return subject;
 }
-
+/**
+ * Verifie si le mouvement est valide ou pas.
+ * @param dir est la direction qu'on veut y aller
+ * @param pos est la position
+ * @return true si le mouvement est possible sinon false
+ */
 bool BabaIsYou::isPossibleMove(dev4::Direction dir, dev4::Position pos){
     if(!board->contains(pos.nextPos(dir))){
         return false;
@@ -258,7 +302,13 @@ bool BabaIsYou::isPossibleMove(dev4::Direction dir, dev4::Position pos){
 
     return true;
 }
+/**
 
+Cette méthode permet de compter le nombre d'éléments qui peuvent être poussés dans une direction donnée à partir d'une position de joueur donnée.
+@param posPlayer La position du joueur à partir de laquelle les éléments seront poussés.
+@param dir La direction dans laquelle les éléments seront poussés.
+@return Le nombre d'éléments qui peuvent être poussés dans la direction donnée à partir de la position du joueur donnée.
+*/
 int BabaIsYou::push(dev4::Position posPlayer, dev4::Direction dir)
 {
     int cpt{0};
@@ -273,7 +323,18 @@ int BabaIsYou::push(dev4::Position posPlayer, dev4::Direction dir)
                 }
     return cpt;
 }
+/**
 
+ Calcule la position du joueur après avoir effectué une action de poussée dans la direction donnée.
+ Elle utilise la fonction push() pour déterminer combien de rochers peuvent être poussés dans la direction donnée,
+ puis calcule la position finale du joueur en fonction de cela.
+
+@param player La position actuelle du joueur.
+
+@param dir La direction dans laquelle le joueur effectue l'action de poussée.
+
+@return La position du joueur après avoir effectué l'action de poussée dans la direction donnée.
+*/
 dev4::Position BabaIsYou::getPositionAfterPush(dev4::Position player, dev4::Direction dir){
     int lastRock{push(player, dir)};
 
@@ -288,7 +349,10 @@ dev4::Position BabaIsYou::getPositionAfterPush(dev4::Position player, dev4::Dire
             return dev4::Position {player.x()-lastRock, player.y()};
     }
 }
-
+/**
+ * Cherche les elements qui ont un mot composé d'un opérateur et de deux sujets adjacents.
+ * Si les sujets sont valide alors on transforme le sujet en un autre sujet.
+ */
 void BabaIsYou::applyTransform() {
     int height = board->getFile().getHeight();
     int width = board->getFile().getWidth();
@@ -321,7 +385,11 @@ void BabaIsYou::applyTransform() {
             }
         }
 }
-
+/**
+ * transforme un sujet en un autre sujet
+ * @param firstSubject
+ * @param secondSubject
+ */
 void BabaIsYou::transform(Subject firstSubject, Subject secondSubject){
     int height = board->getFile().getHeight();
     int width = board->getFile().getWidth();
@@ -340,7 +408,9 @@ void BabaIsYou::transform(Subject firstSubject, Subject secondSubject){
         }
     }
 }
-
+/**
+vérifier si des éléments doivent être coulés ou tués selon les règles du jeu
+ */
 void BabaIsYou::sinkAndKill(){
     int height = board->getFile().getHeight();
     int width = board->getFile().getWidth();
@@ -366,7 +436,10 @@ void BabaIsYou::sinkAndKill(){
         }
     }
 }
-
+/**
+ * Methode qui permet de faire le mouvement .
+ * @param direction est une dirction.
+ */
 void BabaIsYou::move(dev4::Direction direction) {
     playerPos = getVecPosPlayer();
     for (int i = 0; i < playerPos.size(); ++i) {
@@ -465,7 +538,10 @@ void BabaIsYou::move(dev4::Direction direction) {
 
     notifyObservers();
 }
-
+/**
+ * Methode qui vérifie si on a gagné le niveau ou pas.
+ * @return true si on a gagné le niveau sinon non
+ */
 bool BabaIsYou::isWin() {
     for (const dev4::Position player : playerPos) {
         Tiles tile = board->getTiles(player);
@@ -484,15 +560,23 @@ bool BabaIsYou::isWin() {
     }
     return false;
 }
-
+/**
+ * Accesseur du board en pointeur
+ * @return un pointeur vers le board
+ */
 Board *BabaIsYou::getBoard() const {
     return board;
 }
-
+/**
+ * Mutateur du board
+ * @param board est un board
+ */
 void BabaIsYou::setBoard(Board *board) {
     BabaIsYou::board = board;
 }
-
+/**
+ * Déstructeur de la classe BababIsYou
+ */
 BabaIsYou::~BabaIsYou() {
 
 }

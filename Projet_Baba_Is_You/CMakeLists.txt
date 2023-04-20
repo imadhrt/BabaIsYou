@@ -17,4 +17,4 @@ add_executable(Projet_Baba_Is_You sourceFile/controller/main.cpp
         sourceFile/model/words.cpp
         headerFile/model/rule.h sourceFile/model/rule.cpp
         headerFile/model/ruleManager.h sourceFile/model/ruleManager.cpp headerFile/model/managerCommand.h
-        sourceFile/model/managerCommand.cpp headerFile/model/babaisyou.h sourceFile/model/babaIsYou.cpp headerFile/view/view.h sourceFile/view/view.cpp headerFile/controller/controller.h sourceFile/controller/controller.cpp headerFile/util/observer.h headerFile/util/observable.h sourceFile/tests/babaIsYouTest.cpp)
+        sourceFile/model/managerCommand.cpp headerFile/model/babaisyou.h sourceFile/model/babaIsYou.cpp headerFile/view/view.h sourceFile/view/view.cpp headerFile/controller/controller.h sourceFile/controller/controller.cpp headerFile/util/observer.h headerFile/util/observable.h )
