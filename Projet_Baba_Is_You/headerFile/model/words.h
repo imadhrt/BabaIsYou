@@ -22,7 +22,6 @@ public:
 
     const Subject &getSubject() const;
 
-    void setSubject(Subject *subject);
 
     const Operator &getOperator() const;
 

@@ -5,14 +5,12 @@
 #include "../../headerFile/controller/controller.h"
 
 BabaIsYouController::BabaIsYouController(BabaIsYou *babaIsYou, BabaIsYouView *view) : babaIsYou(babaIsYou), view(view) {
-    babaIsYou->registerObserver(this);
 }
 
 dev4::Direction BabaIsYouController::processInput() {
     char input;
     dev4::Direction direction;
     bool validInput = false;
-
     while (!validInput){
         BabaIsYouView::displayInputMessage();
         std::cin >> input;
@@ -50,8 +48,7 @@ dev4::Direction BabaIsYouController::processInput() {
             case 'A':
                 babaIsYou->start(babaIsYou->getBoard()->getFile().getLevel());
                 view->setBoard(*babaIsYou->getBoard());
-                view->setBabaIsYou(*babaIsYou);
-                view->displayBoard();
+                babaIsYou->notifyObservers();
                 break;
             default:
                BabaIsYouView::displayInvalidMessage();
@@ -63,17 +60,15 @@ dev4::Direction BabaIsYouController::processInput() {
 
 void BabaIsYouController::start() {
     view->displayWelcomeMessage();
-
+babaIsYou->notifyObservers();
     bool running = true;
     while (running) {
-        update();
 
         dev4::Direction direction = processInput();
 
         if (direction != dev4::Direction::NONE) {
             try {
                 babaIsYou->move(direction);
-                babaIsYou->notifyObservers();
             }catch (std::exception exception){
 
             }
@@ -94,6 +89,8 @@ void BabaIsYouController::start() {
             }
         }
     }
+
+    BabaIsYouView::thanks();
 }
 
 BabaIsYouController::~BabaIsYouController() {

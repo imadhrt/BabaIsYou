@@ -44,7 +44,14 @@ public:
     */
      const std::vector<Element>& getListElement() const;
 
+     /*
+      * Ajoute un element à la fin de la liste.
+      */
+
      void addElement(Element element);
+     /*
+      * Supprime le dernier element de la liste.
+      */
 
      Element removeLastElement();
 

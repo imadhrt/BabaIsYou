@@ -28,7 +28,7 @@ void LevelLoader::browseLevel(int numberLevel) {
 
         while (std::getline(fichier, ligne)) {
             std::istringstream lgn(ligne);
-            lgn >> str >> x >> y >> dir;
+            lgn >> str >> y >> x >> dir;
             dev4::Position pos {x, y};
             std::pair<std::string, dev4::Position> paire {str, pos};
             vecPAire.push_back(paire);

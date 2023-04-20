@@ -24,6 +24,8 @@ public:
 
     BabaIsYouView(Board &board, const BabaIsYou &babaIsYou);
 
+    static void thanks();
+
     static void displayWelcomeMessage();
     static void displayInputMessage();
     static void displayWinMessage();

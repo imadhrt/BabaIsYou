@@ -128,7 +128,7 @@ inline std::string toStringIcon(Icon icon)
             str = "txtLava ";
             break;
         case Icon::BABA_ICON :
-            str = "\033[31m txtBaba\033[0m";
+            str = "txtBaba ";
             break;
         case Icon::ROCK_ICON :
             str = "txtRock ";

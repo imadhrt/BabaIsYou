@@ -77,8 +77,6 @@ int main() {
     cout << endl;
 */
 
-    // Afficher le message de bienvenue
-    std::cout << "Bienvenue dans le jeu Baba Is You!" << std::endl;
 
     // Charger le premier niveau
     int levelNumber = 0;
@@ -87,11 +85,11 @@ int main() {
     BabaIsYou babaIsYou(&board);
     BabaIsYouView gameView(board,babaIsYou);
     BabaIsYouController gameController(&babaIsYou,&gameView);
+   babaIsYou.registerObserver(&gameController);
 
 
     gameController.start();
 
-    std::cout << "Merci d'avoir joué à Baba Is You!" << std::endl;
 
     return 0;
 }

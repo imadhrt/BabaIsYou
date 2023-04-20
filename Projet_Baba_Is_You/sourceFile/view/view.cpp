@@ -68,5 +68,8 @@ BabaIsYouView::BabaIsYouView(Board &board, const BabaIsYou &babaIsYou) : board(b
 void BabaIsYouView::setBabaIsYou(const BabaIsYou &babaIsYou) {
     BabaIsYouView::babaIsYou = babaIsYou;
 }
+void BabaIsYouView::thanks() {
+    std::cout << "Merci d'avoir joué à Baba Is You!" << std::endl;
+}
 
 

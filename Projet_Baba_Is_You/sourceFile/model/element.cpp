@@ -24,7 +24,6 @@ bool Element::operator==(const Element &rhs) const {
         return words->getOperator().getOperatorEnum() == rhs.words->getOperator().getOperatorEnum();
     }
 }
-
 bool Element::operator!=(const Element &rhs) const {
     return !(rhs == *this);
 }

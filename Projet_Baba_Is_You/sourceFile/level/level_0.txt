@@ -39,7 +39,7 @@ metal 13 8
 metal 14 8
 metal 3 9
 metal 4 9
-rock 5 9
+metal 5 9
 metal 6 9
 metal 7 9
 metal 9 9
@@ -52,7 +52,7 @@ rock 8 7 0
 rock 8 8 2
 rock 8 9 1
 baba 5 8 3
-flag 5 9 1
+flag 12 8 1
 wall 3 10
 wall 4 10
 wall 5 10

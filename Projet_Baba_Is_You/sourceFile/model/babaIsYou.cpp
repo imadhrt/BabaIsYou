@@ -1,8 +1,6 @@
-//
-// Created by Mamoun benmassaoud on 17/04/2023.
-//
+
 #include <fstream>
-#include "../../headerFile/model/babaisyou.h";
+#include "../../headerFile/model/babaisyou.h"
 #include <map>
 #include "iostream"
 
