@@ -8,16 +8,17 @@
 #include "board.h"
 #include "ruleManager.h"
 #include "direction.h"
+#include "../util/observer.h"
+#include "../util/observable.h"
 
-class BabaIsYou{
+class BabaIsYou : public Observable{
 private:
     Board *board;
     RuleManager rules;
-    std::vector<dev4::Position > playerPos;
-public:
-    void setBoard(Board *board);
 
-private:
+    std::vector<dev4::Position > playerPos;
+    std::vector<Observer*> observers;
+
     void transform(Subject firstSubject, Subject secondSubject);
     bool contains(const std::vector<Element>& vec, Icon icon);
 public:
@@ -25,6 +26,7 @@ public:
 
     void start(int level);
 
+    void setBoard(Board *board);
 
     const RuleManager &getRules() const;
 
@@ -56,6 +58,17 @@ public:
 
     bool isWin();
 
+    ~BabaIsYou() override;
+
+    void registerObserver(Observer *observer) override;
+
+    void unregisterObserver() override;
+
+    void notifyObservers() override;
+
+    void saveLevel(const std::string& filename);
+
+    std::string convertionString(Element element);
 };
 
 #endif //PROJET_BABA_IS_YOU_BABAISYOU_H

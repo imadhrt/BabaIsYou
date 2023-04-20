@@ -55,7 +55,7 @@ is 9 5
 win 12 6
 text_flag 5 8
 flag 9 8
-baba 0 0
+baba 12 8
 text_baba 4 12
 is 4 13
 you 4 14

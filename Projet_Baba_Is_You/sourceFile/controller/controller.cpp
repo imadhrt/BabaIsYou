@@ -5,6 +5,7 @@
 #include "../../headerFile/controller/controller.h"
 
 BabaIsYouController::BabaIsYouController(BabaIsYou *babaIsYou, BabaIsYouView *view) : babaIsYou(babaIsYou), view(view) {
+    babaIsYou->registerObserver(this);
 }
 
 dev4::Direction BabaIsYouController::processInput() {
@@ -65,13 +66,14 @@ void BabaIsYouController::start() {
 
     bool running = true;
     while (running) {
-        view->displayBoard();
+        update();
 
         dev4::Direction direction = processInput();
 
         if (direction != dev4::Direction::NONE) {
             try {
                 babaIsYou->move(direction);
+                babaIsYou->notifyObservers();
             }catch (std::exception exception){
 
             }
@@ -92,5 +94,14 @@ void BabaIsYouController::start() {
             }
         }
     }
+}
+
+BabaIsYouController::~BabaIsYouController() {
+    babaIsYou->unregisterObserver();
+}
+
+void BabaIsYouController::update() {
+    view->setBabaIsYou(*babaIsYou);
+    view->displayBoard();
 }
 

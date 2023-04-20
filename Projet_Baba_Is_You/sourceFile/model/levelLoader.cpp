@@ -2,6 +2,7 @@
 // Created by elhar on 25-03-23.
 //
 #include "../../headerFile/model/levelLoader.h"
+#include "../../headerFile/model/board.h"
 #include <fstream>
 #include <iostream>
 #include <sstream>

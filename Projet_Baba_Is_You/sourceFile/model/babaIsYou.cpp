@@ -1,7 +1,10 @@
 //
 // Created by Mamoun benmassaoud on 17/04/2023.
 //
+#include <fstream>
 #include "../../headerFile/model/babaisyou.h";
+#include <map>
+#include "iostream"
 
 BabaIsYou::BabaIsYou(Board *board) : board(board) {
     findAndAddRules();
@@ -454,6 +457,8 @@ void BabaIsYou::move(dev4::Direction direction) {
     findAndAddRules();
     applyTransform();
     getVecPosPlayer();
+
+    notifyObservers();
 }
 
 bool BabaIsYou::isWin() {
@@ -482,3 +487,112 @@ Board *BabaIsYou::getBoard() const {
 void BabaIsYou::setBoard(Board *board) {
     BabaIsYou::board = board;
 }
+
+BabaIsYou::~BabaIsYou() {
+
+}
+
+void BabaIsYou::registerObserver(Observer *observer) {
+    observers.push_back(observer);
+}
+
+void BabaIsYou::unregisterObserver() {
+    observers.pop_back();
+}
+
+void BabaIsYou::notifyObservers() {
+    for(const auto observer : observers){
+        observer->update();
+    }
+}
+
+/*void BabaIsYou::saveLevel1(int numberLevel, Board board) {
+    std::ofstream fichier("../sourceFile/level/level_" + std::to_string(numberLevel) + ".txt");
+
+    if (fichier.is_open()) {
+        fichier << board.getFile().getHeight() << " " << board.getFile().getWidth() << std::endl;
+        for (int i = 0; i < board.getFile().getHeight(); ++i) {
+            for (int j = 0; j < board.getFile().getWidth(); ++j) {
+                for (int k = 0; k < board.getBoard().at(i).at(j).getListElement().size(); ++k) {
+                    auto entity = board.getBoard().at(i).at(j).getListElement().at(k);
+
+                    fichier << entity. << " " << i << " " << j << " " << entity.second.getDirection() << std::endl;
+                }
+
+            }
+        }
+        fichier.close();
+    }else {
+        std::cout << "Impossible d'ouvrir le fichier" << std::endl;
+    }
+
+    }
+
+
+std::string BabaIsYou::convertionString(Element element){
+    static std::map<Element, std::string> strMap{
+            {Element(Materials(Icon::GRASS_ICON)), "grass"},
+            {Element(Materials(Icon::WALL_ICON)), "wall"},
+            {Element(Materials(Icon::LAVA_ICON)), "lava"},
+            {Element(Materials(Icon::BABA_ICON)), "baba"},
+            {Element(Materials(Icon::ROCK_ICON)), "rock"},
+            {Element(Materials(Icon::BONE_ICON)), "bone"},
+            {Element(Materials(Icon::GOOP_ICON)), "goop"},
+            {Element(Materials(Icon::METAL_ICON)), "metal"},
+            {Element(Materials(Icon::WATER_ICON)), "water"},
+            {Element(Words(Subject(SubjectEnum::GRASS))), "text_grass"},
+            {Element(Words(Subject(SubjectEnum::WALL))), "text_wall"},
+            {Element(Words(Subject(SubjectEnum::LAVA))), "text_lava"},
+            {Element(Words(Subject(SubjectEnum::BABA))), "text_baba"},
+            {Element(Words(Subject(SubjectEnum::ROCK))), "text_rock"},
+            {Element(Words(Subject(SubjectEnum::BONE))), "text_bone"},
+            {Element(Words(Subject(SubjectEnum::GOOP))), "text_goop"},
+            {Element(Words(Subject(SubjectEnum::METAL))), "text_metal"},
+            {Element(Words(Subject(SubjectEnum::WATER))), "text_water"},
+            {Element(Words(Complement(ComplementEnum::WIN))), "win"},
+            {Element(Words(Complement(ComplementEnum::KILL))), "kill"},
+            {Element(Words(Complement(ComplementEnum::STOP))), "stop"},
+            {Element(Words(Complement(ComplementEnum::YOU))), "you"},
+            {Element(Words(Complement(ComplementEnum::PUSH))), "push"},
+            {Element(Words(Complement(ComplementEnum::BEST))), "best"},
+            {Element(Words(Complement(ComplementEnum::SINK))), "sink"},
+            {Element(Materials(Icon::EMPTY_ICON)), "empty"},
+            {Element(Words(Operator(OperatorEnum::IS))), "is"},
+            {Element(Words(Subject(SubjectEnum::FLAG))), "text_flag"},
+            {Element(Materials(Icon::FLAG_ICON)), "flag"}
+    };
+    auto i = strMap.find(element);
+
+    if(i != elemMap.end()){
+
+        return i -> second;
+    } else {
+        return Element(Materials(Icon::EMPTY_ICON));
+    }
+}
+
+void BabaIsYou::saveLevel(const std::string& filename) const {
+    std::ofstream outputFile(filename);
+    if (!outputFile.is_open()) {
+        std::cout << "Erreur lors de l'ouverture du fichier " << filename << std::endl;
+        return;
+    }
+
+    outputFile << board->getFile().getHeight() << " " << board->getFile().getWidth() << std::endl;
+
+    for (int y = 0; y < board->getFile().getHeight(); y++) {
+        for (int x = 0; x < board->getFile().getWidth(); x++) {
+            for (int i = 0; i < board->getBoard().at(y).at(x).getListElement().size(); ++i) {
+                Element element = board->getBoard().at(y).at(x).getListElement().at(i);
+                if (element. != ElementType::EMPTY) {
+                    std::string elementStr = elemMap.at(element);
+                    outputFile << elementStr << " " << x << " " << y << std::endl;
+                }
+            }
+
+
+        }
+    }
+
+    outputFile.close();
+}*/

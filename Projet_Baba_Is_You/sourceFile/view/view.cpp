@@ -69,3 +69,4 @@ void BabaIsYouView::setBabaIsYou(const BabaIsYou &babaIsYou) {
     BabaIsYouView::babaIsYou = babaIsYou;
 }
 
+

@@ -8,15 +8,18 @@
 #include "../model/babaisyou.h"
 #include "../view/view.h"
 
-class BabaIsYouController {
+class BabaIsYouController : public Observer{
 public:
     BabaIsYouController(BabaIsYou *babaIsYou, BabaIsYouView *view);
     void start();
 
+    ~BabaIsYouController() override;
+
+    void update() override;
+
 private:
     BabaIsYou *babaIsYou;
     BabaIsYouView *view;
-
     dev4::Direction processInput();
 };
 #endif //PROJET_BABA_IS_YOU_CONTROLLER_H
