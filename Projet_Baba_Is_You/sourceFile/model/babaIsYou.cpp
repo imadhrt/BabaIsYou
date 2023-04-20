@@ -1,8 +1,5 @@
 
-#include <fstream>
 #include "../../headerFile/model/babaisyou.h"
-#include <map>
-#include "iostream"
 
 BabaIsYou::BabaIsYou(Board *board) : board(board) {
     findAndAddRules();
