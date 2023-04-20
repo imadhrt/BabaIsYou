@@ -5,6 +5,7 @@
 #include "../../headerFile/controller/controller.h"
 
 BabaIsYouController::BabaIsYouController(BabaIsYou *babaIsYou, BabaIsYouView *view) : babaIsYou(babaIsYou), view(view) {
+    babaIsYou->registerObserver(this);
 }
 
 dev4::Direction BabaIsYouController::processInput() {

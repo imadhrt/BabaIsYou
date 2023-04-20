@@ -85,7 +85,7 @@ int main() {
     BabaIsYou babaIsYou(&board);
     BabaIsYouView gameView(board,babaIsYou);
     BabaIsYouController gameController(&babaIsYou,&gameView);
-   babaIsYou.registerObserver(&gameController);
+
 
 
     gameController.start();
