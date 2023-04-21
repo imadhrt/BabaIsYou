@@ -1,0 +1,3 @@
+C:/Users/elhar/DEV4/e/babaisyou-g58132-g58112/build-Projet_Baba_Is_You-Desktop_Qt_6_4_0_MinGW_64_bit-Debug/CMakeFiles/Projet_Baba_Is_You.dir
+C:/Users/elhar/DEV4/e/babaisyou-g58132-g58112/build-Projet_Baba_Is_You-Desktop_Qt_6_4_0_MinGW_64_bit-Debug/CMakeFiles/edit_cache.dir
+C:/Users/elhar/DEV4/e/babaisyou-g58132-g58112/build-Projet_Baba_Is_You-Desktop_Qt_6_4_0_MinGW_64_bit-Debug/CMakeFiles/rebuild_cache.dir

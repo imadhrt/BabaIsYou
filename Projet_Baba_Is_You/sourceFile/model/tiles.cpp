@@ -25,3 +25,9 @@ Element Tiles::removeLastElement(){
     listElement.pop_back();
     return lastElement;
 }
+bool Tiles::operator==(const Tiles &rhs) const {
+    return listElement == rhs.listElement &&
+           pos.x() == rhs.pos.x() && pos.y() == rhs.pos.y();;
+}
+
+

@@ -55,6 +55,9 @@ public:
 
      Element removeLastElement();
 
+     bool operator==(const Tiles &rhs) const;
+
+
 };
 
 
