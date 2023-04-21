@@ -10,6 +10,7 @@
 #include "direction.h"
 #include "../util/observer.h"
 #include "../util/observable.h"
+#include "managerCommand.h"
 
 class BabaIsYou : public Observable{
 private:
@@ -18,6 +19,8 @@ private:
 
     std::vector<dev4::Position > playerPos;
     std::vector<Observer*> observers;
+
+    ManagerCommand managerCommand;
 
     void transform(Subject firstSubject, Subject secondSubject);
     bool contains(const std::vector<Element>& vec, Icon icon);
@@ -62,13 +65,28 @@ public:
 
     void registerObserver(Observer *observer) override;
 
+    void setRules(const RuleManager &rules);
+
+    void setPlayerPos(const std::vector<dev4::Position> &playerPos);
+
+    void setObservers(const std::vector<Observer *> &observers);
+
     void unregisterObserver() override;
 
     void notifyObservers() override;
 
-    void saveLevel(const std::string& filename);
 
     std::string convertionString(Element element);
+
+    void undo();
+    void redo();
+    void movePlayer(dev4::Direction direction);
+
+    BabaIsYou(const BabaIsYou& other);
+    void revertTo(BabaIsYou* babaIsYou);
+
+    void saveLevel(const int nombre) const;
+
 };
 
 #endif //PROJET_BABA_IS_YOU_BABAISYOU_H

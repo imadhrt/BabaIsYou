@@ -20,10 +20,10 @@ dev4::Direction BabaIsYouController::processInput() {
     char input;
     dev4::Direction direction;
     bool validInput = false;
+    int nombre;
     while (!validInput){
         BabaIsYouView::displayInputMessage();
         std::cin >> input;
-
         switch (input) {
             case 'u':
             case 'U':
@@ -53,12 +53,27 @@ dev4::Direction BabaIsYouController::processInput() {
             case 'H':
                 BabaIsYouView::displayHelp();
                 break;
+            case 'z':
+            case 'Z':
+                babaIsYou->undo();
+                break;
+            case 'y':
+            case 'Y':
+                babaIsYou->redo();
+                break;
             case 'a':
             case 'A':
                 babaIsYou->start(babaIsYou->getBoard()->getFile().getLevel());
                 view->setBoard(*babaIsYou->getBoard());
                 babaIsYou->notifyObservers();
                 break;
+            case 's':
+            case 'S':
+                nombre = lireChiffreClavier();
+                babaIsYou->saveLevel(nombre);
+                view->displaysaveSucces();
+                exit(0);
+
             default:
                BabaIsYouView::displayInvalidMessage();
         }
@@ -66,13 +81,58 @@ dev4::Direction BabaIsYouController::processInput() {
     return direction;
 }
 
-/**
+char BabaIsYouController::beforeGame(){
+    char input;
+    bool validInput = false;
+    while (!validInput){
+        std::cin >> input;
+        switch (input) {
+            case 'n':
+            case 'N':
+                babaIsYou->start(0);
+                babaIsYou->notifyObservers();
+                validInput = true;
+                break;
+            default:
+                BabaIsYouView::displayInvalidMessage();
+        }
+    }
+    return input;
+}
 
+int BabaIsYouController::lireChiffreClavier() {
+    std::string texte;
+    int nombre;
+
+    while (true) {
+        view->askNameFileToSave();
+        std::cin >> texte;
+        try {
+            nombre = stoi(texte);
+            if (nombre > 4) {
+                break;
+            }
+            else {
+                std::cout << "Erreur : Veuillez entrer un nombre entier strictement supérieur à 4.\n";
+            }
+        }
+        catch (std::invalid_argument e) {
+            std::cout << "Erreur : Veuillez entrer un nombre entier.\n";
+        }
+    }
+
+    return nombre;
+}
+
+/**
 Méthode pour commencer le jeu.
 */
 void BabaIsYouController::start() {
     view->displayWelcomeMessage();
-babaIsYou->notifyObservers();
+    view->askLevelToPlay();
+    beforeGame();
+
+
     bool running = true;
     while (running) {
 
@@ -80,7 +140,7 @@ babaIsYou->notifyObservers();
 
         if (direction != dev4::Direction::NONE) {
             try {
-                babaIsYou->move(direction);
+                babaIsYou->movePlayer(direction);
             }catch (std::exception exception){
 
             }
@@ -92,10 +152,9 @@ babaIsYou->notifyObservers();
             BabaIsYouView::displayWinMessage();
             int nextLevel = babaIsYou->getBoard()->getFile().getLevel() + 1;
             if (nextLevel <= 4) {
-                view->displayBoard();
                 babaIsYou->start(nextLevel);
                 view->setBoard(*babaIsYou->getBoard());
-                view->setBabaIsYou(*babaIsYou);
+                babaIsYou->notifyObservers();
             } else {
                 running = false;
             }

@@ -57,7 +57,7 @@ Constructeur pour la classe "Board".
 
 @param file un objet "LevelLoader" utilisé pour initialiser le tableau "board"
 */
-Board::Board(LevelLoader file) : file(file){
+Board::Board(LevelLoader& file) : file(file){
 
     board.resize(file.getWidth(), std::vector<Tiles>(file.getHeight()));
 
@@ -72,11 +72,16 @@ Board::Board(LevelLoader file) : file(file){
     }
 
     for (int i = 0; i < file.getVecPAire().size(); ++i) {
-        Materials mat = Materials(Icon::EMPTY_ICON);
-        std::vector<Element> el { Element(mat), convertionEnum(file.getVecPAire().at(i).first)};
         dev4::Position pos {file.getVecPAire().at(i).second.x(),file.getVecPAire().at(i).second.y()};
-        Tiles tile {el, pos};
-        board.at(pos.x()).at(pos.y()) = tile;
+        if(board.at(pos.x()).at(pos.y()).getListElement().size() < 2) {
+            Materials mat = Materials(Icon::EMPTY_ICON);
+            std::vector<Element> el { Element(mat), convertionEnum(file.getVecPAire().at(i).first)};
+            Tiles tile {el, pos};
+            board.at(pos.x()).at(pos.y()) = tile;
+        } else{
+            board.at(pos.x()).at(pos.y()).addElement(convertionEnum(file.getVecPAire().at(i).first));
+        }
+
     }
 
 }
@@ -146,4 +151,23 @@ Libère la mémoire occupée par l'objet "Board".
 */
 Board::~Board() {
 
+}
+
+/**
+ * Constructeur par copie pour la classe "Board".
+ * @param otherBoard le "Board" à copier.
+ */
+Board::Board(Board* otherBoard) : file(otherBoard->file) {
+   board = copyBoard(otherBoard);
+}
+
+std::vector<std::vector<Tiles>> Board::copyBoard(Board* otherBoard) {
+    board.resize(file.getWidth(), std::vector<Tiles>(file.getHeight()));
+
+    for (int i = 0; i < board.size(); ++i) {
+        for (int j = 0; j < board.at(i).size(); ++j) {
+            board.at(i).at(j) = otherBoard->getTiles(dev4::Position(i, j));
+        }
+    }
+    return board;
 }

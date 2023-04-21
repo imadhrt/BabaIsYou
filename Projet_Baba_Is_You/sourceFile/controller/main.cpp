@@ -90,6 +90,6 @@ int main() {
 
     gameController.start();
 
-
+    babaIsYou.getVecPosPlayer();
     return 0;
 }

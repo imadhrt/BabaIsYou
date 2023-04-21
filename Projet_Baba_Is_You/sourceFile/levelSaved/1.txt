@@ -1,0 +1,73 @@
+18 18
+  wall   4 4
+   is    4 5
+  stop   4 6
+  rock   4 11
+   is    4 12
+  push   4 13
+txtWall  6 3
+txtWall  6 4
+txtWall  6 5
+txtWall  6 6
+txtWall  6 7
+txtWall  6 8
+txtWall  6 9
+txtWall  6 10
+txtWall  6 11
+txtWall  6 12
+txtWall  6 13
+txtWall  6 14
+txtMetal 7 3
+txtMetal 7 4
+txtMetal 7 5
+txtMetal 7 6
+txtMetal 7 7
+txtRock  7 8
+txtMetal 7 9
+txtMetal 7 10
+txtMetal 7 11
+txtMetal 7 12
+txtMetal 7 13
+txtMetal 7 14
+txtMetal 8 3
+txtMetal 8 4
+txtMetal 8 6
+txtBaba  8 6
+txtMetal 8 7
+txtRock  8 8
+txtMetal 8 9
+txtMetal 8 10
+txtMetal 8 11
+txtFlag  8 12
+txtMetal 8 13
+txtMetal 8 14
+txtMetal 9 3
+txtMetal 9 4
+txtMetal 9 5
+txtMetal 9 6
+txtMetal 9 7
+txtRock  9 8
+txtMetal 9 9
+txtMetal 9 10
+txtMetal 9 11
+txtMetal 9 12
+txtMetal 9 13
+txtMetal 9 14
+txtWall  10 3
+txtWall  10 4
+txtWall  10 5
+txtWall  10 6
+txtWall  10 7
+txtWall  10 8
+txtWall  10 9
+txtWall  10 10
+txtWall  10 11
+txtWall  10 12
+txtWall  10 13
+txtWall  10 14
+  baba   12 4
+   is    12 5
+  you    12 6
+  flag   12 11
+   is    12 12
+  win    12 13

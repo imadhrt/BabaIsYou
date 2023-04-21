@@ -40,7 +40,7 @@ void BabaIsYouView::displayWelcomeMessage() {
  * Afficher un message d'input.
  */
 void BabaIsYouView::displayInputMessage() {
-    std::cout << "Enter the direction to move (U: up, L: left, D: down, R: right, Q: quit): ";
+    std::cout << "Enter the command to execute (U: up, L: left, D: down, R: right, Q: quit, Z: undo, Y: redo, S: save, A: restart): ";
 }
 /**
  * Afficher un message de victoire  de niveau.
@@ -71,6 +71,9 @@ void BabaIsYouView::displayInputMessage() {
     displayHelp();
 }
 
+void BabaIsYouView::displaysaveSucces(){
+    std::cout << "Fichier sauvgardé dans le directory levelSaved avec succés !!!!" << std::endl;
+}
 
 void BabaIsYouView::setBoard(const Board board) {
     BabaIsYouView::board = board;
@@ -88,4 +91,15 @@ void BabaIsYouView::thanks() {
     std::cout << "Merci d'avoir joué à Baba Is You!" << std::endl;
 }
 
+void BabaIsYouView::askLevelToPlay(){
+    std::cout << "Appuyer sur (n) pour commencer la partie !" << std::endl;
+}
 
+void BabaIsYouView::askNameLevelToPlay() {
+    std::cout << "comment s'appelle la partie sauvgardé ?" << std::endl;
+
+}
+
+void BabaIsYouView::askNameFileToSave(){
+    std::cout << "Entrer le nombre du fichier : " << std::endl;
+}

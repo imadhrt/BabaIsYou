@@ -14,7 +14,7 @@ private:
     LevelLoader file;
     Element convertionEnum(std::string strFile);
 public:
-    Board(LevelLoader file);
+    Board(LevelLoader& file);
     virtual ~Board();
     std::vector<std::vector<Tiles>> getBoard();
     bool contains(dev4::Position position);
@@ -22,8 +22,8 @@ public:
     void setElement(dev4::Position newPosition, Element element);
     Tiles getTiles(dev4::Position position);
     const LevelLoader &getFile() const;
-
-
+    Board(Board* otherBoard);
+    std::vector<std::vector<Tiles>> copyBoard(Board* otherBoard);
 };
 
 inline std::string toStringSubject(SubjectEnum subjet)
@@ -115,6 +115,7 @@ inline std::string toStringIcon(Icon icon)
     switch (icon) {
         case Icon::FLAG_ICON :
             str = "txtFlag ";
+            //str = "\033[31mtxtFlag\033[0m ";
             break;
         case Icon::GRASS_ICON :
             str = "txtGrass";
@@ -126,6 +127,7 @@ inline std::string toStringIcon(Icon icon)
             str = "txtLava ";
             break;
         case Icon::BABA_ICON :
+            //str = "txtBaba ";
             str = "txtBaba ";
             break;
         case Icon::ROCK_ICON :

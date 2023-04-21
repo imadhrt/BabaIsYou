@@ -1,12 +1,19 @@
 
+#include <map>
+#include <fstream>
+#include <iostream>
 #include "../../headerFile/model/babaisyou.h"
+#include "../../headerFile/model/moveCommand.h"
+
 /**
 
 Constructeur de la classe BabaIsYou.
 @param board le plateau de jeu
 */
 BabaIsYou::BabaIsYou(Board *board) : board(board) {
+    managerCommand = ManagerCommand();
     findAndAddRules();
+    getVecPosPlayer();
 }
 
 /**
@@ -17,13 +24,15 @@ et met à jour les règles du jeu. Trouve également la position initiale du jou
 @param level le niveau de jeu choisi
 */
 void BabaIsYou::start(int level) {
-    if(level >=0 && level <= 4){
+    if(level >=0){
         LevelLoader levelLoader(level);
         setBoard(new Board(levelLoader));
         findAndAddRules();
         getVecPosPlayer();
     }
 }
+
+
 /**
  * Met à jour les règles du jeu en fonction des éléments présents sur le plateau de jeu.
  */
@@ -595,6 +604,51 @@ void BabaIsYou::notifyObservers() {
     }
 }
 
+void BabaIsYou::undo() {
+    managerCommand.undo();
+}
+
+void BabaIsYou::redo() {
+    managerCommand.redo();
+}
+
+void BabaIsYou::movePlayer(dev4::Direction direction){
+    managerCommand.addCommand(new MoveCommand(this,direction));
+}
+
+void BabaIsYou::setRules(const RuleManager &rules) {
+    BabaIsYou::rules = rules;
+}
+
+void BabaIsYou::setPlayerPos(const std::vector<dev4::Position> &playerPos) {
+    BabaIsYou::playerPos = playerPos;
+}
+
+void BabaIsYou::setObservers(const std::vector<Observer *> &observers) {
+    BabaIsYou::observers = observers;
+}
+
+BabaIsYou::BabaIsYou(const BabaIsYou& other)
+        :
+          rules(other.rules),
+          observers(other.observers),
+          managerCommand(other.managerCommand),
+          playerPos(other.playerPos)
+{
+    board = new Board(other.board);
+    getVecPosPlayer();
+}
+
+ void BabaIsYou::revertTo(BabaIsYou* babaIsYou) {
+     playerPos = babaIsYou->getPlayerPos();
+     board = new Board(babaIsYou->board);
+     observers = babaIsYou->observers;
+     rules = babaIsYou->rules;
+
+    notifyObservers();
+}
+
+
 /*void BabaIsYou::saveLevel1(int numberLevel, Board board) {
     std::ofstream fichier("../sourceFile/level/level_" + std::to_string(numberLevel) + ".txt");
 
@@ -617,53 +671,15 @@ void BabaIsYou::notifyObservers() {
 
     }
 
-
+*/
 std::string BabaIsYou::convertionString(Element element){
-    static std::map<Element, std::string> strMap{
-            {Element(Materials(Icon::GRASS_ICON)), "grass"},
-            {Element(Materials(Icon::WALL_ICON)), "wall"},
-            {Element(Materials(Icon::LAVA_ICON)), "lava"},
-            {Element(Materials(Icon::BABA_ICON)), "baba"},
-            {Element(Materials(Icon::ROCK_ICON)), "rock"},
-            {Element(Materials(Icon::BONE_ICON)), "bone"},
-            {Element(Materials(Icon::GOOP_ICON)), "goop"},
-            {Element(Materials(Icon::METAL_ICON)), "metal"},
-            {Element(Materials(Icon::WATER_ICON)), "water"},
-            {Element(Words(Subject(SubjectEnum::GRASS))), "text_grass"},
-            {Element(Words(Subject(SubjectEnum::WALL))), "text_wall"},
-            {Element(Words(Subject(SubjectEnum::LAVA))), "text_lava"},
-            {Element(Words(Subject(SubjectEnum::BABA))), "text_baba"},
-            {Element(Words(Subject(SubjectEnum::ROCK))), "text_rock"},
-            {Element(Words(Subject(SubjectEnum::BONE))), "text_bone"},
-            {Element(Words(Subject(SubjectEnum::GOOP))), "text_goop"},
-            {Element(Words(Subject(SubjectEnum::METAL))), "text_metal"},
-            {Element(Words(Subject(SubjectEnum::WATER))), "text_water"},
-            {Element(Words(Complement(ComplementEnum::WIN))), "win"},
-            {Element(Words(Complement(ComplementEnum::KILL))), "kill"},
-            {Element(Words(Complement(ComplementEnum::STOP))), "stop"},
-            {Element(Words(Complement(ComplementEnum::YOU))), "you"},
-            {Element(Words(Complement(ComplementEnum::PUSH))), "push"},
-            {Element(Words(Complement(ComplementEnum::BEST))), "best"},
-            {Element(Words(Complement(ComplementEnum::SINK))), "sink"},
-            {Element(Materials(Icon::EMPTY_ICON)), "empty"},
-            {Element(Words(Operator(OperatorEnum::IS))), "is"},
-            {Element(Words(Subject(SubjectEnum::FLAG))), "text_flag"},
-            {Element(Materials(Icon::FLAG_ICON)), "flag"}
-    };
-    auto i = strMap.find(element);
 
-    if(i != elemMap.end()){
-
-        return i -> second;
-    } else {
-        return Element(Materials(Icon::EMPTY_ICON));
-    }
 }
 
-void BabaIsYou::saveLevel(const std::string& filename) const {
-    std::ofstream outputFile(filename);
+void BabaIsYou::saveLevel(const int nombre) const {
+    std::ofstream outputFile("../sourceFile/levelSaved/"  + std::to_string(nombre) + ".txt");
     if (!outputFile.is_open()) {
-        std::cout << "Erreur lors de l'ouverture du fichier " << filename << std::endl;
+        std::cout << "Erreur lors de l'ouverture du fichier " << nombre << std::endl;
         return;
     }
 
@@ -671,17 +687,28 @@ void BabaIsYou::saveLevel(const std::string& filename) const {
 
     for (int y = 0; y < board->getFile().getHeight(); y++) {
         for (int x = 0; x < board->getFile().getWidth(); x++) {
-            for (int i = 0; i < board->getBoard().at(y).at(x).getListElement().size(); ++i) {
+            for (int i = 1; i < board->getBoard().at(y).at(x).getListElement().size(); ++i) {
                 Element element = board->getBoard().at(y).at(x).getListElement().at(i);
-                if (element. != ElementType::EMPTY) {
-                    std::string elementStr = elemMap.at(element);
-                    outputFile << elementStr << " " << x << " " << y << std::endl;
+                if (element.getWords() != nullptr) {
+                    if(&element.getWords()->getSubject() != nullptr) {
+                        std::string elementStr = toStringSubject(element.getWords()->getSubject().getSubjectEnum());
+                        outputFile << elementStr << " " << y << " " << x << std::endl;
+                    }else if(&element.getWords()->getComplement() != nullptr) {
+                        std::string elementStr = toStringComplement(element.getWords()->getComplement().getComplementEnum());
+                        outputFile << elementStr << " " << y << " " << x << std::endl;
+                    }else{
+                        std::string elementStr = toStringOperator(element.getWords()->getOperator().getOperatorEnum());
+                        outputFile << elementStr << " " << y << " " << x << std::endl;
+                    }
+                }else {
+                    if (element.getMat() != nullptr && element.getMat()->getIcon() != Icon::EMPTY_ICON) {
+                        std::string elementStr = toStringIcon(element.getMat()->getIcon());
+                        outputFile << elementStr << " " << y << " " << x << std::endl;
+                    }
                 }
             }
-
-
         }
     }
 
     outputFile.close();
-}*/
+}

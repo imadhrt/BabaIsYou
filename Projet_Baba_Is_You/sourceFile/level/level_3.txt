@@ -9,7 +9,7 @@ is 9 4
 push 10 4
 rock 9 6
 rock 10 6
-baba 7 6
+  baba   7 6
 is 8 1
 sink 9 1
 you 0 2

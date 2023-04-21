@@ -32,5 +32,9 @@ public:
     static void displayHelp();
     static void displayGoodBye();
     static void displayInvalidMessage();
+    static void askLevelToPlay();
+    static void askNameLevelToPlay();
+    static void askNameFileToSave();
+    static void displaysaveSucces();
 };
 #endif //PROJET_BABA_IS_YOU_VIEW_H

@@ -14,9 +14,9 @@ public:
     void start();
 
     ~BabaIsYouController() override;
-
     void update() override;
-
+    int lireChiffreClavier();
+    char beforeGame();
 private:
     BabaIsYou *babaIsYou;
     BabaIsYouView *view;
