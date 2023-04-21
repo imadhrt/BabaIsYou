@@ -394,6 +394,7 @@ void BabaIsYou::applyTransform() {
             }
         }
 }
+
 /**
  * transforme un sujet en un autre sujet
  * @param firstSubject
