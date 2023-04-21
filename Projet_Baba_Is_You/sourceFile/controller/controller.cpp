@@ -109,18 +109,12 @@ int BabaIsYouController::lireChiffreClavier() {
         std::cin >> texte;
         try {
             nombre = stoi(texte);
-            if (nombre > 4) {
-                break;
-            }
-            else {
-                std::cout << "Erreur : Veuillez entrer un nombre entier strictement supérieur à 4.\n";
-            }
+            break;
         }
         catch (std::invalid_argument e) {
             std::cout << "Erreur : Veuillez entrer un nombre entier.\n";
         }
     }
-
     return nombre;
 }
 

@@ -32,7 +32,6 @@ txtMetal 7 14
 txtMetal 8 3
 txtMetal 8 4
 txtMetal 8 6
-txtBaba  8 6
 txtMetal 8 7
 txtRock  8 8
 txtMetal 8 9
@@ -46,9 +45,10 @@ txtMetal 9 4
 txtMetal 9 5
 txtMetal 9 6
 txtMetal 9 7
-txtRock  9 8
 txtMetal 9 9
+txtBaba  9 9
 txtMetal 9 10
+txtRock  9 10
 txtMetal 9 11
 txtMetal 9 12
 txtMetal 9 13
