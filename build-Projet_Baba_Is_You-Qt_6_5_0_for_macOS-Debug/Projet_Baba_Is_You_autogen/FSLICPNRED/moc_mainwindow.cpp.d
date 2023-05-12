@@ -1,0 +1,2 @@
+/Users/mamounbenmassaoud/Documents/ESI/Bloc2\ Q2/DEV4/babaisyou-g58132-g58112/build-Projet_Baba_Is_You-Qt_6_5_0_for_macOS-Debug/Projet_Baba_Is_You_autogen/FSLICPNRED/moc_mainwindow.cpp: /Users/mamounbenmassaoud/Documents/ESI/Bloc2\ Q2/DEV4/babaisyou-g58132-g58112/Projet_Baba_Is_You/headerFile/controller/mainwindow.h \
+  /Users/mamounbenmassaoud/Documents/ESI/Bloc2\ Q2/DEV4/babaisyou-g58132-g58112/build-Projet_Baba_Is_You-Qt_6_5_0_for_macOS-Debug/Projet_Baba_Is_You_autogen/moc_predefs.h

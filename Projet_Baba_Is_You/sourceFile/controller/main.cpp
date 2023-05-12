@@ -1,19 +1,16 @@
 #include <iostream>
-
+#include <QApplication>
 #include "../../headerFile/model/board.h"
 #include "../../headerFile/model/babaisyou.h"
 #include "../../headerFile/controller/controller.h"
 #include "../../headerFile/view/view.h"
-
+#include "../../mainwindow.h"
 
 using namespace std;
 using namespace dev4;
 
-
+/*
 int main() {
-
-
-
 
     int levelNumber = 0;
     LevelLoader levelLoader(levelNumber, false);
@@ -25,3 +22,16 @@ int main() {
 
     return 0;
 }
+*/
+
+int main (int argc , char* argv []){
+    QApplication application(argc , argv ) ;
+
+    MainWindow myWindow;
+    myWindow.show ( ) ;
+    return  application.exec();
+}
+
+
+
+

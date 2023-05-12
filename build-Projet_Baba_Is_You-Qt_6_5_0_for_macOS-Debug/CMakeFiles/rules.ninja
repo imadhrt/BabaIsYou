@@ -48,6 +48,14 @@ rule RERUN_CMAKE
 
 
 #############################################
+# Rule for cleaning additional files.
+
+rule CLEAN_ADDITIONAL
+  command = /Users/mamounbenmassaoud/Qt/Tools/CMake/CMake.app/Contents/bin/cmake -DCONFIG=$CONFIG -P CMakeFiles/clean_additional.cmake
+  description = Cleaning additional files...
+
+
+#############################################
 # Rule for cleaning all built files.
 
 rule CLEAN

@@ -1,27 +1,35 @@
 # ninja log v5
-2	56	1682904915116898348	CMakeFiles/Projet_Baba_Is_You.dir/sourceFile/model/operator.cpp.o	7e449fb6dcef7ec4
-1	58	1682904915116891890	CMakeFiles/Projet_Baba_Is_You.dir/sourceFile/model/complement.cpp.o	123a9ff1984a6bd0
-1	58	1682904915116839765	CMakeFiles/Projet_Baba_Is_You.dir/sourceFile/model/materials.cpp.o	3ad97ea71ce8dc0e
-6	64	1682904915124320518	CMakeFiles/Projet_Baba_Is_You.dir/sourceFile/model/words.cpp.o	7e508cf930cf9c7b
-3	64	1682904915125254055	CMakeFiles/Projet_Baba_Is_You.dir/sourceFile/model/subject.cpp.o	11f6259c6fd816c3
-56	120	1682904915179262772	CMakeFiles/Projet_Baba_Is_You.dir/sourceFile/model/rule.cpp.o	54de819e17030c7d
-58	546	1682904915606036456	CMakeFiles/Projet_Baba_Is_You.dir/sourceFile/model/managerCommand.cpp.o	fe9a88cd19040085
-58	549	1682904915605818290	CMakeFiles/Projet_Baba_Is_You.dir/sourceFile/model/ruleManager.cpp.o	2b7914b383e97a68
-1	616	1682904915676849127	CMakeFiles/Projet_Baba_Is_You.dir/sourceFile/model/element.cpp.o	3dcd4878566d3c19
-5	650	1682904915708846793	CMakeFiles/Projet_Baba_Is_You.dir/sourceFile/model/tiles.cpp.o	b9a8ca58c15dc7b5
-1	701	1682904915756416627	CMakeFiles/Projet_Baba_Is_You.dir/sourceFile/controller/main.cpp.o	7a623af1ac3fc306
-64	750	1682904915810482344	CMakeFiles/Projet_Baba_Is_You.dir/sourceFile/view/view.cpp.o	d38809d5ff2cd039
-120	758	1682904915818068096	CMakeFiles/Projet_Baba_Is_You.dir/sourceFile/controller/controller.cpp.o	526271842b76cb0a
-1	772	1682904915824648437	CMakeFiles/Projet_Baba_Is_You.dir/sourceFile/model/levelLoader.cpp.o	91c53141eebf8a6e
-1	863	1682904915923685419	CMakeFiles/Projet_Baba_Is_You.dir/sourceFile/model/board.cpp.o	8ad59acf86ec5c24
-547	896	1682904915957778990	CMakeFiles/Projet_Baba_Is_You.dir/sourceFile/model/moveCommand.cpp.o	3550c664302381e3
-64	987	1682904916047382605	CMakeFiles/Projet_Baba_Is_You.dir/sourceFile/model/babaIsYou.cpp.o	83902dfb0f311fd3
-987	1029	1682904916091897997	Projet_Baba_Is_You	805c9ec23c6c5d95
-2	293	1682905134719334508	CMakeFiles/Projet_Baba_Is_You.dir/sourceFile/model/levelLoader.cpp.o	91c53141eebf8a6e
-293	328	1682905134755949567	Projet_Baba_Is_You	805c9ec23c6c5d95
-1	306	1682905877573284942	CMakeFiles/Projet_Baba_Is_You.dir/sourceFile/model/levelLoader.cpp.o	91c53141eebf8a6e
-307	349	1682905877617658126	Projet_Baba_Is_You	805c9ec23c6c5d95
-2	429	1682906690843008666	CMakeFiles/Projet_Baba_Is_You.dir/sourceFile/model/levelLoader.cpp.o	91c53141eebf8a6e
-429	474	1682906690890514934	Projet_Baba_Is_You	805c9ec23c6c5d95
-16	498	1683893764885219550	CMakeFiles/Projet_Baba_Is_You.dir/sourceFile/model/babaIsYou.cpp.o	83902dfb0f311fd3
-499	548	1683893764936957543	Projet_Baba_Is_You	805c9ec23c6c5d95
+15	65	1683907792732982319	/Users/mamounbenmassaoud/Documents/ESI/Bloc2 Q2/DEV4/babaisyou-g58132-g58112/build-Projet_Baba_Is_You-Qt_6_5_0_for_macOS-Debug/Projet_Baba_Is_You_autogen/mocs_compilation.cpp	c8018f02ba649343
+15	65	1683907792732982319	Projet_Baba_Is_You_autogen/timestamp	c8018f02ba649343
+383	2310	1683907756774821317	CMakeFiles/Projet_Baba_Is_You.dir/sourceFile/controller/controller.cpp.o	f849653e28ea1140
+15	65	1683907792732982319	/Users/mamounbenmassaoud/Documents/ESI/Bloc2 Q2/DEV4/babaisyou-g58132-g58112/build-Projet_Baba_Is_You-Qt_6_5_0_for_macOS-Debug/Projet_Baba_Is_You_autogen/timestamp	c8018f02ba649343
+382	2356	1683907756792901318	CMakeFiles/Projet_Baba_Is_You.dir/sourceFile/view/view.cpp.o	46dd53edf7650ba4
+75	1162	1683907793821618567	CMakeFiles/Projet_Baba_Is_You.dir/mainwindow.cpp.o	63d69d8934eccc26
+443	542	1683900891201432380	CMakeFiles/Projet_Baba_Is_You.dir/sourceFile/model/materials.cpp.o	ffb7c9811e2db0fd
+0	4	0	clean	8b155de9a1d3ae22
+380	2355	1683907756800351793	CMakeFiles/Projet_Baba_Is_You.dir/sourceFile/model/levelLoader.cpp.o	2f7cf3d55a32cced
+3	197	1683907952914312434	build.ninja	801b3b3226510ec3
+441	1995	1683900892652641524	CMakeFiles/Projet_Baba_Is_You.dir/sourceFile/model/element.cpp.o	3424639203d33c9a
+543	1671	1683900892330314937	CMakeFiles/Projet_Baba_Is_You.dir/sourceFile/model/managerCommand.cpp.o	d7399e317beb16f0
+384	2273	1683907756731888759	CMakeFiles/Projet_Baba_Is_You.dir/sourceFile/model/moveCommand.cpp.o	8363dc9feaa3c8e1
+397	2039	1683907783535178092	CMakeFiles/Projet_Baba_Is_You.dir/sourceFile/controller/main.cpp.o	41f38cc7646d7111
+801	969	1683903817980808886	Projet_Baba_Is_You	969b90db59c6e901
+542	1347	1683900892006569821	CMakeFiles/Projet_Baba_Is_You.dir/sourceFile/model/ruleManager.cpp.o	3ddf9c647cc4f4d4
+443	2125	1683900892773106954	CMakeFiles/Projet_Baba_Is_You.dir/sourceFile/model/tiles.cpp.o	a7491c280d703492
+443	543	1683900891200212218	CMakeFiles/Projet_Baba_Is_You.dir/sourceFile/model/subject.cpp.o	915c8db568a3ca56
+540	602	1683900891251666625	CMakeFiles/Projet_Baba_Is_You.dir/sourceFile/model/rule.cpp.o	2cd0f415fda8ebb3
+380	2656	1683907757117232657	CMakeFiles/Projet_Baba_Is_You.dir/sourceFile/model/babaIsYou.cpp.o	69af16296fae3454
+536	600	1683900891251976166	CMakeFiles/Projet_Baba_Is_You.dir/sourceFile/model/words.cpp.o	31e855d5b42bbf9b
+379	2528	1683907756989467192	CMakeFiles/Projet_Baba_Is_You.dir/sourceFile/model/board.cpp.o	4fff934d9aeb4695
+443	536	1683900891191873746	CMakeFiles/Projet_Baba_Is_You.dir/sourceFile/model/operator.cpp.o	b4d7b99376c2b46
+15	65	1683907792732982319	Projet_Baba_Is_You_autogen/mocs_compilation.cpp	c8018f02ba649343
+441	540	1683900891198675348	CMakeFiles/Projet_Baba_Is_You.dir/sourceFile/model/complement.cpp.o	4bd0f91c6117790e
+54	85	1683903556846464186	CMakeFiles/Projet_Baba_Is_You.dir/sourceFile/controller/mainWidget.cpp.o	434157f10fda85a2
+396	1981	1683907783475477581	CMakeFiles/Projet_Baba_Is_You.dir/Projet_Baba_Is_You_autogen/mocs_compilation.cpp.o	3449fadf328c0ee1
+17	56	1683907953748564000	Projet_Baba_Is_You_autogen/timestamp	c8018f02ba649343
+17	56	1683907953748564000	Projet_Baba_Is_You_autogen/mocs_compilation.cpp	c8018f02ba649343
+17	56	1683907953748564000	/Users/mamounbenmassaoud/Documents/ESI/Bloc2 Q2/DEV4/babaisyou-g58132-g58112/build-Projet_Baba_Is_You-Qt_6_5_0_for_macOS-Debug/Projet_Baba_Is_You_autogen/timestamp	c8018f02ba649343
+17	56	1683907953748564000	/Users/mamounbenmassaoud/Documents/ESI/Bloc2 Q2/DEV4/babaisyou-g58132-g58112/build-Projet_Baba_Is_You-Qt_6_5_0_for_macOS-Debug/Projet_Baba_Is_You_autogen/mocs_compilation.cpp	c8018f02ba649343
+56	1217	1683907954914966913	CMakeFiles/Projet_Baba_Is_You.dir/Projet_Baba_Is_You_autogen/mocs_compilation.cpp.o	3449fadf328c0ee1
+56	1256	1683907954955670555	CMakeFiles/Projet_Baba_Is_You.dir/mainwindow.cpp.o	63d69d8934eccc26
+1256	1476	1683907955179128795	Projet_Baba_Is_You	969b90db59c6e901
