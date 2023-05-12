@@ -23,9 +23,9 @@ Si le niveau est entre 0 et 4 inclusivement, charge le plateau de jeu correspond
 et met à jour les règles du jeu. Trouve également la position initiale du joueur.
 @param level le niveau de jeu choisi
 */
-void BabaIsYou::start(int level) {
+void BabaIsYou::start(int level,bool isSave) {
     if(level >=0){
-        LevelLoader levelLoader(level);
+        LevelLoader levelLoader(level,isSave);
         setBoard(new Board(levelLoader));
         findAndAddRules();
         getVecPosPlayer();
@@ -650,33 +650,6 @@ BabaIsYou::BabaIsYou(const BabaIsYou& other)
 }
 
 
-/*void BabaIsYou::saveLevel1(int numberLevel, Board board) {
-    std::ofstream fichier("../sourceFile/level/level_" + std::to_string(numberLevel) + ".txt");
-
-    if (fichier.is_open()) {
-        fichier << board.getFile().getHeight() << " " << board.getFile().getWidth() << std::endl;
-        for (int i = 0; i < board.getFile().getHeight(); ++i) {
-            for (int j = 0; j < board.getFile().getWidth(); ++j) {
-                for (int k = 0; k < board.getBoard().at(i).at(j).getListElement().size(); ++k) {
-                    auto entity = board.getBoard().at(i).at(j).getListElement().at(k);
-
-                    fichier << entity. << " " << i << " " << j << " " << entity.second.getDirection() << std::endl;
-                }
-
-            }
-        }
-        fichier.close();
-    }else {
-        std::cout << "Impossible d'ouvrir le fichier" << std::endl;
-    }
-
-    }
-
-*/
-std::string BabaIsYou::convertionString(Element element){
-
-}
-
 void BabaIsYou::saveLevel(const int nombre) const {
     std::ofstream outputFile("../sourceFile/levelSaved/"  + std::to_string(nombre) + ".txt");
     if (!outputFile.is_open()) {
@@ -688,11 +661,11 @@ void BabaIsYou::saveLevel(const int nombre) const {
 
     for (int y = 0; y < board->getFile().getHeight(); y++) {
         for (int x = 0; x < board->getFile().getWidth(); x++) {
-            for (int i = 1; i < board->getBoard().at(y).at(x).getListElement().size(); ++i) {
-                Element element = board->getBoard().at(y).at(x).getListElement().at(i);
+            for (int i = 1; i < board->getBoard().at(x).at(y).getListElement().size(); ++i) {
+                Element element = board->getBoard().at(x).at(y).getListElement().at(i);
                 if (element.getWords() != nullptr) {
                     if(&element.getWords()->getSubject() != nullptr) {
-                        std::string elementStr = toStringSubject(element.getWords()->getSubject().getSubjectEnum());
+                        std::string elementStr = toStringS(element.getWords()->getSubject().getSubjectEnum());
                         outputFile << elementStr << " " << y << " " << x << std::endl;
                     }else if(&element.getWords()->getComplement() != nullptr) {
                         std::string elementStr = toStringComplement(element.getWords()->getComplement().getComplementEnum());
@@ -703,7 +676,7 @@ void BabaIsYou::saveLevel(const int nombre) const {
                     }
                 }else {
                     if (element.getMat() != nullptr && element.getMat()->getIcon() != Icon::EMPTY_ICON) {
-                        std::string elementStr = toStringIcon(element.getMat()->getIcon());
+                        std::string elementStr = toStringI(element.getMat()->getIcon());
                         outputFile << elementStr << " " << y << " " << x << std::endl;
                     }
                 }

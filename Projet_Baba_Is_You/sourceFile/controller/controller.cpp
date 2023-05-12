@@ -63,8 +63,8 @@ dev4::Direction BabaIsYouController::processInput() {
                 break;
             case 'a':
             case 'A':
-                babaIsYou->start(babaIsYou->getBoard()->getFile().getLevel());
-                view->setBoard(*babaIsYou->getBoard());
+                babaIsYou->start(babaIsYou->getBoard()->getFile().getLevel(), false);
+                //view->setBoard(*babaIsYou->getBoard());
                 babaIsYou->notifyObservers();
                 break;
             case 's':
@@ -84,12 +84,20 @@ dev4::Direction BabaIsYouController::processInput() {
 char BabaIsYouController::beforeGame(){
     char input;
     bool validInput = false;
+    int nombre;
     while (!validInput){
         std::cin >> input;
         switch (input) {
             case 'n':
             case 'N':
-                babaIsYou->start(0);
+                babaIsYou->start(0,false);
+                babaIsYou->notifyObservers();
+                validInput = true;
+                break;
+            case 's':
+            case 'S':
+                nombre = lireChiffreClavier();
+                babaIsYou->start(nombre,true);
                 babaIsYou->notifyObservers();
                 validInput = true;
                 break;
@@ -146,8 +154,8 @@ void BabaIsYouController::start() {
             BabaIsYouView::displayWinMessage();
             int nextLevel = babaIsYou->getBoard()->getFile().getLevel() + 1;
             if (nextLevel <= 4) {
-                babaIsYou->start(nextLevel);
-                view->setBoard(*babaIsYou->getBoard());
+                babaIsYou->start(nextLevel, false);
+               // view->setBoard(*babaIsYou->getBoard());
                 babaIsYou->notifyObservers();
             } else {
                 running = false;
@@ -166,7 +174,7 @@ BabaIsYouController::~BabaIsYouController() {
 }
 
 void BabaIsYouController::update() {
-    view->setBabaIsYou(*babaIsYou);
+    //view->setBabaIsYou(*babaIsYou);
     view->displayBoard();
 }
 

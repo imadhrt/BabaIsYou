@@ -16,10 +16,10 @@ int main() {
 
 
     int levelNumber = 0;
-    LevelLoader levelLoader(levelNumber);
+    LevelLoader levelLoader(levelNumber, false);
     Board board(levelLoader);
     BabaIsYou babaIsYou(&board);
-    BabaIsYouView gameView(board,babaIsYou);
+    BabaIsYouView gameView(&babaIsYou);
     BabaIsYouController gameController(&babaIsYou,&gameView);
      gameController.start();
 

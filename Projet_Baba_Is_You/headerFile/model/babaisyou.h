@@ -27,7 +27,7 @@ private:
 public:
     Board *getBoard() const;
 
-    void start(int level);
+    void start(int level, bool isSave);
 
     void setBoard(Board *board);
 

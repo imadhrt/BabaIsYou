@@ -19,7 +19,7 @@ private:
 
     std::string stringLevel;
 public:
-    LevelLoader(int level);
+    LevelLoader(int level, bool save);
 
 
     void browseLevel(int numberLevel);

@@ -10,19 +10,18 @@
 
 class BabaIsYouView {
 private:
-    Board& board;
-    BabaIsYou babaIsYou;
+
+    BabaIsYou* babaIsYou;
 public:
 
     BabaIsYouView(Board &board);
 
-    void setBabaIsYou(const BabaIsYou &babaIsYou);
 
     void displayBoard();
 
-    void setBoard(const Board board);
 
-    BabaIsYouView(Board &board, const BabaIsYou &babaIsYou);
+
+    explicit BabaIsYouView(BabaIsYou *babaIsYou);
 
     static void thanks();
 

@@ -64,7 +64,7 @@ void LevelLoader::browseLevelSaved(int levelSaved){
 
         while (std::getline(fichier, ligne)) {
             std::istringstream lgn(ligne);
-            lgn >> str >> x >> y >> dir;
+            lgn >> str >> y >> x >> dir;
             dev4::Position pos {x, y};
             std::pair<std::string, dev4::Position> paire {str, pos};
             vecPAire.push_back(paire);
@@ -81,8 +81,12 @@ void LevelLoader::browseLevelSaved(int levelSaved){
  *
  * @param level Le numéro du niveau à charger.
  */
-LevelLoader::LevelLoader(int level): level(level) {
-    browseLevel(level);
+LevelLoader::LevelLoader(int level, bool save): level(level) {
+    if(save){
+        browseLevelSaved(level);
+    }else{
+        browseLevel(level);
+    }
 }
 
 /**

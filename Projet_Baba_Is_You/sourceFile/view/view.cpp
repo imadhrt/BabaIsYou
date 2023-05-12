@@ -8,10 +8,10 @@
  */
 void BabaIsYouView::displayBoard() {
 
-    for (int i = 0; i < babaIsYou.getBoard()->getFile().getHeight(); ++i) {
-        for (int j = 0; j < babaIsYou.getBoard()->getFile().getWidth(); ++j) {
-            auto element = babaIsYou.getBoard()->getBoard().at(i).at(j).getListElement().at(
-                    babaIsYou.getBoard()->getBoard().at(i).at(j).getListElement().size() - 1);
+    for (int i = 0; i < babaIsYou->getBoard()->getFile().getHeight(); ++i) {
+        for (int j = 0; j < babaIsYou->getBoard()->getFile().getWidth(); ++j) {
+            auto element = babaIsYou->getBoard()->getBoard().at(i).at(j).getListElement().at(
+                    babaIsYou->getBoard()->getBoard().at(i).at(j).getListElement().size() - 1);
             if (element.getMat() != nullptr && element.getWords() == nullptr) {
                 std::cout << toStringIcon((*element.getMat()).getIcon()) << " | ";
             } else if (element.getMat() == nullptr && element.getWords() != nullptr) {
@@ -75,15 +75,7 @@ void BabaIsYouView::displaysaveSucces(){
     std::cout << "Fichier sauvgardé dans le directory levelSaved avec succés !!!!" << std::endl;
 }
 
-void BabaIsYouView::setBoard(const Board board) {
-    BabaIsYouView::board = board;
-}
 
-BabaIsYouView::BabaIsYouView(Board &board, const BabaIsYou &babaIsYou) : board(board), babaIsYou(babaIsYou) {}
-
-void BabaIsYouView::setBabaIsYou(const BabaIsYou &babaIsYou) {
-    BabaIsYouView::babaIsYou = babaIsYou;
-}
 /**
  * Afficher un message de remerciement.
  */
@@ -92,7 +84,7 @@ void BabaIsYouView::thanks() {
 }
 
 void BabaIsYouView::askLevelToPlay(){
-    std::cout << "Appuyer sur (n) pour commencer la partie !" << std::endl;
+    std::cout << "Appuyer sur (n) pour commencer la partie ou Appuyer sur (s) pour commencer une partie sauvgardé!" << std::endl;
 }
 
 void BabaIsYouView::askNameLevelToPlay() {
@@ -103,3 +95,5 @@ void BabaIsYouView::askNameLevelToPlay() {
 void BabaIsYouView::askNameFileToSave(){
     std::cout << "Entrer le nombre du fichier : " << std::endl;
 }
+
+BabaIsYouView::BabaIsYouView(BabaIsYou *babaIsYou) : babaIsYou(babaIsYou) {}

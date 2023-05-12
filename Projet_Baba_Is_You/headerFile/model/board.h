@@ -26,40 +26,41 @@ public:
     std::vector<std::vector<Tiles>> copyBoard(Board* otherBoard);
 };
 
-inline std::string toStringSubject(SubjectEnum subjet)
+inline std::string toStringS(SubjectEnum subjet)
 {
     std::string str;
 
     switch (subjet) {
         case SubjectEnum::FLAG :
-            str = "  flag  ";
+            str = "text_flag ";
+            //str = "\033[31mtxtFlag\033[0m ";
             break;
         case SubjectEnum::GRASS :
-            str = " grass  ";
+            str = "text_grass";
             break;
         case SubjectEnum::WALL :
-            str = "  wall  ";
+            str = "text_wall ";
             break;
         case SubjectEnum::LAVA :
-            str = "  lava  ";
+            str = "text_lava ";
             break;
         case SubjectEnum::BABA :
-            str = "  baba  ";
+            str = "text_baba ";
             break;
         case SubjectEnum::ROCK :
-            str = "  rock  ";
+            str = "text_rock ";
             break;
         case SubjectEnum::BONE:
-            str = "  bone  ";
+            str = "text_bone ";
             break;
         case SubjectEnum::GOOP :
-            str = "  goop  ";
+            str = "text_goop ";
             break;
         case SubjectEnum::METAL :
-            str = " metal  ";
+            str = "text_metal";
             break;
         case SubjectEnum::WATER :
-            str = " water  ";
+            str = "text_water";
             break;
         default:
             str="";
@@ -74,25 +75,25 @@ inline std::string toStringComplement(ComplementEnum complementEnum) {
 
     switch (complementEnum) {
         case ComplementEnum::WIN :
-            str = "  win   ";
+            str = "   win    ";
             break;
         case ComplementEnum::KILL :
-            str = "  kill  ";
+            str = "   kill   ";
             break;
         case ComplementEnum::SINK :
-            str = "  sink  ";
+            str = "   sink   ";
             break;
         case ComplementEnum::STOP :
-            str = "  stop  ";
+            str = "   stop   ";
             break;
         case ComplementEnum::YOU :
-            str = "  you   ";
+            str = "   you    ";
             break;
         case ComplementEnum::PUSH :
-            str = "  push  ";
+            str = "  push    ";
             break;
         case ComplementEnum::BEST :
-            str = "  best  ";
+            str = "   best   ";
             break;
     }
     return str;
@@ -103,53 +104,136 @@ inline std::string toStringOperator(OperatorEnum operatorEnum) {
 
     switch (operatorEnum) {
         case OperatorEnum::IS :
-            str = "   is   ";
+            str = "   is     ";
             break;
     }
     return str;
 }
+inline std::string toStringI(Icon icon)
+{
+    std::string str;
+
+    switch (icon) {
+        case Icon::FLAG_ICON:
+            str = "   flag   ";
+            break;
+        case Icon::GRASS_ICON :
+            str = "  grass   ";
+            break;
+        case Icon::WALL_ICON :
+            str = "   wall   ";
+            break;
+        case Icon::LAVA_ICON :
+            str = "   lava   ";
+            break;
+        case Icon::BABA_ICON :
+            str = "   baba   ";
+            break;
+        case Icon::ROCK_ICON :
+            str = "   rock   ";
+            break;
+        case Icon::BONE_ICON:
+            str = "   bone   ";
+            break;
+        case Icon::GOOP_ICON:
+            str = "   goop   ";
+            break;
+        case Icon::METAL_ICON :
+            str = "  metal   ";
+            break;
+        case Icon::WATER_ICON:
+            str = "  water  ";
+            break;
+    }
+
+    return str;
+}
+
 inline std::string toStringIcon(Icon icon)
 {
     std::string str;
 
     switch (icon) {
         case Icon::FLAG_ICON :
-            str = "txtFlag ";
+            str = "  txtFlag ";
             //str = "\033[31mtxtFlag\033[0m ";
             break;
         case Icon::GRASS_ICON :
-            str = "txtGrass";
+            str = " txtGrass ";
             break;
         case Icon:: WALL_ICON:
-            str = "txtWall ";
+            str = "  txtWall ";
             break;
         case Icon::LAVA_ICON :
-            str = "txtLava ";
+            str = "  txtLava ";
             break;
         case Icon::BABA_ICON :
-              str = "txtBaba ";
+            str = "  txtBaba ";
             break;
         case Icon::ROCK_ICON :
-            str = "txtRock ";
+            str = "  txtRock ";
             break;
         case Icon::BONE_ICON :
-            str = "txtBone ";
+            str = "  txtBone ";
             break;
         case Icon::GOOP_ICON :
-            str = "txtGoop ";
+            str = " txtGoop ";
             break;
         case Icon::METAL_ICON :
-            str = "txtMetal";
+            str = " txtMetal ";
             break;
         case Icon::EMPTY_ICON :
-            str = "--------";
+            str = "----------";
             break;
         case Icon::WATER_ICON :
-            str = "txtWater";
+            str = " txtWater ";
             break;
     }
 
     return str;
 }
+
+inline std::string toStringSubject(SubjectEnum subjet)
+{
+    std::string str;
+
+    switch (subjet) {
+        case SubjectEnum::FLAG :
+            str = "   flag   ";
+            break;
+        case SubjectEnum::GRASS :
+            str = "  grass   ";
+            break;
+        case SubjectEnum::WALL :
+            str = "   wall   ";
+            break;
+        case SubjectEnum::LAVA :
+            str = "   lava   ";
+            break;
+        case SubjectEnum::BABA :
+            str = "   baba   ";
+            break;
+        case SubjectEnum::ROCK :
+            str = "   rock   ";
+            break;
+        case SubjectEnum::BONE:
+            str = "   bone   ";
+            break;
+        case SubjectEnum::GOOP :
+            str = "   goop   ";
+            break;
+        case SubjectEnum::METAL :
+            str = "  metal   ";
+            break;
+        case SubjectEnum::WATER :
+            str = "  water   ";
+            break;
+        default:
+            str="";
+    }
+
+    return str;
+}
+
 #endif //PROJET_BABA_IS_YOU_BOARD_H
 
