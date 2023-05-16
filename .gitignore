@@ -240,7 +240,7 @@ compile_commands.json
 # Edit at https://www.toptal.com/developers/gitignore?templates=cmake
 
 ### CMake ###
-CMakeLists.txt.user
+Projet_Baba_Is_You/CMakeLists.txt.user
 CMakeCache.txt
 CMakeFiles
 CMakeScripts

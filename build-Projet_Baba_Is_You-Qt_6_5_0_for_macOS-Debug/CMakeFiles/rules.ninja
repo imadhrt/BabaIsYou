@@ -42,7 +42,7 @@ rule CUSTOM_COMMAND
 # Rule for re-running cmake.
 
 rule RERUN_CMAKE
-  command = /Users/mamounbenmassaoud/Qt/Tools/CMake/CMake.app/Contents/bin/cmake --regenerate-during-build -S"/Users/mamounbenmassaoud/Documents/ESI/Bloc2 Q2/DEV4/dossier sans titre/babaisyou-g58132-g58112/Projet_Baba_Is_You" -B"/Users/mamounbenmassaoud/Documents/ESI/Bloc2 Q2/DEV4/dossier sans titre/babaisyou-g58132-g58112/build-Projet_Baba_Is_You-Qt_6_5_0_for_macOS-Debug"
+  command = /Users/mamounbenmassaoud/Qt/Tools/CMake/CMake.app/Contents/bin/cmake --regenerate-during-build -S"/Users/mamounbenmassaoud/Documents/ESI/Bloc2 Q2/DEV4/new_baba_is_you/babaisyou-g58132-g58112/Projet_Baba_Is_You" -B"/Users/mamounbenmassaoud/Documents/ESI/Bloc2 Q2/DEV4/new_baba_is_you/babaisyou-g58132-g58112/build-Projet_Baba_Is_You-Qt_6_5_0_for_macOS-Debug"
   description = Re-running CMake...
   generator = 1
 
