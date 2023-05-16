@@ -1,0 +1,78 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"jsonFile" : "directory-.-Debug-d0094a50bb2071803777.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "Projet_Baba_Is_You",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "Projet_Baba_Is_You::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-Projet_Baba_Is_You-Debug-086d893455f28a764dcb.json",
+					"name" : "Projet_Baba_Is_You",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "Projet_Baba_Is_You_autogen::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-Projet_Baba_Is_You_autogen-Debug-c56d7eb6cb0a240adf4e.json",
+					"name" : "Projet_Baba_Is_You_autogen",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "Projet_Baba_Is_You_autogen_timestamp_deps::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-Projet_Baba_Is_You_autogen_timestamp_deps-Debug-a06a3a1a1f3b5f302502.json",
+					"name" : "Projet_Baba_Is_You_autogen_timestamp_deps",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "Z:/babaisyou-g58132-g58112/build-Projet_Baba_Is_You-Desktop_Qt_6_3_0_MinGW_64_bit-Debug",
+		"source" : "Z:/babaisyou-g58132-g58112/Projet_Baba_Is_You"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 3
+	}
+}
