@@ -1,4 +1,4 @@
-# Install script for directory: /Users/mamounbenmassaoud/Documents/ESI/Bloc2 Q2/DEV4/babaisyou-g58132-g58112/Projet_Baba_Is_You
+# Install script for directory: /Users/mamounbenmassaoud/Documents/ESI/Bloc2 Q2/DEV4/dossier sans titre/babaisyou-g58132-g58112/Projet_Baba_Is_You
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -45,5 +45,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/Users/mamounbenmassaoud/Documents/ESI/Bloc2 Q2/DEV4/babaisyou-g58132-g58112/build-Projet_Baba_Is_You-Qt_6_5_0_for_macOS-Debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/Users/mamounbenmassaoud/Documents/ESI/Bloc2 Q2/DEV4/dossier sans titre/babaisyou-g58132-g58112/build-Projet_Baba_Is_You-Qt_6_5_0_for_macOS-Debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

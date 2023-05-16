@@ -1,5 +1,5 @@
-/Users/mamounbenmassaoud/Documents/ESI/Bloc2\ Q2/DEV4/babaisyou-g58132-g58112/build-Projet_Baba_Is_You-Qt_6_5_0_for_macOS-Debug/Projet_Baba_Is_You_autogen/EWIEGA46WW/moc_mainwindow.cpp: /Users/mamounbenmassaoud/Documents/ESI/Bloc2\ Q2/DEV4/babaisyou-g58132-g58112/Projet_Baba_Is_You/mainwindow.h \
-  /Users/mamounbenmassaoud/Documents/ESI/Bloc2\ Q2/DEV4/babaisyou-g58132-g58112/build-Projet_Baba_Is_You-Qt_6_5_0_for_macOS-Debug/Projet_Baba_Is_You_autogen/moc_predefs.h \
+/Users/mamounbenmassaoud/Documents/ESI/Bloc2\ Q2/DEV4/dossier\ sans\ titre/babaisyou-g58132-g58112/build-Projet_Baba_Is_You-Qt_6_5_0_for_macOS-Debug/Projet_Baba_Is_You_autogen/EWIEGA46WW/moc_mainwindow.cpp: /Users/mamounbenmassaoud/Documents/ESI/Bloc2\ Q2/DEV4/dossier\ sans\ titre/babaisyou-g58132-g58112/Projet_Baba_Is_You/mainwindow.h \
+  /Users/mamounbenmassaoud/Documents/ESI/Bloc2\ Q2/DEV4/dossier\ sans\ titre/babaisyou-g58132-g58112/build-Projet_Baba_Is_You-Qt_6_5_0_for_macOS-Debug/Projet_Baba_Is_You_autogen/moc_predefs.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk/usr/include/Availability.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk/usr/include/AvailabilityInternal.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk/usr/include/AvailabilityMacros.h \

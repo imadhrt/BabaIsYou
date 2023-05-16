@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by QtCreator 10.0.0, 2023-05-12T17:42:57. -->
+<!-- Written by QtCreator 10.0.0, 2023-05-16T12:06:17. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
@@ -107,7 +107,8 @@
 -DCMAKE_CXX_COMPILER:FILEPATH=%{Compiler:Executable:Cxx}
 -DCMAKE_CXX_FLAGS_INIT:STRING=%{Qt:QML_DEBUG_FLAG}
 %{CMAKE_OSX_ARCHITECTURES:DefaultFlag}</value>
-    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">/Users/mamounbenmassaoud/Documents/ESI/Bloc2 Q2/DEV4/babaisyou-g58132-g58112/build-Projet_Baba_Is_You-Qt_6_5_0_for_macOS-Debug</value>
+    <value type="int" key="EnableQmlDebugging">0</value>
+    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">/Users/mamounbenmassaoud/Documents/ESI/Bloc2 Q2/DEV4/dossier sans titre/babaisyou-g58132-g58112/build-Projet_Baba_Is_You-Qt_6_5_0_for_macOS-Debug</value>
     <valuemap type="QVariantMap" key="ProjectExplorer.BuildConfiguration.BuildStepList.0">
      <valuemap type="QVariantMap" key="ProjectExplorer.BuildStepList.Step.0">
       <value type="QString" key="CMakeProjectManager.MakeStep.BuildPreset"></value>
@@ -164,7 +165,7 @@
 -DCMAKE_CXX_COMPILER:FILEPATH=%{Compiler:Executable:Cxx}
 -DCMAKE_CXX_FLAGS_INIT:STRING=%{Qt:QML_DEBUG_FLAG}
 %{CMAKE_OSX_ARCHITECTURES:DefaultFlag}</value>
-    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">/Users/mamounbenmassaoud/Documents/ESI/Bloc2 Q2/DEV4/babaisyou-g58132-g58112/build-Projet_Baba_Is_You-Qt_6_5_0_for_macOS-Release</value>
+    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">/Users/mamounbenmassaoud/Documents/ESI/Bloc2 Q2/DEV4/dossier sans titre/babaisyou-g58132-g58112/build-Projet_Baba_Is_You-Qt_6_5_0_for_macOS-Release</value>
     <valuemap type="QVariantMap" key="ProjectExplorer.BuildConfiguration.BuildStepList.0">
      <valuemap type="QVariantMap" key="ProjectExplorer.BuildStepList.Step.0">
       <value type="QString" key="CMakeProjectManager.MakeStep.BuildPreset"></value>
@@ -219,7 +220,7 @@
 -DCMAKE_CXX_COMPILER:FILEPATH=%{Compiler:Executable:Cxx}
 -DCMAKE_CXX_FLAGS_INIT:STRING=%{Qt:QML_DEBUG_FLAG}
 %{CMAKE_OSX_ARCHITECTURES:DefaultFlag}</value>
-    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">/Users/mamounbenmassaoud/Documents/ESI/Bloc2 Q2/DEV4/babaisyou-g58132-g58112/build-Projet_Baba_Is_You-Qt_6_5_0_for_macOS-RelWithDebInfo</value>
+    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">/Users/mamounbenmassaoud/Documents/ESI/Bloc2 Q2/DEV4/dossier sans titre/babaisyou-g58132-g58112/build-Projet_Baba_Is_You-Qt_6_5_0_for_macOS-RelWithDebInfo</value>
     <valuemap type="QVariantMap" key="ProjectExplorer.BuildConfiguration.BuildStepList.0">
      <valuemap type="QVariantMap" key="ProjectExplorer.BuildStepList.Step.0">
       <value type="QString" key="CMakeProjectManager.MakeStep.BuildPreset"></value>
@@ -275,7 +276,7 @@
 -DCMAKE_CXX_FLAGS_INIT:STRING=%{Qt:QML_DEBUG_FLAG}
 %{CMAKE_OSX_ARCHITECTURES:DefaultFlag}</value>
     <value type="int" key="EnableQmlDebugging">0</value>
-    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">/Users/mamounbenmassaoud/Documents/ESI/Bloc2 Q2/DEV4/babaisyou-g58132-g58112/build-Projet_Baba_Is_You-Qt_6_5_0_for_macOS-Profile</value>
+    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">/Users/mamounbenmassaoud/Documents/ESI/Bloc2 Q2/DEV4/dossier sans titre/babaisyou-g58132-g58112/build-Projet_Baba_Is_You-Qt_6_5_0_for_macOS-Profile</value>
     <valuemap type="QVariantMap" key="ProjectExplorer.BuildConfiguration.BuildStepList.0">
      <valuemap type="QVariantMap" key="ProjectExplorer.BuildStepList.Step.0">
       <value type="QString" key="CMakeProjectManager.MakeStep.BuildPreset"></value>
@@ -330,7 +331,7 @@
 -DCMAKE_CXX_COMPILER:FILEPATH=%{Compiler:Executable:Cxx}
 -DCMAKE_CXX_FLAGS_INIT:STRING=%{Qt:QML_DEBUG_FLAG}
 %{CMAKE_OSX_ARCHITECTURES:DefaultFlag}</value>
-    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">/Users/mamounbenmassaoud/Documents/ESI/Bloc2 Q2/DEV4/babaisyou-g58132-g58112/build-Projet_Baba_Is_You-Qt_6_5_0_for_macOS-MinSizeRel</value>
+    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">/Users/mamounbenmassaoud/Documents/ESI/Bloc2 Q2/DEV4/dossier sans titre/babaisyou-g58132-g58112/build-Projet_Baba_Is_You-Qt_6_5_0_for_macOS-MinSizeRel</value>
     <valuemap type="QVariantMap" key="ProjectExplorer.BuildConfiguration.BuildStepList.0">
      <valuemap type="QVariantMap" key="ProjectExplorer.BuildStepList.Step.0">
       <value type="QString" key="CMakeProjectManager.MakeStep.BuildPreset"></value>
@@ -400,9 +401,7 @@
     <value type="bool" key="RunConfiguration.UseLibrarySearchPath">true</value>
     <value type="bool" key="RunConfiguration.UseQmlDebugger">false</value>
     <value type="bool" key="RunConfiguration.UseQmlDebuggerAuto">true</value>
-    <value type="bool" key="RunConfiguration.UseTerminal">true</value>
-    <value type="QString" key="RunConfiguration.WorkingDirectory">/Users/mamounbenmassaoud/Documents/ESI/Bloc2 Q2/DEV4/babaisyou-g58132-g58112/Projet_Baba_Is_You/sourceFile</value>
-    <value type="QString" key="RunConfiguration.WorkingDirectory.default">/Users/mamounbenmassaoud/Documents/ESI/Bloc2 Q2/DEV4/babaisyou-g58132-g58112/build-Projet_Baba_Is_You-Qt_6_5_0_for_macOS-Debug</value>
+    <value type="QString" key="RunConfiguration.WorkingDirectory.default">/Users/mamounbenmassaoud/Documents/ESI/Bloc2 Q2/DEV4/dossier sans titre/babaisyou-g58132-g58112/build-Projet_Baba_Is_You-Qt_6_5_0_for_macOS-Debug</value>
    </valuemap>
    <value type="qlonglong" key="ProjectExplorer.Target.RunConfigurationCount">1</value>
   </valuemap>
