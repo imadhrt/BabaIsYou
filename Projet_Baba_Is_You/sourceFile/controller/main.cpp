@@ -5,7 +5,7 @@
 #include "../../headerFile/controller/controller.h"
 #include "../../headerFile/view/view.h"
 #include "../../mainwindow.h"
-
+#include "../../start.h"
 using namespace std;
 using namespace dev4;
 
@@ -27,8 +27,13 @@ int main() {
 int main (int argc , char* argv []){
     QApplication application(argc , argv ) ;
 
+    Start s ;
+    s.show();
+
+    /*
     MainWindow myWindow;
     myWindow.show ( ) ;
+    */
     return  application.exec();
 }
 
