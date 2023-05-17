@@ -1,6 +1,7 @@
 #include "start.h"
 #include "ui_start.h"
 #include <iostream>
+#include <QKeyEvent>
 /*
 Start::Start(QWidget *parent) :
     QWidget(parent),
@@ -23,8 +24,7 @@ Start::Start(QWidget *parent) :
     ui(new Ui::Start)
 {
     ui->setupUi(this);
-    setBackground("C:\\Users\\elhar\\DEV4\\BABAISYOU\\babaisyou-g58132-g58112\\Projet_Baba_Is_You\\sprite\\Baba_is_youBackGround.jpg");
-    //setBackground("C:\\Users\\adamj\\OneDrive\\Documents\\CourESI\\DEV4\\dev4-projet\\baba_is_you\\images\\fond_debut.jpg");
+    setBackground("../sprite/background.png");
 }
 
 Start::~Start()
@@ -46,17 +46,16 @@ void Start::setBackground(const QString& imagePath)
 void Start::resizeEvent(QResizeEvent *event)
 {
     QWidget::resizeEvent(event);
-    setBackground("C:\\Users\\elhar\\DEV4\\BABAISYOU\\babaisyou-g58132-g58112\\Projet_Baba_Is_You\\sprite\\Baba_is_youBackGround.jpg");
-    //setBackground("C:\\Users\\adamj\\OneDrive\\Documents\\CourESI\\DEV4\\dev4-projet\\baba_is_you\\images\\fond_debut.jpg");
+    setBackground("../sprite/background.png");
+
 }
 
 void Start::keyPressEvent(QKeyEvent *event)
 {
-//    setFocusPolicy(Qt::StrongFocus);
-//    if (event->key() == Qt::Key_Space) {
-//        Form *f = new Form();
-//        f->show();
-//        close();
-//    }
+    setFocusPolicy(Qt::StrongFocus);
+    if ( event->key() == Qt::Key_Space) {
+
+      QApplication::quit();
+    }
 }
 

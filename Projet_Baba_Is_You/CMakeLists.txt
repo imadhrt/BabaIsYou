@@ -28,7 +28,6 @@ add_executable(Projet_Baba_Is_You sourceFile/controller/main.cpp
         sourceFile/view/view.cpp headerFile/controller/controller.h sourceFile/controller/controller.cpp headerFile/util/observer.h
         headerFile/util/observable.h headerFile/model/command.h headerFile/model/moveCommand.h sourceFile/model/moveCommand.cpp
         mainwindow.h mainwindow.cpp mainwindow.ui
-        sourceFile/controller/mainWidget.cpp   start.cpp start.h start.ui
-    )
+        sourceFile/controller/mainWidget.cpp   start.cpp start.h start.ui caveview.cpp caveview.h caveview.ui)
 
 target_link_libraries(Projet_Baba_Is_You PRIVATE Qt6::Widgets)
