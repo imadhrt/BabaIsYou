@@ -18,11 +18,13 @@ CaveView::CaveView(int levelNumber, BabaIsYou babaIsYou, QWidget *parent) :
     gridLayout(new QGridLayout(this))
 {
 
-
+    gridLayout->setHorizontalSpacing(0);
+    gridLayout->setVerticalSpacing(0);
     ui->setupUi(this);
     initMenu();
     displayBoard();
     this->adjustSize();
+    this->setFixedSize(580,580);
 }
 
 CaveView::~CaveView()
@@ -83,6 +85,8 @@ void CaveView::displayBoard() {
         delete item;
     }
 
+gridLayout->setSpacing(0);
+
     for (int i = 0; i < babaIsYou.getBoard()->getFile().getHeight(); ++i) {
         for (int j = 0; j < babaIsYou.getBoard()->getFile().getWidth(); ++j) {
                 auto element = babaIsYou.getBoard()->getBoard().at(i).at(j).getListElement().at(
@@ -110,6 +114,8 @@ void CaveView::displayBoard() {
                 QPixmap scaledPixmap = pixmap.scaled(newWitdh, newHeight, Qt::KeepAspectRatio);
 
                 imgLabel->setPixmap(scaledPixmap);
+
+
                 gridLayout->addWidget(imgLabel,i,j);
         }
 
