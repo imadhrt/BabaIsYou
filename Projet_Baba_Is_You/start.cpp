@@ -1,23 +1,11 @@
-#include "start.h"
-#include "ui_start.h"
+
 #include <iostream>
 #include <QKeyEvent>
-/*
-Start::Start(QWidget *parent) :
-    QWidget(parent),
-    ui(new Ui::Start)
-{
-    std::cout << "hello start" << std::endl;
-    ui->setupUi(this);
-    backgroundPixmap.load("../sprite/Baba_is_youBackGround.jpg");
-    setFixedSize(backgroundPixmap.size());
-}
-*/
-
 #include "start.h"
 #include "ui_start.h"
 #include <QVBoxLayout>
 #include <QWidget>
+#include "caveview.h"
 
 Start::Start(QWidget *parent) :
     QWidget(parent),
@@ -29,6 +17,7 @@ Start::Start(QWidget *parent) :
 
 Start::~Start()
 {
+
     delete ui;
 }
 
@@ -55,7 +44,14 @@ void Start::keyPressEvent(QKeyEvent *event)
     setFocusPolicy(Qt::StrongFocus);
     if ( event->key() == Qt::Key_Space) {
 
-      QApplication::quit();
+        int levelNumber = 0;
+        LevelLoader levelLoader(levelNumber, false);
+        Board board(levelLoader);
+        BabaIsYou babaIsYou(&board);
+
+        CaveView *caveView = new CaveView(0, babaIsYou);
+        close();
+        caveView->show();
     }
 }
 

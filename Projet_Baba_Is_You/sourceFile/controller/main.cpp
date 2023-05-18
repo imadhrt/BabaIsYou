@@ -21,8 +21,8 @@ int main() {
      gameController.start();
 
     return 0;
-}
-*/
+}*/
+
 
 int main (int argc , char* argv []){
     QApplication application(argc , argv ) ;
@@ -35,6 +35,8 @@ int main (int argc , char* argv []){
     myWindow.show ( ) ;
     */
     return  application.exec();
+
+
 }
 
 
