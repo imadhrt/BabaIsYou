@@ -24,6 +24,7 @@ public:
     const LevelLoader &getFile() const;
     Board(Board* otherBoard);
     std::vector<std::vector<Tiles>> copyBoard(Board* otherBoard);
+    bool isValidPosition(const dev4::Position& pos) const;
 };
 
 inline std::string toStringS(SubjectEnum subjet)

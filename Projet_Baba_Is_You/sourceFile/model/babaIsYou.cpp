@@ -24,7 +24,7 @@ et met à jour les règles du jeu. Trouve également la position initiale du jou
 @param level le niveau de jeu choisi
 */
 void BabaIsYou::start(int level,bool isSave) {
-    if(level >=0){
+    if(level >=0 && !isSave){
         LevelLoader levelLoader(level,isSave);
         setBoard(new Board(levelLoader));
         findAndAddRules();
@@ -291,9 +291,14 @@ SubjectEnum BabaIsYou::iconToSubject(Icon icon){
  * @return true si le mouvement est possible sinon false
  */
 bool BabaIsYou::isPossibleMove(dev4::Direction dir, dev4::Position pos){
+
+    if(!board->contains(pos)){
+            return false;
+    }
     if(!board->contains(pos.nextPos(dir))){
         return false;
     }
+
 
     auto listElements = board->getBoard().at(pos.nextPos(dir).x()).at(pos.nextPos(dir).y()).getListElement();
 
@@ -322,7 +327,9 @@ int BabaIsYou::push(dev4::Position posPlayer, dev4::Direction dir)
 {
     int cpt{0};
             for (int i = 0; i < rules.getListOfRules().size(); ++i) {
-                while (board->getTiles(posPlayer.nextPos(dir)).getListElement().at(board->getTiles(posPlayer.nextPos(dir)).getListElement().size() - 1).getMat() != nullptr
+
+
+                while (board->contains(posPlayer)&&board->getTiles(posPlayer.nextPos(dir)).getListElement().at(board->getTiles(posPlayer.nextPos(dir)).getListElement().size() - 1).getMat() != nullptr
                 && rules.getListOfRules().at(i).getSubject().getSubjectEnum() == iconToSubject(board->getTiles(posPlayer.nextPos(dir)).getListElement().at(board->getTiles(posPlayer.nextPos(dir)).getListElement().size() - 1).getMat()->getIcon())
                 && rules.getListOfRules().at(i).getSubject().isPush()
                 ||board->getTiles(posPlayer.nextPos(dir)).getListElement().at(board->getTiles(posPlayer.nextPos(dir)).getListElement().size() - 1).getWords() != nullptr) {
@@ -472,6 +479,7 @@ void BabaIsYou::kill(){
         }
     }
 }
+
 
 /**
  * Methode qui permet de faire le mouvement .

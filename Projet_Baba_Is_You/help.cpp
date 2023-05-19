@@ -1,6 +1,8 @@
 #include "help.h"
 #include "ui_help.h"
 
+#include <QCloseEvent>
+
 Help::Help(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::Help)

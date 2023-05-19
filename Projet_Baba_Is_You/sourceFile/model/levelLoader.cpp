@@ -81,12 +81,20 @@ void LevelLoader::browseLevelSaved(int levelSaved){
  *
  * @param level Le numéro du niveau à charger.
  */
-LevelLoader::LevelLoader(int level, bool save): level(level) {
+LevelLoader::LevelLoader(int level, bool save):
+    level(level),
+    save(save)
+{
     if(save){
         browseLevelSaved(level);
     }else{
         browseLevel(level);
     }
+}
+
+
+bool LevelLoader::getSave() const{
+    return save;
 }
 
 /**

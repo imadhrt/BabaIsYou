@@ -102,11 +102,19 @@ Définit un nouvel élément à la position donnée en paramètre.
 */
 void Board::setElement(dev4::Position newPosition, Element element) {
     if(!contains(newPosition)){
-        throw std::invalid_argument("La position n' est pas dans le board");
+        throw std::invalid_argument("La position n' est pas dans le board setelement");
     }
     board[newPosition.x()][newPosition.y()].addElement(element);
 
 }
+
+bool Board::isValidPosition(const dev4::Position& pos) const {
+    int height = getFile().getHeight();
+    int width = getFile().getWidth();
+
+    return (pos.x() >= 0 && pos.x() < height && pos.y() >= 0 && pos.y() < width);
+}
+
 /**
 Getter pour l'objet "Tiles" se trouvant à la position donnée en paramètre.
 @param position une position.
@@ -114,7 +122,7 @@ Getter pour l'objet "Tiles" se trouvant à la position donnée en paramètre.
 */
 Tiles Board::getTiles(dev4::Position position) {
     if(!contains(position)){
-        throw std::invalid_argument("La position n' est pas dans le board");
+        throw std::invalid_argument("La position n' est pas dans le board fettiles");
     }
     return board.at(position.x()).at(position.y());
 }
@@ -124,7 +132,7 @@ Vérifie si la position donnée en paramètre est contenue dans le tableau "boar
 @return true si la position donnée en paramètre est contenue dans le tableau "board", false sinon.
 */
 bool Board::contains(dev4::Position position) {
-    return position.x()>=0 && position.x()<=board.size()-1 && position.y()>=0 && position.y()<=board[0].size();
+    return position.x() >= 0 && position.x() < board.size() && position.y() >= 0 && position.y() < board[0].size();
 }
 /**
 Supprime l'élément se trouvant à la position donnée en paramètre et le retourne.

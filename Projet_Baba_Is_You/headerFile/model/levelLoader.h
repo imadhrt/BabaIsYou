@@ -20,7 +20,7 @@ private:
     std::vector<std::pair<std::string, dev4::Position>> vecPAire;
 
     int level;
-
+    bool save;
     std::string stringLevel;
 public:
     LevelLoader(int level, bool save);
@@ -32,6 +32,7 @@ public:
 
     int getHeight() const;
 
+    bool getSave() const;
     const std::vector<std::pair<std::string, dev4::Position>> &getVecPAire() const;
 
     int getLevel() const;

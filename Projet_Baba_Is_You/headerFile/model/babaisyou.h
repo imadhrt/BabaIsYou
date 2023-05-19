@@ -78,6 +78,7 @@ public:
     void notifyObservers() override;
 
 
+
     std::string convertionString(Element element);
 
     void undo();

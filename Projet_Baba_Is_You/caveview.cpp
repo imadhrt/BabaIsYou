@@ -12,6 +12,8 @@
 #include "win.h"
 #include "help.h"
 
+#include <QCloseEvent>
+
 CaveView::CaveView(int levelNumber, BabaIsYou babaIsYou, QWidget *parent) :
     QWidget(parent),
     ui(new Ui::CaveView),
@@ -26,8 +28,8 @@ CaveView::CaveView(int levelNumber, BabaIsYou babaIsYou, QWidget *parent) :
     initMenu();
     displayBoard();
     this->adjustSize();
-    this->setFixedSize(580,580);
-    helpCommand();
+    this->setFixedSize(550,550);
+
 }
 
 CaveView::~CaveView()
@@ -67,18 +69,13 @@ void CaveView::saveGame(){
     saveLevel->show();
 }
 
-bool CaveView::isHelpShown = false;
-
 void CaveView::helpCommand() {
-    if (!isHelpShown) {
         Help *help = new Help();
         QRect firstWindowGeometry = this->geometry();
-        int x = firstWindowGeometry.x() + firstWindowGeometry.width() + 305; // Ajoute un espace de 10 pixels entre les fenêtres
+        int x = firstWindowGeometry.x() + firstWindowGeometry.width() + 685;
         int y = firstWindowGeometry.y() + 180;
         help->move(x, y);
         help->show();
-        isHelpShown = true;
-    }
 }
 
 
@@ -205,11 +202,10 @@ void CaveView::keyPressEvent(QKeyEvent *event)
         }
 
        if (babaIsYou.isWin()) {
-        std::cout << "test";
                 int nextLevel = babaIsYou.getBoard()->getFile().getLevel() + 1;
-
-                if (nextLevel <= 4) {
-                babaIsYou.start(nextLevel, false);
+                bool isSave = babaIsYou.getBoard()->getFile().getSave();
+                if (nextLevel <= 4 && !isSave) {
+                babaIsYou.start(nextLevel, isSave);
                 displayBoard();
                 }else{
                 close();

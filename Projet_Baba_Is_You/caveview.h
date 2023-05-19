@@ -28,7 +28,6 @@ private:
     BabaIsYou babaIsYou;
     int levelNumber;
     QGridLayout *gridLayout;
-    static bool isHelpShown;
 
 private slots:
     void saveGame();
