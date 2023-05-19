@@ -9,6 +9,7 @@ set(CMAKE_AUTORCC ON)
 find_package(Qt6 REQUIRED COMPONENTS Widgets)
 
 
+
 add_executable(Projet_Baba_Is_You sourceFile/controller/main.cpp
 
         headerFile/model/position.h headerFile/model/direction.h enum_to_class_to_enum.pro
@@ -32,6 +33,11 @@ add_executable(Projet_Baba_Is_You sourceFile/controller/main.cpp
         start.cpp start.h start.ui
         caveview.cpp caveview.h caveview.ui
         savelevel.h savelevel.cpp savelevel.ui
+        chooselevel.h chooselevel.cpp chooselevel.ui
+        win.h win.cpp win.ui
+        help.h help.cpp help.ui
         )
 
+
 target_link_libraries(Projet_Baba_Is_You PRIVATE Qt6::Widgets)
+

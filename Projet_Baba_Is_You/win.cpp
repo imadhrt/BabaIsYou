@@ -1,31 +1,24 @@
-
-#include <iostream>
-#include <QKeyEvent>
-#include "start.h"
-#include "ui_start.h"
-#include <QVBoxLayout>
-#include <QWidget>
+#include "win.h"
+#include "ui_win.h"
 #include "chooselevel.h"
-#include "caveview.h"
-#include <QMainWindow>
+#include <QKeyEvent>
 
-
-Start::Start(QWidget *parent) :
+Win::Win(QWidget *parent) :
     QWidget(parent),
-    ui(new Ui::Start)
+    ui(new Ui::Win)
 {
     ui->setupUi(this);
     setBackground("../sprite/background.png");
+    connect(ui->exitButton, &QPushButton::clicked, this, &Win::exitClicked);
+    connect(ui->chooseButton, &QPushButton::clicked, this, &Win::chooseClicked);
 }
 
-Start::~Start()
+Win::~Win()
 {
-
     delete ui;
 }
 
-
-void Start::setBackground(const QString& imagePath)
+void Win::setBackground(const QString& imagePath)
 {
     QPixmap bkgnd(imagePath);
     bkgnd = bkgnd.scaled(size(), Qt::IgnoreAspectRatio);
@@ -35,14 +28,14 @@ void Start::setBackground(const QString& imagePath)
 }
 
 
-void Start::resizeEvent(QResizeEvent *event)
+void Win::resizeEvent(QResizeEvent *event)
 {
     QWidget::resizeEvent(event);
     setBackground("../sprite/background.png");
 
 }
 
-void Start::keyPressEvent(QKeyEvent *event)
+void Win::keyPressEvent(QKeyEvent *event)
 {
     setFocusPolicy(Qt::StrongFocus);
     if ( event->key() == Qt::Key_Space) {
@@ -54,5 +47,14 @@ void Start::keyPressEvent(QKeyEvent *event)
 }
 
 
+void Win::exitClicked(){
+    QApplication::quit();
+}
 
 
+void Win::chooseClicked(){
+    close();
+    ChooseLevel *chooseLevel = new ChooseLevel();
+
+    chooseLevel->show();
+}

@@ -43,7 +43,10 @@ public:
 inline std::vector<std::string> listLvl()
 {
     std::vector<std::string> filenames;
-    std::string path = "../ressource";
+    //std::string path = "../baba_is_you/ressource";
+    std::string path = "./level";
+
+
 
     for(const auto & entry : std::filesystem::directory_iterator(path)){
         if(entry.is_regular_file()){
@@ -57,6 +60,29 @@ inline std::vector<std::string> listLvl()
 inline void showLvl(){
     for (int i = 0; i < listLvl().size(); ++i) {
         std::cout << listLvl().at(i) << std::endl;
+    }
+}
+
+inline std::vector<std::string> listLvlSaved()
+{
+    std::vector<std::string> filenames;
+    //std::string path = "../baba_is_you/ressource";
+    std::string path = "./levelSaved";
+
+
+
+    for(const auto & entry : std::filesystem::directory_iterator(path)){
+        if(entry.is_regular_file()){
+            filenames.push_back(entry.path().filename().string());
+        }
+    }
+
+    return filenames;
+}
+
+inline void showLvlSaved(){
+    for (int i = 0; i < listLvlSaved().size(); ++i) {
+        std::cout << listLvlSaved().at(i) << std::endl;
     }
 }
 

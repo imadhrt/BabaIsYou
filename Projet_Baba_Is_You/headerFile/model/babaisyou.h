@@ -57,7 +57,9 @@ public:
 
     Icon subjectToIcon(SubjectEnum subjectEnum);
 
-    void sinkAndKill();
+    void sink();
+
+    void kill();
 
     bool isWin();
 

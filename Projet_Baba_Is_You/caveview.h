@@ -28,12 +28,14 @@ private:
     BabaIsYou babaIsYou;
     int levelNumber;
     QGridLayout *gridLayout;
+    static bool isHelpShown;
 
 private slots:
     void saveGame();
     void replay();
     void exit();
     void chooselevel();
+    void helpCommand();
     void keyPressEvent(QKeyEvent *event) override;
 
 };

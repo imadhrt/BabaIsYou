@@ -421,7 +421,7 @@ void BabaIsYou::transform(Subject firstSubject, Subject secondSubject){
 /**
 vérifier si des éléments doivent être coulés ou tués selon les règles du jeu
  */
-void BabaIsYou::sinkAndKill(){
+void BabaIsYou::sink(){
     int height = board->getFile().getHeight();
     int width = board->getFile().getWidth();
     auto rulesList = rules.getListOfRules();
@@ -431,11 +431,37 @@ void BabaIsYou::sinkAndKill(){
             dev4::Position posOfTile(i, j);
             auto elementsList = board->getTiles(posOfTile).getListElement();
             int size = elementsList.size();
-            if (size > 1 && elementsList.at(1).getMat() != nullptr) {
+            if (size > 2  && elementsList.at(1).getMat() != nullptr) {
                 auto icon = elementsList.at(1).getMat()->getIcon();
                 for (auto& rule : rulesList) {
                     if (rule.getSubject().getSubjectEnum() == iconToSubject(icon)
-                        && (rule.getSubject().isSink() || rule.getSubject().isKill())) {
+                        && (rule.getSubject().isSink())) {
+                        while (size > 1) {
+                            board->dropElement(posOfTile);
+                            size--;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+void BabaIsYou::kill(){
+    int height = board->getFile().getHeight();
+    int width = board->getFile().getWidth();
+    auto rulesList = rules.getListOfRules();
+
+    for (int i = 0; i < height; ++i) {
+        for (int j = 0; j < width; ++j) {
+            dev4::Position posOfTile(i, j);
+            auto elementsList = board->getTiles(posOfTile).getListElement();
+            int size = elementsList.size();
+            if (size > 1  && elementsList.at(1).getMat() != nullptr) {
+                auto icon = elementsList.at(1).getMat()->getIcon();
+                for (auto& rule : rulesList) {
+                    if (rule.getSubject().getSubjectEnum() == iconToSubject(icon)
+                        && (rule.getSubject().isKill())) {
                         while (size > 2) {
                             board->dropElement(posOfTile);
                             size--;
@@ -446,6 +472,7 @@ void BabaIsYou::sinkAndKill(){
         }
     }
 }
+
 /**
  * Methode qui permet de faire le mouvement .
  * @param direction est une dirction.
@@ -541,7 +568,8 @@ void BabaIsYou::move(dev4::Direction direction) {
         }
     }
 
-    sinkAndKill();
+    sink();
+    kill();
     findAndAddRules();
     applyTransform();
     getVecPosPlayer();

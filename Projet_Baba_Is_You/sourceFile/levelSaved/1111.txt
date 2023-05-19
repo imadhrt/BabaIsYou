@@ -21,7 +21,6 @@ text_baba  4 12
    wall    6 6
   metal    6 7
   metal    6 8
-   baba    6 8
   metal    6 9
    wall    6 10
    you     6 12
@@ -32,7 +31,6 @@ text_baba  4 12
    wall    7 10
    wall    8 6
    rock    8 7
-   rock    8 8
    rock    8 9
    wall    8 10
    wall    9 6
@@ -43,12 +41,14 @@ text_baba  4 12
    wall    10 6
   metal    10 7
   metal    10 8
+   baba    10 8
   metal    10 9
    wall    10 10
 text_rock  11 4
    wall    11 6
   metal    11 7
   metal    11 8
+   rock    11 8
   metal    11 9
    wall    11 10
 text_flag  11 12

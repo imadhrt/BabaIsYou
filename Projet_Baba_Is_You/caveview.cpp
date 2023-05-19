@@ -8,13 +8,15 @@
 #include "headerFile/model/direction.h"
 #include <QKeyEvent>
 #include <QLabel>
+#include "chooselevel.h"
+#include "win.h"
+#include "help.h"
 
 CaveView::CaveView(int levelNumber, BabaIsYou babaIsYou, QWidget *parent) :
     QWidget(parent),
     ui(new Ui::CaveView),
     levelNumber(levelNumber),
     babaIsYou(babaIsYou),
-
     gridLayout(new QGridLayout(this))
 {
 
@@ -25,6 +27,7 @@ CaveView::CaveView(int levelNumber, BabaIsYou babaIsYou, QWidget *parent) :
     displayBoard();
     this->adjustSize();
     this->setFixedSize(580,580);
+    helpCommand();
 }
 
 CaveView::~CaveView()
@@ -38,29 +41,47 @@ void CaveView::initMenu(){
     menuBar->addMenu(menuFile);
 
 
-    QAction *actionSave = new QAction( "Save", this);
-   QAction *actionReplay = new QAction(QIcon("../icon/replay.png"), "Replay", this);
+    QAction *actionSave = new QAction( QIcon("../icon/save.png"),"Save", this);
+    QAction *actionReplay = new QAction(QIcon("../icon/replay.png"), "Replay", this);
     QAction *actionExit = new QAction(QIcon("../icon/exit.png"), "Exit", this);
     QAction *actionLevel = new QAction(QIcon("../icon/level.png"), "Choose level", this);
+    QAction *actionHelpCommand = new QAction(QIcon("../icon/help.png"), "Help Command", this);
 
 
     menuFile->addAction(actionSave);
     menuFile->addAction(actionReplay);
     menuFile->addAction(actionExit);
     menuFile->addAction(actionLevel);
+    menuFile->addAction(actionHelpCommand);
 
     gridLayout->setMenuBar(menuBar);
     connect(actionSave, &QAction::triggered, this, &CaveView::saveGame);
     connect(actionReplay, &QAction::triggered, this, &CaveView::replay);
     connect(actionExit, &QAction::triggered, this, &CaveView::exit);
     connect(actionLevel, &QAction::triggered, this, &CaveView::chooselevel);
+    connect(actionHelpCommand, &QAction::triggered, this, &CaveView::helpCommand);
 }
 
 void CaveView::saveGame(){
-    close();
     SaveLevel *saveLevel = new SaveLevel(babaIsYou);
     saveLevel->show();
 }
+
+bool CaveView::isHelpShown = false;
+
+void CaveView::helpCommand() {
+    if (!isHelpShown) {
+        Help *help = new Help();
+        QRect firstWindowGeometry = this->geometry();
+        int x = firstWindowGeometry.x() + firstWindowGeometry.width() + 305; // Ajoute un espace de 10 pixels entre les fenêtres
+        int y = firstWindowGeometry.y() + 180;
+        help->move(x, y);
+        help->show();
+        isHelpShown = true;
+    }
+}
+
+
 
 void CaveView::exit(){
     QApplication::quit();
@@ -68,11 +89,14 @@ void CaveView::exit(){
 
 void CaveView::replay(){
     babaIsYou.start(babaIsYou.getBoard()->getFile().getLevel(), false);
-}
+    displayBoard();
+    }
 
 void CaveView::chooselevel(){
     close();
-    //ouvrir le form des niveau et show
+    ChooseLevel *chooseLevel = new ChooseLevel();
+
+    chooseLevel->show();
 }
 
 
@@ -94,7 +118,7 @@ gridLayout->setSpacing(0);
             QLabel *imgLabel = new QLabel();
             QString imgPath;
                 if (element.getMat() != nullptr && element.getWords() == nullptr) {
-                imgPath = toPicsIcon(element.getMat()->getIcon());
+                imgPath = CaveView::toPicsIcon(element.getMat()->getIcon());
                 } else if (element.getMat() == nullptr && element.getWords() != nullptr) {
                 if (&element.getWords()->getSubject() != nullptr && &element.getWords()->getOperator() == nullptr &&
                     &element.getWords()->getComplement() == nullptr) {
@@ -145,54 +169,52 @@ void CaveView::keyPressEvent(QKeyEvent *event)
         break;
 
     case Qt::Key_S:
-        if (event->modifiers() == Qt::ControlModifier || event->modifiers() == Qt::MetaModifier) {
-                std::cout << "S" << std::endl;
-                saveGame();
-        }
+            saveGame();
         break;
 
     case Qt::Key_R:
-        if (event->modifiers() == Qt::ControlModifier || event->modifiers() == Qt::MetaModifier) {
-                std::cout << "R" << std::endl;
-                replay();
-        }
+            replay();
         break;
 
     case Qt::Key_X:
-        if (event->modifiers() == Qt::ControlModifier || event->modifiers() == Qt::MetaModifier) {
-                std::cout << "X" << std::endl;
-                exit();
-        }
+            exit();
         break;
+
+    case Qt::Key_H:
+            helpCommand();
+            break;
+
     case Qt::Key_Z:
-        if (event->modifiers() == Qt::ControlModifier || event->modifiers() == Qt::MetaModifier) {
-                std::cout << "Z" << std::endl;
-               babaIsYou.undo();
-        }
+        std::cout << "d";
+        babaIsYou.undo();
         break;
+
+    case Qt::Key_Y:
+               babaIsYou.redo();
+               std::cout << "d";
+               break;
+
     default:
         dir = dev4::Direction::NONE;
     }
 
-    //std::cout << game.getState() << std::endl ;
-    //bool running = true;
-    //while (running) {
-
-
-                try {
-                babaIsYou.movePlayer(dir);
-                displayBoard();
-                }catch (std::exception exception){
-
-                }
-         // else {
-                //running = false;
-      //  }
+    try {
+        babaIsYou.movePlayer(dir);
+        displayBoard();
+        }catch (std::exception exception){
+        }
 
        if (babaIsYou.isWin()) {
+        std::cout << "test";
                 int nextLevel = babaIsYou.getBoard()->getFile().getLevel() + 1;
+
                 if (nextLevel <= 4) {
                 babaIsYou.start(nextLevel, false);
+                displayBoard();
+                }else{
+                close();
+                Win *win = new Win();
+                win->show();
                 }
         }
     }
@@ -209,7 +231,6 @@ QString CaveView::toPicsIcon(Icon icon)
     switch (icon) {
     case Icon::FLAG_ICON :
         imgPath = "../sprite/flag.png";
-        //str = "\033[31mtxtFlag\033[0m ";
         break;
     case Icon::GRASS_ICON :
         imgPath = "../sprite/grass.png";
@@ -298,6 +319,8 @@ QString CaveView::toPicsComplement(ComplementEnum complementEnum) {
         imgPath = "../sprite/Text_PUSH.png";
         break;
 
+    default:
+        imgPath = "../sprite/Text_KILL2.png";
     }
     return imgPath;
 }
