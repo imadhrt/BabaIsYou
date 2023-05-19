@@ -109,7 +109,7 @@ void CaveView::displayBoard() {
         delete item;
     }
 
-gridLayout->setSpacing(0);
+    gridLayout->setSpacing(0);
 
     for (int i = 0; i < babaIsYou.getBoard()->getFile().getHeight(); ++i) {
         for (int j = 0; j < babaIsYou.getBoard()->getFile().getWidth(); ++j) {
