@@ -41,11 +41,11 @@ void CaveView::initMenu(){
     menuBar->addMenu(menuFile);
 
 
-    QAction *actionSave = new QAction( QIcon("../icon/save.png"),"Save", this);
-    QAction *actionReplay = new QAction(QIcon("../icon/replay.png"), "Replay", this);
-    QAction *actionExit = new QAction(QIcon("../icon/exit.png"), "Exit", this);
-    QAction *actionLevel = new QAction(QIcon("../icon/level.png"), "Choose level", this);
-    QAction *actionHelpCommand = new QAction(QIcon("../icon/help.png"), "Help Command", this);
+    QAction *actionSave = new QAction( QIcon("../icon2/save.png"),"Save", this);
+    QAction *actionReplay = new QAction(QIcon("../icon2/replay.png"), "Replay", this);
+    QAction *actionExit = new QAction(QIcon("../icon2/exit.png"), "Exit", this);
+    QAction *actionLevel = new QAction(QIcon("../icon2/level.png"), "Choose level", this);
+    QAction *actionHelpCommand = new QAction(QIcon("../icon2/help.png"), "Help Command", this);
 
 
     menuFile->addAction(actionSave);

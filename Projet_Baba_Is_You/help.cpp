@@ -6,17 +6,17 @@ Help::Help(QWidget *parent) :
     ui(new Ui::Help)
 {
     ui->setupUi(this);
-    QIcon iconSave("../icon/saveIcon.png");
+    QIcon iconSave("../icon2/saveIcon.png");
     ui->saveIcon->setPixmap(iconSave.pixmap(QSize(32, 32)));
-    QIcon iconMove("../icon/moveIcon.jpeg");
+    QIcon iconMove("../icon2/moveIcon.jpeg");
     ui->moveIcon->setPixmap(iconMove.pixmap(QSize(32, 32)));
-    QIcon iconUndo("../icon/undoIcon.png");
+    QIcon iconUndo("../icon2/undoIcon.png");
     ui->undoIcon->setPixmap(iconUndo.pixmap(QSize(32, 32)));
-    QIcon iconRedo("../icon/redoIcon.png");
+    QIcon iconRedo("../icon2/redoIcon.png");
     ui->redoIcon->setPixmap(iconRedo.pixmap(QSize(32, 32)));
-    QIcon iconRestart("../icon/restartIcon.png");
+    QIcon iconRestart("../icon2/restartIcon.png");
     ui->restartIcon->setPixmap(iconRestart.pixmap(QSize(32, 32)));
-    QIcon iconExit("../icon/exitIcon.png");
+    QIcon iconExit("../icon2/exitIcon.png");
     ui->exitIcon->setPixmap(iconExit.pixmap(QSize(32, 32)));
 
 }
