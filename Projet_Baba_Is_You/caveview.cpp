@@ -195,10 +195,11 @@ void CaveView::keyPressEvent(QKeyEvent *event)
     }
 
     try {
+        babaIsYou.registerObserver(this);
         babaIsYou.movePlayer(dir);
         }catch (std::exception exception){
         }
-        babaIsYou.registerObserver(this);
+
 
     }
 
