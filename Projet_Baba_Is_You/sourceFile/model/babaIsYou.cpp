@@ -329,14 +329,15 @@ int BabaIsYou::push(dev4::Position posPlayer, dev4::Direction dir)
     for (int i = 0; i < rules.getListOfRules().size(); ++i) {
 
         if(board->contains(posPlayer.nextPos(dir))){
-                while (board->contains(posPlayer)&&board->getTiles(posPlayer.nextPos(dir)).getListElement().at(board->getTiles(posPlayer.nextPos(dir)).getListElement().size() - 1).getMat() != nullptr
+                while (board->contains(posPlayer.nextPos(dir)) && (board->getTiles(posPlayer.nextPos(dir)).getListElement().at(board->getTiles(posPlayer.nextPos(dir)).getListElement().size() - 1).getMat() != nullptr
                 && rules.getListOfRules().at(i).getSubject().getSubjectEnum() == iconToSubject(board->getTiles(posPlayer.nextPos(dir)).getListElement().at(board->getTiles(posPlayer.nextPos(dir)).getListElement().size() - 1).getMat()->getIcon())
                 && rules.getListOfRules().at(i).getSubject().isPush()
-                ||board->getTiles(posPlayer.nextPos(dir)).getListElement().at(board->getTiles(posPlayer.nextPos(dir)).getListElement().size() - 1).getWords() != nullptr) {
+                                                               ||board->getTiles(posPlayer.nextPos(dir)).getListElement().at(board->getTiles(posPlayer.nextPos(dir)).getListElement().size() - 1).getWords() != nullptr)) {
                     ++cpt;
                     posPlayer = posPlayer.nextPos(dir);
                 }
         }
+
     }
     return cpt;
 }
@@ -354,8 +355,8 @@ int BabaIsYou::push(dev4::Position posPlayer, dev4::Direction dir)
 */
 dev4::Position BabaIsYou::getPositionAfterPush(dev4::Position player, dev4::Direction dir){
     int lastRock{push(player, dir)};
-    if(board->contains( player.nextPos(dir))){
 
+     if(board->contains( player.nextPos(dir))){
     switch (dir) {
         case dev4::Direction::LEFT:
             return dev4::Position{player.x(), player.y() - lastRock};
@@ -366,7 +367,7 @@ dev4::Position BabaIsYou::getPositionAfterPush(dev4::Position player, dev4::Dire
         case dev4::Direction::UP :
             return dev4::Position {player.x()-lastRock, player.y()};
         }
-    }
+     }
 }
 /**
  * Cherche les elements qui ont un mot composé d'un opérateur et de deux sujets adjacents.
@@ -498,82 +499,73 @@ void BabaIsYou::move(dev4::Direction direction) {
 
                 auto getSubjectOfRules = rules.getListOfRules().at(i).getSubject();
 
-                auto nextPos = player.nextPos(direction).nextPos(direction);
+                auto nextPosOfPlayer = board->getTiles(player.nextPos(direction));
+                auto elementsNextpos = nextPosOfPlayer.getListElement();
+                auto lastElementOfNextPos = elementsNextpos.at(elementsNextpos.size() - 1);
 
 
-                auto nextPosNextPos = player.nextPos(direction).nextPos(direction);
+
 
                 auto playerToMove = board->getTiles(player).getListElement().at(board->getTiles(player).getListElement().size() - 1);
 
 
-                if (board->contains(nextPos) && board->getTiles(player.nextPos(direction)).getListElement().back().getMat() != nullptr && (board->getTiles(player.nextPos(direction)).getListElement().back().getMat()->getIcon() == Icon::METAL_ICON
-                                                                 || getSubjectOfRules.getSubjectEnum() == iconToSubject(board->getTiles(player.nextPos(direction)).getListElement().back().getMat()->getIcon()))
-                    && !getSubjectOfRules.isPush() && board->getTiles(player.nextPos(direction)).getListElement().back().getWords() == nullptr){
+                if (lastElementOfNextPos.getMat() != nullptr && (lastElementOfNextPos.getMat()->getIcon() == Icon::METAL_ICON
+                                                                 || getSubjectOfRules.getSubjectEnum() == iconToSubject(lastElementOfNextPos.getMat()->getIcon()))
+                    && !getSubjectOfRules.isPush() && lastElementOfNextPos.getWords() == nullptr){
                     board->setElement(player.nextPos(direction),playerToMove);
                     board->dropElement(player);
                     break;
-                }else if (board->contains(nextPosNextPos) && board->getTiles(player.nextPos(direction).nextPos(direction)).getListElement().back().getMat() != nullptr && (board->getTiles(player.nextPos(direction).nextPos(direction)).getListElement().back().getMat()->getIcon() == Icon::METAL_ICON
-                                                                              || getSubjectOfRules.getSubjectEnum() == iconToSubject(board->getTiles(player.nextPos(direction).nextPos(direction)).getListElement().back().getMat()->getIcon()))
-                          && (!getSubjectOfRules.isPush() && !getSubjectOfRules.isStop()) && board->getTiles(player.nextPos(direction)).getListElement().back().getWords() == nullptr){
-
-                    board->setElement(player.nextPos(direction).nextPos(direction),board->getTiles(player.nextPos(direction)).getListElement().back());
-                    board->dropElement(player.nextPos(direction));
-
-                    board->setElement(player.nextPos(direction),playerToMove);
-                    board->dropElement(player);
-                    break;
-
                 }else {
                     int cpt {push(player, direction)};
 
                     switch (direction) {
-                        case dev4::Direction::UP:
-                            while (cpt > 0){
-                                dev4::Position rock = dev4::Position(player.x()-cpt,player.y());
-                                auto elementToPush = board->getTiles(rock).getListElement().at(board->getTiles(rock).getListElement().size() - 1);
-                                board->setElement(rock.nextPos(direction), elementToPush);
-                                board->dropElement(rock);
-                                --cpt;
-                            }
-                            break;
-
-                        case dev4::Direction::DOWN:
-                            while (cpt > 0){
-                                dev4::Position rock = dev4::Position(player.x()+cpt,player.y());
-                                auto elementToPush = board->getTiles(rock).getListElement().at(board->getTiles(rock).getListElement().size()-1);
-                                board->setElement(rock.nextPos(direction), elementToPush);
-                                board->dropElement(rock);
-                                --cpt;
-                            }
-                            break;
-
-                        case dev4::Direction::RIGHT:
-                            while (cpt > 0) {
-                                dev4::Position rock = dev4::Position(player.x(),player.y()+cpt);
-                                auto elementToPush = board->getTiles(rock).getListElement().at(board->getTiles(rock).getListElement().size()-1);
-                                board->setElement(rock.nextPos(direction), elementToPush);
-                                board->dropElement(rock);
-                                --cpt;
-                            }
-                            break;
-
-                        case dev4::Direction::LEFT:
-                            while (cpt > 0){
-                                dev4::Position rock = dev4::Position(player.x(),player.y()-cpt);
-                                auto elementToPush = board->getTiles(rock).getListElement().at(board->getTiles(rock).getListElement().size()-1);
-                                board->setElement(rock.nextPos(direction), elementToPush);
-                                board->dropElement(rock);
-                                --cpt;
-                            }
-                            break;
-                    }
-                        if(board->contains(player.nextPos(direction))){
-                            board->setElement(player.nextPos(direction), playerToMove);
-                            board->dropElement(player);
-                            break;
+                    case dev4::Direction::UP:
+                        while (cpt > 0){
+                            dev4::Position rock = dev4::Position(player.x()-cpt,player.y());
+                            auto elementToPush = board->getTiles(rock).getListElement().at(board->getTiles(rock).getListElement().size() - 1);
+                            board->setElement(rock.nextPos(direction), elementToPush);
+                            board->dropElement(rock);
+                            --cpt;
                         }
+                        break;
+
+                    case dev4::Direction::DOWN:
+                        while (cpt > 0){
+                            dev4::Position rock = dev4::Position(player.x()+cpt,player.y());
+                            auto elementToPush = board->getTiles(rock).getListElement().at(board->getTiles(rock).getListElement().size()-1);
+                            board->setElement(rock.nextPos(direction), elementToPush);
+                            board->dropElement(rock);
+                            --cpt;
+                        }
+                        break;
+
+                    case dev4::Direction::RIGHT:
+                        while (cpt > 0) {
+                            dev4::Position rock = dev4::Position(player.x(),player.y()+cpt);
+                            auto elementToPush = board->getTiles(rock).getListElement().at(board->getTiles(rock).getListElement().size()-1);
+                            board->setElement(rock.nextPos(direction), elementToPush);
+                            board->dropElement(rock);
+                            --cpt;
+                        }
+                        break;
+
+                    case dev4::Direction::LEFT:
+                        while (cpt > 0){
+                            dev4::Position rock = dev4::Position(player.x(),player.y()-cpt);
+                            auto elementToPush = board->getTiles(rock).getListElement().at(board->getTiles(rock).getListElement().size()-1);
+                            board->setElement(rock.nextPos(direction), elementToPush);
+                            board->dropElement(rock);
+                            --cpt;
+                        }
+                        break;
+                    }
+
+                    board->setElement(player.nextPos(direction), playerToMove);
+                    board->dropElement(player);
+                    break;
                 }
             }
+
         }
     }
 
@@ -585,6 +577,7 @@ void BabaIsYou::move(dev4::Direction direction) {
 
     notifyObservers();
 }
+
 /**
  * Methode qui vérifie si on a gagné le niveau ou pas.
  * @return true si on a gagné le niveau sinon non

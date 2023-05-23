@@ -23,12 +23,14 @@ public:
     QString toPicsOperator(OperatorEnum operatorEnum);
     QString toPicsComplement(ComplementEnum complementEnum);
     void update() override;
+    void initBoard();
 
 private:
     Ui::CaveView *ui;
     BabaIsYou babaIsYou;
     int levelNumber;
     QGridLayout *gridLayout;
+    std::vector<std::vector<Tiles>> previousBoardState;
 private slots:
     void saveGame();
     void replay();

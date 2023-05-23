@@ -21,11 +21,11 @@ CaveView::CaveView(int levelNumber, BabaIsYou babaIsYou, QWidget *parent) :
     babaIsYou(babaIsYou),
     gridLayout(new QGridLayout(this))
 {
-    //babaIsYou.registerObserver(this);
-    gridLayout->setHorizontalSpacing(0);
-    gridLayout->setVerticalSpacing(0);
+   //babaIsYou.registerObserver(this);
+    previousBoardState = babaIsYou.getBoard()->getBoard();
     ui->setupUi(this);
     initMenu();
+    initBoard();
     displayBoard();
     this->adjustSize();
     this->setFixedSize(550,550);
@@ -34,7 +34,9 @@ CaveView::CaveView(int levelNumber, BabaIsYou babaIsYou, QWidget *parent) :
 
 CaveView::~CaveView()
 {
+
     delete ui;
+
 }
 
 void CaveView::initMenu(){
@@ -95,15 +97,27 @@ void CaveView::chooselevel(){
     chooseLevel->show();
 }
 
-
+void CaveView::initBoard(){
+    for (int i = 0; i < babaIsYou.getBoard()->getFile().getHeight(); ++i) {
+        for (int j = 0; j < babaIsYou.getBoard()->getFile().getWidth(); ++j) {
+             QLabel *imgLabel = new QLabel();
+            gridLayout->addWidget(imgLabel,i,j);
+        }
+    }
+}
 
 void CaveView::displayBoard() {
+    std::vector<std::vector<Tiles>> currentBoardState = babaIsYou.getBoard()->getBoard();
 
-    QLayoutItem* item;
-    while ((item = gridLayout->takeAt(0)) != nullptr) {
-        delete item->widget();
-        delete item;
+    if (currentBoardState == previousBoardState) {
+        return;
     }
+
+    // Mise à jour de l'état précédent
+    previousBoardState = currentBoardState;
+
+
+
 
     gridLayout->setSpacing(0);
 
@@ -111,7 +125,7 @@ void CaveView::displayBoard() {
         for (int j = 0; j < babaIsYou.getBoard()->getFile().getWidth(); ++j) {
                 auto element = babaIsYou.getBoard()->getBoard().at(i).at(j).getListElement().at(
                     babaIsYou.getBoard()->getBoard().at(i).at(j).getListElement().size() - 1);
-            QLabel *imgLabel = new QLabel();
+
             QString imgPath;
                 if (element.getMat() != nullptr && element.getWords() == nullptr) {
                 imgPath = CaveView::toPicsIcon(element.getMat()->getIcon());
@@ -127,16 +141,21 @@ void CaveView::displayBoard() {
                     imgPath = CaveView::toPicsComplement(element.getWords()->getComplement().getComplementEnum());
                 }
                 }
-                QPixmap pixmap(imgPath);
 
-                int newWitdh = 30;
-                int newHeight = pixmap.height() * newWitdh / pixmap.width();
-                QPixmap scaledPixmap = pixmap.scaled(newWitdh, newHeight, Qt::KeepAspectRatio);
+                auto item = gridLayout->itemAtPosition(i,j);
+                if(item){
+                    if(QLabel *label = qobject_cast<QLabel*>(item->widget())){
+                        QPixmap pixmap(imgPath);
 
-                imgLabel->setPixmap(scaledPixmap);
+                        int newWitdh = 30;
+                        int newHeight = pixmap.height() * newWitdh / pixmap.width();
+                        QPixmap scaledPixmap = pixmap.scaled(newWitdh, newHeight, Qt::KeepAspectRatio);
 
+                        label->setPixmap(scaledPixmap);
+                    }
+                }
 
-                gridLayout->addWidget(imgLabel,i,j);
+                //imgLabel.release();
         }
 
     }
@@ -196,6 +215,7 @@ void CaveView::keyPressEvent(QKeyEvent *event)
 
     try {
         babaIsYou.registerObserver(this);
+        //babaIsYou.notifyObservers();
         babaIsYou.movePlayer(dir);
         }catch (std::exception exception){
         }
@@ -213,6 +233,9 @@ QString CaveView::toPicsIcon(Icon icon)
     QString imgPath;
 
     switch (icon) {
+    case Icon::METAL_ICON :
+        imgPath = "../sprite/TILE.png";
+        break;
     case Icon::FLAG_ICON :
         imgPath = "../sprite/flag.png";
         break;
