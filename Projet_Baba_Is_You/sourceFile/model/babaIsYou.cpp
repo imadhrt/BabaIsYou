@@ -326,9 +326,9 @@ Cette méthode permet de compter le nombre d'éléments qui peuvent être pouss�
 int BabaIsYou::push(dev4::Position posPlayer, dev4::Direction dir)
 {
     int cpt{0};
-            for (int i = 0; i < rules.getListOfRules().size(); ++i) {
+    for (int i = 0; i < rules.getListOfRules().size(); ++i) {
 
-
+        if(board->contains(posPlayer.nextPos(dir))){
                 while (board->contains(posPlayer)&&board->getTiles(posPlayer.nextPos(dir)).getListElement().at(board->getTiles(posPlayer.nextPos(dir)).getListElement().size() - 1).getMat() != nullptr
                 && rules.getListOfRules().at(i).getSubject().getSubjectEnum() == iconToSubject(board->getTiles(posPlayer.nextPos(dir)).getListElement().at(board->getTiles(posPlayer.nextPos(dir)).getListElement().size() - 1).getMat()->getIcon())
                 && rules.getListOfRules().at(i).getSubject().isPush()
@@ -336,7 +336,8 @@ int BabaIsYou::push(dev4::Position posPlayer, dev4::Direction dir)
                     ++cpt;
                     posPlayer = posPlayer.nextPos(dir);
                 }
-                }
+        }
+    }
     return cpt;
 }
 /**
@@ -353,6 +354,7 @@ int BabaIsYou::push(dev4::Position posPlayer, dev4::Direction dir)
 */
 dev4::Position BabaIsYou::getPositionAfterPush(dev4::Position player, dev4::Direction dir){
     int lastRock{push(player, dir)};
+    if(board->contains( player.nextPos(dir))){
 
     switch (dir) {
         case dev4::Direction::LEFT:
@@ -363,6 +365,7 @@ dev4::Position BabaIsYou::getPositionAfterPush(dev4::Position player, dev4::Dire
             return dev4::Position {player.x()+lastRock, player.y()};
         case dev4::Direction::UP :
             return dev4::Position {player.x()-lastRock, player.y()};
+        }
     }
 }
 /**
@@ -495,28 +498,25 @@ void BabaIsYou::move(dev4::Direction direction) {
 
                 auto getSubjectOfRules = rules.getListOfRules().at(i).getSubject();
 
-                auto nextPosOfPlayer = board->getTiles(player.nextPos(direction));
-                auto elementsNextpos = nextPosOfPlayer.getListElement();
-                auto lastElementOfNextPos = elementsNextpos.at(elementsNextpos.size() - 1);
+                auto nextPos = player.nextPos(direction).nextPos(direction);
 
-                auto nextPosNextPosOfPlayer = board->getTiles(player.nextPos(direction).nextPos(direction));
-                auto elementsNextposNextPos = nextPosNextPosOfPlayer.getListElement();
-                auto lastElementOfNextPosNextpos = elementsNextpos.at(elementsNextpos.size() - 1);
+
+                auto nextPosNextPos = player.nextPos(direction).nextPos(direction);
 
                 auto playerToMove = board->getTiles(player).getListElement().at(board->getTiles(player).getListElement().size() - 1);
 
 
-                if (lastElementOfNextPos.getMat() != nullptr && (lastElementOfNextPos.getMat()->getIcon() == Icon::METAL_ICON
-                                                                 || getSubjectOfRules.getSubjectEnum() == iconToSubject(lastElementOfNextPos.getMat()->getIcon()))
-                    && !getSubjectOfRules.isPush() && lastElementOfNextPos.getWords() == nullptr){
+                if (board->contains(nextPos) && board->getTiles(player.nextPos(direction)).getListElement().back().getMat() != nullptr && (board->getTiles(player.nextPos(direction)).getListElement().back().getMat()->getIcon() == Icon::METAL_ICON
+                                                                 || getSubjectOfRules.getSubjectEnum() == iconToSubject(board->getTiles(player.nextPos(direction)).getListElement().back().getMat()->getIcon()))
+                    && !getSubjectOfRules.isPush() && board->getTiles(player.nextPos(direction)).getListElement().back().getWords() == nullptr){
                     board->setElement(player.nextPos(direction),playerToMove);
                     board->dropElement(player);
                     break;
-                }else if (lastElementOfNextPosNextpos.getMat() != nullptr && (lastElementOfNextPosNextpos.getMat()->getIcon() == Icon::METAL_ICON
-                                                                              || getSubjectOfRules.getSubjectEnum() == iconToSubject(lastElementOfNextPosNextpos.getMat()->getIcon()))
-                          && (!getSubjectOfRules.isPush() && !getSubjectOfRules.isStop()) && lastElementOfNextPos.getWords() == nullptr){
+                }else if (board->contains(nextPosNextPos) && board->getTiles(player.nextPos(direction).nextPos(direction)).getListElement().back().getMat() != nullptr && (board->getTiles(player.nextPos(direction).nextPos(direction)).getListElement().back().getMat()->getIcon() == Icon::METAL_ICON
+                                                                              || getSubjectOfRules.getSubjectEnum() == iconToSubject(board->getTiles(player.nextPos(direction).nextPos(direction)).getListElement().back().getMat()->getIcon()))
+                          && (!getSubjectOfRules.isPush() && !getSubjectOfRules.isStop()) && board->getTiles(player.nextPos(direction)).getListElement().back().getWords() == nullptr){
 
-                    board->setElement(player.nextPos(direction).nextPos(direction),lastElementOfNextPos);
+                    board->setElement(player.nextPos(direction).nextPos(direction),board->getTiles(player.nextPos(direction)).getListElement().back());
                     board->dropElement(player.nextPos(direction));
 
                     board->setElement(player.nextPos(direction),playerToMove);

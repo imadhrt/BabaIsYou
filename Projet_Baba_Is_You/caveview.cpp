@@ -21,7 +21,7 @@ CaveView::CaveView(int levelNumber, BabaIsYou babaIsYou, QWidget *parent) :
     babaIsYou(babaIsYou),
     gridLayout(new QGridLayout(this))
 {
-
+    //babaIsYou.registerObserver(this);
     gridLayout->setHorizontalSpacing(0);
     gridLayout->setVerticalSpacing(0);
     ui->setupUi(this);
@@ -86,7 +86,6 @@ void CaveView::exit(){
 
 void CaveView::replay(){
     babaIsYou.start(babaIsYou.getBoard()->getFile().getLevel(), false);
-    displayBoard();
     }
 
 void CaveView::chooselevel(){
@@ -166,15 +165,16 @@ void CaveView::keyPressEvent(QKeyEvent *event)
         break;
 
     case Qt::Key_S:
-            saveGame();
+        saveGame();
         break;
 
     case Qt::Key_R:
-            replay();
+        replay();
+        babaIsYou.notifyObservers();
         break;
 
     case Qt::Key_X:
-            exit();
+        exit();
         break;
 
     case Qt::Key_H:
@@ -184,12 +184,11 @@ void CaveView::keyPressEvent(QKeyEvent *event)
     case Qt::Key_Z:
         std::cout << "d";
         babaIsYou.undo();
-        break;
+        return;
 
     case Qt::Key_Y:
                babaIsYou.redo();
-               std::cout << "d";
-               break;
+        return;
 
     default:
         dir = dev4::Direction::NONE;
@@ -197,22 +196,10 @@ void CaveView::keyPressEvent(QKeyEvent *event)
 
     try {
         babaIsYou.movePlayer(dir);
-        displayBoard();
         }catch (std::exception exception){
         }
+        babaIsYou.registerObserver(this);
 
-       if (babaIsYou.isWin()) {
-                int nextLevel = babaIsYou.getBoard()->getFile().getLevel() + 1;
-                bool isSave = babaIsYou.getBoard()->getFile().getSave();
-                if (nextLevel <= 4 && !isSave) {
-                babaIsYou.start(nextLevel, isSave);
-                displayBoard();
-                }else{
-                close();
-                Win *win = new Win();
-                win->show();
-                }
-        }
     }
 
 
@@ -330,4 +317,21 @@ QString CaveView::toPicsOperator(OperatorEnum operatorEnum) {
         break;
     }
     return imgPath;
+}
+
+
+void CaveView::update() {
+    displayBoard();
+    if (babaIsYou.isWin()) {
+        int nextLevel = babaIsYou.getBoard()->getFile().getLevel() + 1;
+        bool isSave = babaIsYou.getBoard()->getFile().getSave();
+        if (nextLevel <= 4 && !isSave) {
+                babaIsYou.start(nextLevel, isSave);
+                babaIsYou.notifyObservers();
+        }else{
+                close();
+                Win *win = new Win();
+                win->show();
+        }
+    }
 }

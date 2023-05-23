@@ -9,8 +9,8 @@
 using namespace std;
 using namespace dev4;
 
-/*
-int main() {
+
+/*int main() {
 
     int levelNumber = 0;
     LevelLoader levelLoader(levelNumber, false);
@@ -24,6 +24,7 @@ int main() {
 }*/
 
 
+
 int main (int argc , char* argv []){
     QApplication application(argc , argv ) ;
 
@@ -33,7 +34,7 @@ int main (int argc , char* argv []){
     /*
     MainWindow myWindow;
     myWindow.show ( ) ;
-    */
+*/
     return  application.exec();
 
 
