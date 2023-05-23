@@ -567,10 +567,11 @@ void BabaIsYou::move(dev4::Direction direction) {
                             }
                             break;
                     }
-
-                    board->setElement(player.nextPos(direction), playerToMove);
-                    board->dropElement(player);
-                    break;
+                        if(board->contains(player.nextPos(direction))){
+                            board->setElement(player.nextPos(direction), playerToMove);
+                            board->dropElement(player);
+                            break;
+                        }
                 }
             }
         }
