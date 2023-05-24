@@ -335,7 +335,9 @@ QString CaveView::toPicsComplement(ComplementEnum complementEnum) {
     case ComplementEnum::PUSH :
         imgPath = "../sprite/Text_PUSH.png";
         break;
-
+    case ComplementEnum::KILL :
+        imgPath = "../sprite/Text_KILL.png";
+        break;
     default:
         imgPath = "../sprite/Text_KILL2.png";
     }
