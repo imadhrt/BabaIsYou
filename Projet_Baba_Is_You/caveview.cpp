@@ -98,7 +98,7 @@ void CaveView::exit(){
 void CaveView::replay(){
     babaIsYou.start(babaIsYou.getBoard()->getFile().getLevel(), false);
     babaIsYou.notifyObservers();
-    }
+}
 
 void CaveView::chooselevel(){
     close();

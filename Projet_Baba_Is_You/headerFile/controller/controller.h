@@ -12,7 +12,6 @@ class BabaIsYouController : public Observer{
 public:
     BabaIsYouController(BabaIsYou *babaIsYou, BabaIsYouView *view);
     void start();
-
     ~BabaIsYouController() override;
     void update() override;
     int lireChiffreClavier();
