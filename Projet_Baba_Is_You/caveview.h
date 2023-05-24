@@ -31,6 +31,7 @@ private:
     int levelNumber;
     QGridLayout *gridLayout;
     std::vector<std::vector<Tiles>> previousBoardState;
+     bool isFirstDisplay;
 private slots:
     void saveGame();
     void replay();

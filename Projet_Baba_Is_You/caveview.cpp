@@ -1,4 +1,4 @@
-#include "caveview.h"
+﻿#include "caveview.h"
 #include "ui_caveview.h"
 #include <QMenuBar>
 #include <QMenu>
@@ -19,7 +19,8 @@ CaveView::CaveView(int levelNumber, BabaIsYou babaIsYou, QWidget *parent) :
     ui(new Ui::CaveView),
     levelNumber(levelNumber),
     babaIsYou(babaIsYou),
-    gridLayout(new QGridLayout(this))
+    gridLayout(new QGridLayout(this)),
+    isFirstDisplay(true)
 {
    //babaIsYou.registerObserver(this);
     previousBoardState = babaIsYou.getBoard()->getBoard();
@@ -42,7 +43,15 @@ CaveView::~CaveView()
 void CaveView::initMenu(){
     QMenuBar *menuBar = new QMenuBar();
     QMenu *menuFile = new QMenu("File");
+
+    QString styleSheet = "QMenuBar { color: white; }"; // Remplacez "red" par la couleur de votre choix
+
+    // Appliquer la feuille de style au menuBar
+    menuBar->setStyleSheet(styleSheet);
+
     menuBar->addMenu(menuFile);
+//   menuFile->setStyleSheet("background-color:white;");
+
 
 
     QAction *actionSave = new QAction( QIcon("../icon2/save.png"),"Save", this);
@@ -88,6 +97,7 @@ void CaveView::exit(){
 
 void CaveView::replay(){
     babaIsYou.start(babaIsYou.getBoard()->getFile().getLevel(), false);
+    babaIsYou.notifyObservers();
     }
 
 void CaveView::chooselevel(){
@@ -106,60 +116,112 @@ void CaveView::initBoard(){
     }
 }
 
+//void CaveView::displayBoard() {
+//    std::vector<std::vector<Tiles>> currentBoardState = babaIsYou.getBoard()->getBoard();
+
+//    if ( !isFirstDisplay && currentBoardState == previousBoardState) {
+//        return;
+//    }
+//    isFirstDisplay=false;
+//    // Mise à jour de l'état précédent
+//    previousBoardState = currentBoardState;
+
+
+
+
+//    gridLayout->setSpacing(0);
+
+//    for (int i = 0; i < babaIsYou.getBoard()->getFile().getHeight(); ++i) {
+//        for (int j = 0; j < babaIsYou.getBoard()->getFile().getWidth(); ++j) {
+//                auto element = babaIsYou.getBoard()->getBoard().at(i).at(j).getListElement().at(
+//                    babaIsYou.getBoard()->getBoard().at(i).at(j).getListElement().size() - 1);
+
+//            QString imgPath;
+//                if (element.getMat() != nullptr && element.getWords() == nullptr) {
+//                imgPath = CaveView::toPicsIcon(element.getMat()->getIcon());
+//                } else if (element.getMat() == nullptr && element.getWords() != nullptr) {
+//                if (&element.getWords()->getSubject() != nullptr && &element.getWords()->getOperator() == nullptr &&
+//                    &element.getWords()->getComplement() == nullptr) {
+//                   imgPath = CaveView::toPicsSubject(element.getWords()->getSubject().getSubjectEnum());
+//                } else if (&element.getWords()->getSubject() == nullptr &&
+//                           &element.getWords()->getOperator() != nullptr &&
+//                           &element.getWords()->getComplement() == nullptr) {
+//                   imgPath = CaveView::toPicsOperator(element.getWords()->getOperator().getOperatorEnum());
+//                } else {
+//                    imgPath = CaveView::toPicsComplement(element.getWords()->getComplement().getComplementEnum());
+//                }
+//                }
+
+//                auto item = gridLayout->itemAtPosition(i,j);
+//                if(item){
+//                    if(QLabel *label = qobject_cast<QLabel*>(item->widget())){
+//                        QPixmap pixmap(imgPath);
+
+//                        int newWitdh = 30;
+//                        int newHeight = pixmap.height() * newWitdh / pixmap.width();
+//                        QPixmap scaledPixmap = pixmap.scaled(newWitdh, newHeight, Qt::KeepAspectRatio);
+
+//                        label->setPixmap(scaledPixmap);
+//                    }
+//                }
+
+
+//        }
+
+//    }
+//}
 void CaveView::displayBoard() {
     std::vector<std::vector<Tiles>> currentBoardState = babaIsYou.getBoard()->getBoard();
 
-    if (currentBoardState == previousBoardState) {
+    if (!isFirstDisplay && currentBoardState == previousBoardState) {
         return;
     }
-
+    isFirstDisplay = false;
     // Mise à jour de l'état précédent
     previousBoardState = currentBoardState;
-
-
-
 
     gridLayout->setSpacing(0);
 
     for (int i = 0; i < babaIsYou.getBoard()->getFile().getHeight(); ++i) {
         for (int j = 0; j < babaIsYou.getBoard()->getFile().getWidth(); ++j) {
-                auto element = babaIsYou.getBoard()->getBoard().at(i).at(j).getListElement().at(
-                    babaIsYou.getBoard()->getBoard().at(i).at(j).getListElement().size() - 1);
+            auto& element = babaIsYou.getBoard()->getBoard().at(i).at(j).getListElement().back();
 
             QString imgPath;
-                if (element.getMat() != nullptr && element.getWords() == nullptr) {
+            QPixmap pixmap;
+
+            if (element.getMat() != nullptr && element.getWords() == nullptr) {
                 imgPath = CaveView::toPicsIcon(element.getMat()->getIcon());
-                } else if (element.getMat() == nullptr && element.getWords() != nullptr) {
+                pixmap = QPixmap(imgPath);
+            } else if (element.getMat() == nullptr && element.getWords() != nullptr) {
                 if (&element.getWords()->getSubject() != nullptr && &element.getWords()->getOperator() == nullptr &&
-                    &element.getWords()->getComplement() == nullptr) {
-                   imgPath = CaveView::toPicsSubject(element.getWords()->getSubject().getSubjectEnum());
+                                            &element.getWords()->getComplement() == nullptr) {
+                    imgPath = CaveView::toPicsSubject(element.getWords()->getSubject().getSubjectEnum());
                 } else if (&element.getWords()->getSubject() == nullptr &&
-                           &element.getWords()->getOperator() != nullptr &&
-                           &element.getWords()->getComplement() == nullptr) {
-                   imgPath = CaveView::toPicsOperator(element.getWords()->getOperator().getOperatorEnum());
-                } else {
+                                                     &element.getWords()->getOperator() != nullptr &&
+                                                     &element.getWords()->getComplement() == nullptr) {
+                    imgPath = CaveView::toPicsOperator(element.getWords()->getOperator().getOperatorEnum());
+                } else if (&element.getWords()->getSubject() == nullptr &&
+                                                      &element.getWords()->getComplement() != nullptr &&
+                                                     &element.getWords()->getOperator() == nullptr) {
                     imgPath = CaveView::toPicsComplement(element.getWords()->getComplement().getComplementEnum());
                 }
+                pixmap = QPixmap(imgPath);
+            }
+
+            auto item = gridLayout->itemAtPosition(i, j);
+            if (item) {
+                if (QLabel* label = qobject_cast<QLabel*>(item->widget())) {
+                    int newWidth = 30;
+                    int newHeight = pixmap.height() * newWidth / pixmap.width();
+                    QPixmap scaledPixmap = pixmap.scaled(newWidth, newHeight, Qt::KeepAspectRatio);
+
+                    label->setPixmap(scaledPixmap);
                 }
-
-                auto item = gridLayout->itemAtPosition(i,j);
-                if(item){
-                    if(QLabel *label = qobject_cast<QLabel*>(item->widget())){
-                        QPixmap pixmap(imgPath);
-
-                        int newWitdh = 30;
-                        int newHeight = pixmap.height() * newWitdh / pixmap.width();
-                        QPixmap scaledPixmap = pixmap.scaled(newWitdh, newHeight, Qt::KeepAspectRatio);
-
-                        label->setPixmap(scaledPixmap);
-                    }
-                }
-
-                //imgLabel.release();
+            }
         }
-
     }
 }
+
 void CaveView::keyPressEvent(QKeyEvent *event)
 {
     setFocusPolicy(Qt::StrongFocus);
@@ -189,7 +251,7 @@ void CaveView::keyPressEvent(QKeyEvent *event)
 
     case Qt::Key_R:
         replay();
-        babaIsYou.notifyObservers();
+
         break;
 
     case Qt::Key_X:
@@ -213,19 +275,18 @@ void CaveView::keyPressEvent(QKeyEvent *event)
         dir = dev4::Direction::NONE;
     }
 
-    try {
+
         babaIsYou.registerObserver(this);
-        //babaIsYou.notifyObservers();
         babaIsYou.movePlayer(dir);
-        }catch (std::exception exception){
-        }
+
+
+
+
 
 
     }
 
 
-
-//}
 
 
 QString CaveView::toPicsIcon(Icon icon)

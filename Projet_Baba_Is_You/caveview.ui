@@ -14,7 +14,7 @@
    <string>BabaIsYou</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color: black</string>
+   <string notr="true">background-color:black;</string>
   </property>
  </widget>
  <resources/>

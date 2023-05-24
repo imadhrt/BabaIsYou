@@ -122,9 +122,11 @@ Getter pour l'objet "Tiles" se trouvant à la position donnée en paramètre.
 */
 Tiles Board::getTiles(dev4::Position position) {
     if(!contains(position)){
-        throw std::invalid_argument("La position n' est pas dans le board fettiles");
+
+        throw std::invalid_argument("La position n' est pas dans le board gettiles");
     }
     return board.at(position.x()).at(position.y());
+
 }
 /**
 Vérifie si la position donnée en paramètre est contenue dans le tableau "board".

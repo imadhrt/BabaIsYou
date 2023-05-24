@@ -644,7 +644,9 @@ void BabaIsYou::redo() {
 }
 
 void BabaIsYou::movePlayer(dev4::Direction direction){
+
     managerCommand.addCommand(new MoveCommand(this,direction));
+
 }
 
 void BabaIsYou::setRules(const RuleManager &rules) {

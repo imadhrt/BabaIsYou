@@ -10,7 +10,6 @@ bool MoveCommand::execute() {
     try {
         babaIsYou_->move(direction_);
     } catch (std::exception& e) {
-        std::cerr << "Exception caught: " << e.what() << std::endl;
     }
     return true;
 }
