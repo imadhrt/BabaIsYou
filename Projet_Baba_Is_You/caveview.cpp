@@ -208,16 +208,15 @@ void CaveView::keyPressEvent(QKeyEvent *event)
         break;
 
     case Qt::Key_H:
-            helpCommand();
-            break;
+        helpCommand();
+        break;
 
     case Qt::Key_Z:
-        std::cout << "d";
         babaIsYou.undo();
         return;
 
     case Qt::Key_Y:
-               babaIsYou.redo();
+        babaIsYou.redo();
         return;
 
     default:
@@ -256,7 +255,7 @@ QString CaveView::toPicsIcon(Icon icon)
         imgPath = "../sprite/wall.png";
         break;
     case Icon::LAVA_ICON :
-        imgPath = "../sprite/lava.png";
+        imgPath = "../sprite/lave.jpg";
         break;
     case Icon::BABA_ICON :
         imgPath = "../sprite/baba.png";

@@ -3,6 +3,7 @@
 #include "caveview.h"
 #include <QMessageBox>
 #include <QRadioButton>
+#include <QButtonGroup>
 
 ChooseLevel::ChooseLevel(QWidget *parent) :
     QWidget(parent),
@@ -22,8 +23,34 @@ ChooseLevel::~ChooseLevel()
     delete ui;
 }
 
+//void ChooseLevel::addRadioButtons()
+//{
+//    for (int i = 0; i < listLevel.size(); ++i) {
+//        QRadioButton *radioButton = new QRadioButton(QString::fromStdString(listLevel.at(i)), this);
+//         radioButton->setAutoExclusive(true);
+
+//        QFont font("Arial", 10);
+//        radioButton->setFont(font);
+//        ui->verticalLayout->addWidget(radioButton);
+
+//    }
+
+//    for (int i = 0; i < listLevelSaved.size(); ++i) {
+//        QRadioButton *radioButtonSaved = new QRadioButton(QString::fromStdString(listLevelSaved.at(i)), this);
+// radioButtonSaved->setAutoExclusive(true);
+
+//        QFont font("Arial", 10);
+//        radioButtonSaved->setFont(font);
+//        ui->verticalLayout_2->addWidget(radioButtonSaved);
+
+//    }
+//}
+
 void ChooseLevel::addRadioButtons()
 {
+    QButtonGroup *buttonGroup = new QButtonGroup(this);
+    buttonGroup->setExclusive(true); // Permet de sélectionner un seul bouton à la fois
+
     for (int i = 0; i < listLevel.size(); ++i) {
         QRadioButton *radioButton = new QRadioButton(QString::fromStdString(listLevel.at(i)), this);
 
@@ -31,6 +58,7 @@ void ChooseLevel::addRadioButtons()
         radioButton->setFont(font);
         ui->verticalLayout->addWidget(radioButton);
 
+        buttonGroup->addButton(radioButton); // Ajoute le bouton au groupe
     }
 
     for (int i = 0; i < listLevelSaved.size(); ++i) {
@@ -40,6 +68,7 @@ void ChooseLevel::addRadioButtons()
         radioButtonSaved->setFont(font);
         ui->verticalLayout_2->addWidget(radioButtonSaved);
 
+        buttonGroup->addButton(radioButtonSaved); // Ajoute le bouton au groupe
     }
 }
 
