@@ -116,109 +116,58 @@ void CaveView::initBoard(){
     }
 }
 
-//void CaveView::displayBoard() {
-//    std::vector<std::vector<Tiles>> currentBoardState = babaIsYou.getBoard()->getBoard();
-
-//    if ( !isFirstDisplay && currentBoardState == previousBoardState) {
-//        return;
-//    }
-//    isFirstDisplay=false;
-//    // Mise à jour de l'état précédent
-//    previousBoardState = currentBoardState;
-
-
-
-
-//    gridLayout->setSpacing(0);
-
-//    for (int i = 0; i < babaIsYou.getBoard()->getFile().getHeight(); ++i) {
-//        for (int j = 0; j < babaIsYou.getBoard()->getFile().getWidth(); ++j) {
-//                auto element = babaIsYou.getBoard()->getBoard().at(i).at(j).getListElement().at(
-//                    babaIsYou.getBoard()->getBoard().at(i).at(j).getListElement().size() - 1);
-
-//            QString imgPath;
-//                if (element.getMat() != nullptr && element.getWords() == nullptr) {
-//                imgPath = CaveView::toPicsIcon(element.getMat()->getIcon());
-//                } else if (element.getMat() == nullptr && element.getWords() != nullptr) {
-//                if (&element.getWords()->getSubject() != nullptr && &element.getWords()->getOperator() == nullptr &&
-//                    &element.getWords()->getComplement() == nullptr) {
-//                   imgPath = CaveView::toPicsSubject(element.getWords()->getSubject().getSubjectEnum());
-//                } else if (&element.getWords()->getSubject() == nullptr &&
-//                           &element.getWords()->getOperator() != nullptr &&
-//                           &element.getWords()->getComplement() == nullptr) {
-//                   imgPath = CaveView::toPicsOperator(element.getWords()->getOperator().getOperatorEnum());
-//                } else {
-//                    imgPath = CaveView::toPicsComplement(element.getWords()->getComplement().getComplementEnum());
-//                }
-//                }
-
-//                auto item = gridLayout->itemAtPosition(i,j);
-//                if(item){
-//                    if(QLabel *label = qobject_cast<QLabel*>(item->widget())){
-//                        QPixmap pixmap(imgPath);
-
-//                        int newWitdh = 30;
-//                        int newHeight = pixmap.height() * newWitdh / pixmap.width();
-//                        QPixmap scaledPixmap = pixmap.scaled(newWitdh, newHeight, Qt::KeepAspectRatio);
-
-//                        label->setPixmap(scaledPixmap);
-//                    }
-//                }
-
-
-//        }
-
-//    }
-//}
 void CaveView::displayBoard() {
     std::vector<std::vector<Tiles>> currentBoardState = babaIsYou.getBoard()->getBoard();
 
-    if (!isFirstDisplay && currentBoardState == previousBoardState) {
+    if ( !isFirstDisplay && currentBoardState == previousBoardState) {
         return;
     }
-    isFirstDisplay = false;
+    isFirstDisplay=false;
     // Mise à jour de l'état précédent
     previousBoardState = currentBoardState;
+
+
+
 
     gridLayout->setSpacing(0);
 
     for (int i = 0; i < babaIsYou.getBoard()->getFile().getHeight(); ++i) {
         for (int j = 0; j < babaIsYou.getBoard()->getFile().getWidth(); ++j) {
-            auto& element = babaIsYou.getBoard()->getBoard().at(i).at(j).getListElement().back();
+                auto element = babaIsYou.getBoard()->getBoard().at(i).at(j).getListElement().at(
+                    babaIsYou.getBoard()->getBoard().at(i).at(j).getListElement().size() - 1);
 
             QString imgPath;
-            QPixmap pixmap;
-
-            if (element.getMat() != nullptr && element.getWords() == nullptr) {
+                if (element.getMat() != nullptr && element.getWords() == nullptr) {
                 imgPath = CaveView::toPicsIcon(element.getMat()->getIcon());
-                pixmap = QPixmap(imgPath);
-            } else if (element.getMat() == nullptr && element.getWords() != nullptr) {
+                } else if (element.getMat() == nullptr && element.getWords() != nullptr) {
                 if (&element.getWords()->getSubject() != nullptr && &element.getWords()->getOperator() == nullptr &&
-                                            &element.getWords()->getComplement() == nullptr) {
-                    imgPath = CaveView::toPicsSubject(element.getWords()->getSubject().getSubjectEnum());
+                    &element.getWords()->getComplement() == nullptr) {
+                   imgPath = CaveView::toPicsSubject(element.getWords()->getSubject().getSubjectEnum());
                 } else if (&element.getWords()->getSubject() == nullptr &&
-                                                     &element.getWords()->getOperator() != nullptr &&
-                                                     &element.getWords()->getComplement() == nullptr) {
-                    imgPath = CaveView::toPicsOperator(element.getWords()->getOperator().getOperatorEnum());
-                } else if (&element.getWords()->getSubject() == nullptr &&
-                                                      &element.getWords()->getComplement() != nullptr &&
-                                                     &element.getWords()->getOperator() == nullptr) {
+                           &element.getWords()->getOperator() != nullptr &&
+                           &element.getWords()->getComplement() == nullptr) {
+                   imgPath = CaveView::toPicsOperator(element.getWords()->getOperator().getOperatorEnum());
+                } else {
                     imgPath = CaveView::toPicsComplement(element.getWords()->getComplement().getComplementEnum());
                 }
-                pixmap = QPixmap(imgPath);
-            }
-
-            auto item = gridLayout->itemAtPosition(i, j);
-            if (item) {
-                if (QLabel* label = qobject_cast<QLabel*>(item->widget())) {
-                    int newWidth = 30;
-                    int newHeight = pixmap.height() * newWidth / pixmap.width();
-                    QPixmap scaledPixmap = pixmap.scaled(newWidth, newHeight, Qt::KeepAspectRatio);
-
-                    label->setPixmap(scaledPixmap);
                 }
-            }
+
+                auto item = gridLayout->itemAtPosition(i,j);
+                if(item){
+                    if(QLabel *label = qobject_cast<QLabel*>(item->widget())){
+                        QPixmap pixmap(imgPath);
+
+                        int newWitdh = 30;
+                        int newHeight = pixmap.height() * newWitdh / pixmap.width();
+                        QPixmap scaledPixmap = pixmap.scaled(newWitdh, newHeight, Qt::KeepAspectRatio);
+
+                        label->setPixmap(scaledPixmap);
+                    }
+                }
+
+
         }
+
     }
 }
 
