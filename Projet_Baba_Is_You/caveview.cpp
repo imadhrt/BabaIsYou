@@ -223,15 +223,21 @@ void CaveView::keyPressEvent(QKeyEvent *event)
         dir = dev4::Direction::NONE;
     }
 
-
         babaIsYou.registerObserver(this);
         babaIsYou.movePlayer(dir);
 
-
-
-
-
-
+        if (babaIsYou.isWin()) {
+        int nextLevel = babaIsYou.getBoard()->getFile().getLevel() + 1;
+        bool isSave = babaIsYou.getBoard()->getFile().getSave();
+        if (nextLevel <= 4 && !isSave) {
+                babaIsYou.start(nextLevel, isSave);
+                babaIsYou.notifyObservers();
+        }else{
+                close();
+                Win *win = new Win();
+                win->show();
+        }
+        }
     }
 
 
@@ -357,16 +363,5 @@ QString CaveView::toPicsOperator(OperatorEnum operatorEnum) {
 
 void CaveView::update() {
     displayBoard();
-    if (babaIsYou.isWin()) {
-        int nextLevel = babaIsYou.getBoard()->getFile().getLevel() + 1;
-        bool isSave = babaIsYou.getBoard()->getFile().getSave();
-        if (nextLevel <= 4 && !isSave) {
-                babaIsYou.start(nextLevel, isSave);
-                babaIsYou.notifyObservers();
-        }else{
-                close();
-                Win *win = new Win();
-                win->show();
-        }
-    }
+
 }
